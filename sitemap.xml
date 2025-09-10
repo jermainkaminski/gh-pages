@@ -8,19 +8,15 @@
 <loc>https://jermainkaminski.com/authors/jermain-kaminski/</loc>
 </url>
 <url>
-<loc>https://jermainkaminski.com/here-goes-a-new-post/</loc>
-<lastmod>2025-09-10T10:45:04+02:00</lastmod>
+<loc>https://jermainkaminski.com/causal-data-science-meeting-2025/</loc>
+<lastmod>2025-09-10T14:52:15+02:00</lastmod>
 <image:image>
-<image:loc>https://jermainkaminski.com/media/posts/12/Jermain-Kaminski-1-md.jpg</image:loc>
-<image:title><![CDATA[Jermain Kaminski]]></image:title>
-</image:image>
-</url>
-<url>
-<loc>https://jermainkaminski.com/prospective-students/</loc>
-<lastmod>2025-09-08T14:02:00+02:00</lastmod>
-<image:image>
-<image:loc>https://jermainkaminski.com/media/posts/16/UM-Tapijn-202011-022.jpg</image:loc>
+<image:loc>https://jermainkaminski.com/media/posts/9/um-tapijn-202010-005_2-2.jpg</image:loc>
 <image:title><![CDATA[]]></image:title>
+</image:image>
+<image:image>
+<image:loc>https://jermainkaminski.com/media/posts/9/Mail-Yellow.jpg</image:loc>
+<image:title><![CDATA[Causal Data Science Meeting 2025]]></image:title>
 </image:image>
 </url>
 <url>
@@ -51,6 +47,14 @@
 </image:image>
 </url>
 <url>
+<loc>https://jermainkaminski.com/students/</loc>
+<lastmod>2025-09-10T15:50:19+02:00</lastmod>
+<image:image>
+<image:loc>https://jermainkaminski.com/media/posts/16/UM-Tapijn-202011-022.jpg</image:loc>
+<image:title><![CDATA[]]></image:title>
+</image:image>
+</url>
+<url>
 <loc>https://jermainkaminski.com/tags/news/</loc>
 </url>
 <url>
@@ -62,20 +66,8 @@
 </image:image>
 </url>
 <url>
-<loc>https://jermainkaminski.com/test-6/</loc>
-<lastmod>2025-09-10T09:53:36+02:00</lastmod>
-<image:image>
-<image:loc>https://jermainkaminski.com/media/posts/9/um-tapijn-202010-005_2-2.jpg</image:loc>
-<image:title><![CDATA[]]></image:title>
-</image:image>
-<image:image>
-<image:loc>https://jermainkaminski.com/media/posts/9/Mail-Yellow.jpg</image:loc>
-<image:title><![CDATA[Causal Data Science Meeting 2025]]></image:title>
-</image:image>
-</url>
-<url>
-<loc>https://jermainkaminski.com/what-good-will-hunting-can-teach-about-ai/</loc>
-<lastmod>2025-09-10T10:43:35+02:00</lastmod>
+<loc>https://jermainkaminski.com/the-sistine-chapel-problem/</loc>
+<lastmod>2025-09-10T16:33:03+02:00</lastmod>
 <image:image>
 <image:loc>https://jermainkaminski.com/media/posts/19/Will20Hunting.jpg.webp</image:loc>
 <image:title><![CDATA[]]></image:title>
@@ -91,6 +83,14 @@
 <image:image>
 <image:loc>https://jermainkaminski.com/media/posts/19/image.png</image:loc>
 <image:title><![CDATA[]]></image:title>
+</image:image>
+</url>
+<url>
+<loc>https://jermainkaminski.com/welcome/</loc>
+<lastmod>2025-09-10T14:52:01+02:00</lastmod>
+<image:image>
+<image:loc>https://jermainkaminski.com/media/posts/12/Jermain-Kaminski-1-md.jpg</image:loc>
+<image:title><![CDATA[Jermain Kaminski]]></image:title>
 </image:image>
 </url>
 </urlset>
