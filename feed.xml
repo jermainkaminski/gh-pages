@@ -3,43 +3,12 @@
     <title>Jermain C. Kaminski</title>
     <link href="https://jermainkaminski.com/feed.xml" rel="self" />
     <link href="https://jermainkaminski.com" />
-    <updated>2025-11-18T10:26:09+01:00</updated>
+    <updated>2025-11-18T10:26:35+01:00</updated>
     <author>
         <name>Jermain Kaminski</name>
     </author>
     <id>https://jermainkaminski.com</id>
 
-    <entry>
-        <title>Causal Data Science Meeting</title>
-        <author>
-            <name>Jermain Kaminski</name>
-        </author>
-        <link href="https://jermainkaminski.com/causal-data-science-meeting-2025/"/>
-        <id>https://jermainkaminski.com/causal-data-science-meeting-2025/</id>
-        <media:content url="https://jermainkaminski.com/media/posts/9/um-tapijn-202010-005_2-2.jpg" medium="image" />
-            <category term="News"/>
-
-        <updated>2025-09-12T10:25:00+02:00</updated>
-            <summary>
-                <![CDATA[
-                        <img src="https://jermainkaminski.com/media/posts/9/um-tapijn-202010-005_2-2.jpg" alt="" />
-                    <p>We’re excited to open submissions for the Causal Data Science Meeting 2025, bringing together researchers and practitioners to explore how causality is shaping the future of machine learning and AI.<br><br>Keynote: We’re honored to welcome Prof. <a href="https://www.som.lmu.de/en/faculty/people-overview/contact-page/stefan-feuerriegel-840c1071.html" target="_blank" rel="noopener noreferrer">Stefan Feuerriegel</a> as our 2025 keynote speaker! He heads the Institute of Artificial Intelligence in Management and holds dual appointments at LMU Munich’s School of Management and the Faculty of Mathematics, Informatics, and Statistics. His research on causal ML and AI in decision-making will offer valuable insights for the community.</p>
-<p>Event: Nov 12–13, 2025 (Virtual)<br>Submission Deadline: Sept 30, 2025</p>
-
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                    <p><img src="https://jermainkaminski.com/media/posts/9/um-tapijn-202010-005_2-2.jpg" class="type:primaryImage" alt="" /></p>
-                <p>We’re excited to open submissions for the Causal Data Science Meeting 2025, bringing together researchers and practitioners to explore how causality is shaping the future of machine learning and AI.<br><br>Keynote: We’re honored to welcome Prof. <a href="https://www.som.lmu.de/en/faculty/people-overview/contact-page/stefan-feuerriegel-840c1071.html" target="_blank" rel="noopener noreferrer">Stefan Feuerriegel</a> as our 2025 keynote speaker! He heads the Institute of Artificial Intelligence in Management and holds dual appointments at LMU Munich’s School of Management and the Faculty of Mathematics, Informatics, and Statistics. His research on causal ML and AI in decision-making will offer valuable insights for the community.</p>
-<p>Event: Nov 12–13, 2025 (Virtual)<br>Submission Deadline: Sept 30, 2025</p>
-
-<p>Causality has long been an important topic in various disciplines including computer science, economics, the social sciences, epidemiology, and philosophy. In recent years, interest has also grown in the business sector with both experimental (such as A/B testing, reinforcement learning, business experimentation) and observational causal inference methods (such causal discovery, root-cause analysis, quasi-experimental methods) being increasingly applied by practitioners. <br><br>Ever since its launch, the Causal Data Science Meeting has been at the forefront of this development, connecting a global audience of causality experts from academia and industry. We are excited to announce this year's Causal Data Science Meeting, which will take place as a two-day virtual conference on <em>November 12-13, 2025</em>. The event will focus on the newest methodological advances, practical aspects, and organizational challenges related to the adoption of causal machine learning tools. It will feature invited talks and presentations of accepted proposals.‍<br>‍<br><strong>Workshop Date:</strong><br>November 12–13<br><strong>Submission Deadline:</strong><br>September 30<br><strong>Acceptance Notification:<br></strong>October 7<br><br>Please submit your presentation proposal, extended abstract or full paper to <a href="mailto:submission@causalscience.org?subject=Submission%3A%20CDSM2025"><strong>submission@causalscience.org</strong></a><br><br>The meeting is organized as a workshop for the purpose of facilitating discussion and disseminating ideas. No conference proceedings of accepted presentations will be published. If you want to register as a participant, without presenting, please click <a href="https://forms.gle/SfZBdkXc44tvqEas9" target="_blank" rel="noopener">here</a>.<a href="https://forms.gle/5URSgebmn61E4zwy6" target="_blank" rel="noopener"><strong><br>‍</strong></a><br>If your organization would like to sponsor the event, please contact us at <strong>contact@causalscience.org</strong>.</p>
-<hr>
-<figure class="post__image"><img loading="lazy"  src="https://jermainkaminski.com/media/posts/9/Mail-Yellow.jpg" alt="Causal Data Science Meeting 2025" width="1200" height="1200" sizes="(max-width: 1200px) 100vw, 1200px" srcset="https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-xs.webp 300w ,https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-sm.webp 480w ,https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-md.webp 768w ,https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-xl.webp 1200w ,https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-xxl.webp 1600w ,https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-xxxl.webp 2560w"></figure>
-            ]]>
-        </content>
-    </entry>
     <entry>
         <title>Welcome!</title>
         <author>
@@ -70,6 +39,37 @@
 <p>I have been awarded the <em>Best Teacher </em>Award at my faculty and was nominated for the Wynand Wijnen Education Prize on university level. My PhD thesis (summa cum laude) received the <em>Borchers Badge</em> at RWTH Aachen. I was a Fellow of the <em>Royal Society of Arts</em> and <em>Marshall Memorial Fellow</em> at the Marshall Fund of the United States. In 2012 I was happy to be a participant in the first <em>Y Combinator Startup School</em> and winning a <em>Best Practice Paper</em> Award at Stanford Medicine X. My initiative Nachhaltigkeistspreis.de (Sustainability Award) was acquired by an initiative of the German Federal Government.</p>
 <p> </p>
 <p> </p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Causal Data Science Meeting</title>
+        <author>
+            <name>Jermain Kaminski</name>
+        </author>
+        <link href="https://jermainkaminski.com/causal-data-science-meeting-2025/"/>
+        <id>https://jermainkaminski.com/causal-data-science-meeting-2025/</id>
+        <media:content url="https://jermainkaminski.com/media/posts/9/um-tapijn-202010-005_2-2.jpg" medium="image" />
+            <category term="News"/>
+
+        <updated>2025-09-09T10:25:00+02:00</updated>
+            <summary>
+                <![CDATA[
+                        <img src="https://jermainkaminski.com/media/posts/9/um-tapijn-202010-005_2-2.jpg" alt="" />
+                    <p>We’re excited to open submissions for the Causal Data Science Meeting 2025, bringing together researchers and practitioners to explore how causality is shaping the future of machine learning and AI.<br><br>Keynote: We’re honored to welcome Prof. <a href="https://www.som.lmu.de/en/faculty/people-overview/contact-page/stefan-feuerriegel-840c1071.html" target="_blank" rel="noopener noreferrer">Stefan Feuerriegel</a> as our 2025 keynote speaker! He heads the Institute of Artificial Intelligence in Management and holds dual appointments at LMU Munich’s School of Management and the Faculty of Mathematics, Informatics, and Statistics. His research on causal ML and AI in decision-making will offer valuable insights for the community.</p>
+<p>Event: Nov 12–13, 2025 (Virtual)<br>Submission Deadline: Sept 30, 2025</p>
+
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                    <p><img src="https://jermainkaminski.com/media/posts/9/um-tapijn-202010-005_2-2.jpg" class="type:primaryImage" alt="" /></p>
+                <p>We’re excited to open submissions for the Causal Data Science Meeting 2025, bringing together researchers and practitioners to explore how causality is shaping the future of machine learning and AI.<br><br>Keynote: We’re honored to welcome Prof. <a href="https://www.som.lmu.de/en/faculty/people-overview/contact-page/stefan-feuerriegel-840c1071.html" target="_blank" rel="noopener noreferrer">Stefan Feuerriegel</a> as our 2025 keynote speaker! He heads the Institute of Artificial Intelligence in Management and holds dual appointments at LMU Munich’s School of Management and the Faculty of Mathematics, Informatics, and Statistics. His research on causal ML and AI in decision-making will offer valuable insights for the community.</p>
+<p>Event: Nov 12–13, 2025 (Virtual)<br>Submission Deadline: Sept 30, 2025</p>
+
+<p>Causality has long been an important topic in various disciplines including computer science, economics, the social sciences, epidemiology, and philosophy. In recent years, interest has also grown in the business sector with both experimental (such as A/B testing, reinforcement learning, business experimentation) and observational causal inference methods (such causal discovery, root-cause analysis, quasi-experimental methods) being increasingly applied by practitioners. <br><br>Ever since its launch, the Causal Data Science Meeting has been at the forefront of this development, connecting a global audience of causality experts from academia and industry. We are excited to announce this year's Causal Data Science Meeting, which will take place as a two-day virtual conference on <em>November 12-13, 2025</em>. The event will focus on the newest methodological advances, practical aspects, and organizational challenges related to the adoption of causal machine learning tools. It will feature invited talks and presentations of accepted proposals.‍<br>‍<br><strong>Workshop Date:</strong><br>November 12–13<br><strong>Submission Deadline:</strong><br>September 30<br><strong>Acceptance Notification:<br></strong>October 7<br><br>Please submit your presentation proposal, extended abstract or full paper to <a href="mailto:submission@causalscience.org?subject=Submission%3A%20CDSM2025"><strong>submission@causalscience.org</strong></a><br><br>The meeting is organized as a workshop for the purpose of facilitating discussion and disseminating ideas. No conference proceedings of accepted presentations will be published. If you want to register as a participant, without presenting, please click <a href="https://forms.gle/SfZBdkXc44tvqEas9" target="_blank" rel="noopener">here</a>.<a href="https://forms.gle/5URSgebmn61E4zwy6" target="_blank" rel="noopener"><strong><br>‍</strong></a><br>If your organization would like to sponsor the event, please contact us at <strong>contact@causalscience.org</strong>.</p>
+<hr>
+<figure class="post__image"><img loading="lazy"  src="https://jermainkaminski.com/media/posts/9/Mail-Yellow.jpg" alt="Causal Data Science Meeting 2025" width="1200" height="1200" sizes="(max-width: 1200px) 100vw, 1200px" srcset="https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-xs.webp 300w ,https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-sm.webp 480w ,https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-md.webp 768w ,https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-xl.webp 1200w ,https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-xxl.webp 1600w ,https://jermainkaminski.com/media/posts/9/responsive/Mail-Yellow-xxxl.webp 2560w"></figure>
             ]]>
         </content>
     </entry>
