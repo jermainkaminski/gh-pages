@@ -3,7 +3,7 @@
     <title>Jermain C. Kaminski</title>
     <link href="https://jermainkaminski.com/feed.xml" rel="self" />
     <link href="https://jermainkaminski.com" />
-    <updated>2025-11-05T14:43:58+01:00</updated>
+    <updated>2025-11-18T10:11:44+01:00</updated>
     <author>
         <name>Jermain Kaminski</name>
     </author>
@@ -16,13 +16,13 @@
         </author>
         <link href="https://jermainkaminski.com/welcome/"/>
         <id>https://jermainkaminski.com/welcome/</id>
-        <media:content url="https://jermainkaminski.com/media/posts/12/Image.jpg" medium="image" />
+        <media:content url="https://jermainkaminski.com/media/posts/12/Jermain-Kaminski-1-md-Kopie-3.jpg" medium="image" />
             <category term="News"/>
 
         <updated>2025-09-10T19:16:00+02:00</updated>
             <summary>
                 <![CDATA[
-                        <img src="https://jermainkaminski.com/media/posts/12/Image.jpg" alt="Jermain Kaminski" />
+                        <img src="https://jermainkaminski.com/media/posts/12/Jermain-Kaminski-1-md-Kopie-3.jpg" alt="Jermain Kaminski" />
                     <p>I am an Assistant Professor of Entrepreneurship and Innovation (with tenure) at the School of Business and Economics at Maastricht University. My <a href="https://jermainkaminski.com/research/">research</a> specializes on entrepreneurship, strategy, and causal machine learning, with a focus on how data-driven methods can improve decision-making and innovation. I'm a co-founder of the <a href="https://causalscience.org" target="_blank" rel="noopener noreferrer">Causal Data Science Meeting</a>.</p>
 <p class="">My work has been published in academic journals across innovation studies and computer science, such as the <em>Journal of Business Venturing, Journal of Product Innovation Management, ACM CHI conference on Human Factors in Computing, or IEEE Transactions on Engineering Management,</em> and received coverage in media outlets such as <em>Harvard Business Review</em> or <em>Poets &amp; Quants</em>.</p>
 
@@ -30,7 +30,7 @@
             </summary>
         <content type="html">
             <![CDATA[
-                    <p><img src="https://jermainkaminski.com/media/posts/12/Image.jpg" class="type:primaryImage" alt="Jermain Kaminski" /></p>
+                    <p><img src="https://jermainkaminski.com/media/posts/12/Jermain-Kaminski-1-md-Kopie-3.jpg" class="type:primaryImage" alt="Jermain Kaminski" /></p>
                 <p>I am an Assistant Professor of Entrepreneurship and Innovation (with tenure) at the School of Business and Economics at Maastricht University. My <a href="https://jermainkaminski.com/research/">research</a> specializes on entrepreneurship, strategy, and causal machine learning, with a focus on how data-driven methods can improve decision-making and innovation. I'm a co-founder of the <a href="https://causalscience.org" target="_blank" rel="noopener noreferrer">Causal Data Science Meeting</a>.</p>
 <p class="">My work has been published in academic journals across innovation studies and computer science, such as the <em>Journal of Business Venturing, Journal of Product Innovation Management, ACM CHI conference on Human Factors in Computing, or IEEE Transactions on Engineering Management,</em> and received coverage in media outlets such as <em>Harvard Business Review</em> or <em>Poets &amp; Quants</em>.</p>
 
