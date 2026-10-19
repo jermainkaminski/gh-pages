@@ -116,6 +116,12 @@ p { text-wrap: pretty; }
 
 /* Events grid */
 .grid-item h4 { font-family: var(--body-font); }
+/* Seven events side by side on desktop: smaller type, narrower columns */
+@media (min-width: 769px) {
+  .section.grid.wrapper { grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 1rem; }
+  .section.grid.wrapper .grid-item h6 { font-size: 0.9375rem; line-height: 1.3; }
+  .section.grid.wrapper .grid-item p { font-size: 0.8125rem; line-height: 1.45; }
+}
 
 /* Footer */
 .footer__logo { font-family: var(--body-font); font-weight: 600; }
