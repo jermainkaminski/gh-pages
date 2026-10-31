@@ -15,12 +15,12 @@ OUT = HERE / "site"
 POSTS = [
     {"file": "cdsm-2026.html", "vt": "post-cdsm", "og": "https://jermainkaminski.com/media/posts/9/cdsm-2026-header.jpg", "src": "causal-data-science-meeting-2026", "title": "Causal Data Science Meeting 2026",
      "date": "16 October 2026", "iso": "2026-10-16", "img": "UM-Tapijn-202011-022.jpg", "w": 7952, "h": 5304,
-     "alt": "A corridor at Tapijn with yellow, orange, red and blue study alcoves in timber frames", "note": "Tapijn campus, Maastricht University.",
+     "alt": "A corridor at Tapijn with yellow, orange, red and blue study alcoves in timber frames", "note": "<b>Tapijn campus</b>Maastricht University",
      "blurb": "Online on 4–5 November: two days of talks and discussion on causal data science, machine learning and AI. Attendance is free, and more than 650 participants have already registered.",
      "desc": "Causal Data Science Meeting 2026, online on 4–5 November: two free days of talks on causal data science, machine learning and AI."},
     {"file": "essay.html", "vt": "post-essay", "og": "https://jermainkaminski.com/media/posts/19/Will20Hunting.jpg.webp", "src": "the-sistine-chapel-problem", "title": "The Sistine Chapel Problem",
      "date": "8 September 2025", "iso": "2025-09-08", "img": "Will20Hunting.jpg.webp", "w": 1280, "h": 720,
-     "alt": "Park bench scene from the 1997 film Good Will Hunting", "note": "Good Will Hunting (1997): the park bench scene.",
+     "alt": "Park bench scene from the 1997 film Good Will Hunting", "note": "<b>Good Will Hunting</b>1997, the park bench scene",
      "blurb": "When language models can write a seemingly beautiful essay in seconds, what is the most important thing about learning? The answer can be found in a park bench conversation from a 1997 movie.",
      "desc": "When language models write a beautiful essay in seconds, what still matters about learning? An answer from a park bench in Good Will Hunting."},
 ]

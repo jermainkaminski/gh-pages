@@ -16,12 +16,12 @@ REPO = HERE.parent.parent
 ARROW = ('<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">'
          '<path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>')
 NOTES = {  # the short note under each photograph on phones
-    "home": "At the School of Business and Economics, Maastricht University.",
-    "about": "At the School of Business and Economics, Maastricht University.",
-    "research": "The Charles River at MIT, Cambridge, Massachusetts.",
-    "teaching": "An MBA class at Maastricht University.",
-    "students": "Tapijn campus, Maastricht University.",
-    "speaking": "Jermain Kaminski.",
+    "home": "<b>School of Business and Economics</b>Maastricht University",
+    "about": "<b>School of Business and Economics</b>Maastricht University",
+    "research": "<b>Charles River</b>MIT, Cambridge, Massachusetts",
+    "teaching": "<b>MBA class</b>Maastricht University",
+    "students": "<b>Tapijn campus</b>Maastricht University",
+    "speaking": "<b>Jermain Kaminski</b>Maastricht University",
 }
 PAGES = {  # output name: (source folder, title, hero image, hero alt)
     "about": ("welcome", "About", None, ""),
