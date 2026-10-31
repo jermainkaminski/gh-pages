@@ -32,6 +32,7 @@
 
   /* 4 */
   function tidy(h) {
+    h = h.replace(/<(p|div|h[1-6])\s[^>]*>/g, "<$1>").replace(/<\/?div>/g, "").replace(/<h[1-6]>\s*<\/h[1-6]>/g, "");
     h = h.replace(/<br\s*\/?>/g, " ").replace(/;\s*<\/a>/g, "</a>; ").replace(/\s+/g, " ").replace(/\s+<\/a>/g, "</a> ");
     h = h.replace(/(<\/a>|<\/em>)\s+([,.;:!?])/g, "$1$2").replace(/\s+([,;:!?])(?=\s)/g, "$1");
     return h.replace(/<p> /g, "<p>").replace(/ <\/p>/g, "</p>");
@@ -132,7 +133,7 @@
   document.querySelectorAll(".raw").forEach(function (raw) {
     var h = tidy(raw.innerHTML);
     var cite = raw.hasAttribute("data-cite");
-    var bits = h.split(/<h2[^>]*>([\s\S]*?)<\/h2>/);
+    var bits = h.split(/<h[2-4]>([\s\S]*?)<\/h[2-4]>/);
     var out = [];
     var lead = bits[0].trim();
     var profiles = "";

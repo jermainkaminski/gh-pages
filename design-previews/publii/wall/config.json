@@ -62,7 +62,7 @@
         {"name": "factFocus", "label": "Focus", "value": "Entrepreneurship, strategy, causal machine learning", "type": "text", "group": "Home"},
         {"name": "factCofounded", "label": "Co-founded (HTML)", "value": "<a href=\"https://causalscience.org\">Causal Data Science Meeting</a>, <a href=\"https://moviegalaxies.gf52t95h4b.workers.dev\">MovieGalaxies</a>", "type": "text", "group": "Home"},
         {"name": "factAdvisor", "label": "Advisor (HTML)", "value": "<a href=\"https://texterous.com\">Texterous</a>, on AI that people actually use", "type": "text", "group": "Home"},
-        {"name": "writingPosts", "label": "Posts on the home page and the Writing page", "value": "9,19", "type": "text", "group": "Home", "note": "Post IDs, newest first, separated by commas."},
+        {"name": "writingPosts", "label": "Posts on the home page and the Writing page", "value": "26,9,19", "type": "text", "group": "Home", "note": "Post IDs, newest first, separated by commas."},
         {"name": "sepBadge", "type": "separator", "label": "Badge", "group": "Home", "size": "small"},
         {"name": "badgeLink", "label": "Badge link", "value": "https://poetsandquants.com/2024/05/18/2024-best-40-under-40-mba-professors-jermain-kaminski-maastricht-university-school-of-business-and-economics/", "type": "text", "group": "Home"},
         {"name": "sepContact", "type": "separator", "label": "Contact", "group": "Contact", "size": "small"},
