@@ -3,6 +3,7 @@
 from the live site's pages in this repo, so the wording stays Jermain's own."""
 import html
 import re
+from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -31,7 +32,7 @@ PAGES = {  # output name: (source folder, title, hero image, hero alt)
 }
 ESSAY_SRC = "the-sistine-chapel-problem"
 NAV = [("about", "About"), ("research", "Research"), ("publications", "Publications"),
-       ("teaching", "Teaching"), ("students", "Students"), ("speaking", "Speaking")]
+       ("teaching", "Teaching"), ("students", "Students"), ("speaking", "Speaking"), ("news", "News")]
 LOCAL = {"welcome": "about", "research": "research", "publications": "publications", "teaching": "teaching",
          "students": "students", "speaking-and-workshops": "speaking", ESSAY_SRC: "essay"}
 
@@ -257,7 +258,7 @@ FOOT = """<footer class="close" id="contact">
       <div><p>Speaking, workshops and advisory:</p><div class="mail"><a href="mailto:jermain.kaminski@gmail.com">jermain.kaminski@gmail.com</a></div></div>
     </div>
     <div class="colophon">
-      <span>Jermain C. Kaminski</span>
+      <span>Jermain C. Kaminski<span class="upd">Last updated """ + date.today().strftime("%-d %B %Y") + """</span></span>
       <nav aria-label="Elsewhere"><a href="essay.html">Writing</a><a href="https://www.linkedin.com/in/jermainkaminski/">LinkedIn</a><a href="https://bsky.app/profile/jermainkaminski.bsky.social">Bluesky</a><a href="https://jermainkaminski.com/privacy/">Privacy</a></nav>
     </div>
   </div>
@@ -273,6 +274,7 @@ DESCRIPTIONS = {
     "students": "PhD, master and honours students supervised by Jermain C. Kaminski.",
     "speaking": "Speaking, workshops and advisory with Jermain C. Kaminski.",
     "writing": "Writing by Jermain C. Kaminski.",
+    "news": "Press and media coverage of Jermain C. Kaminski's research and teaching.",
 }
 ICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23d0450c'/%3E"
         "%3Cpath d='M6 16h18M17 9l7 7-7 7' fill='none' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E")
@@ -320,6 +322,18 @@ document.addEventListener("keydown",function(e){{if(e.key==="Escape"&&m.checked)
 """
 
 
+def press_html():
+    """The press mentions kept on the live Publications page, newest addition first."""
+    chunk = body_of(PAGES["publications"][0]).split("<h2>Press Mentions</h2>", 1)[1]
+    return "<p>" + GITHUB_POST + "</p>" + chunk
+
+
+def news_page():
+    main = (f'<div class="pad head"><h1>In the news</h1></div>'
+            f'<div class="pad page">{parts("<h2>Press and media</h2>" + press_html(), cite=True)}</div>')
+    return page("In the news: Jermain C. Kaminski", main, "news")
+
+
 def subpage(key):
     folder, title, img, alt = PAGES[key]
     h = body_of(folder)
@@ -331,7 +345,7 @@ def subpage(key):
                  + "".join(f'<a href="{u}">{n}{ARROW}</a>' for u, n in links) + "</p>")
         h = h[m.end():]
         h = h.replace("<h2>Working Papers</h2>", "<h2>Working Papers</h2><p>" + SILICON + "</p>", 1)
-        h = h.replace("<h2>Press Mentions</h2>", "<h2>Press Mentions</h2><p>" + GITHUB_POST + "</p>", 1)
+        h = h.split("<h2>Press Mentions</h2>", 1)[0]  # press has its own page, see news_page
     if key == "research":  # the pillars lead the research page
         h = f"<h2>Three pillars of current research</h2>{pillars_html()}" + h
     band = f'<div class="pad"><figure class="band"><img src="media/{img}" alt="{alt}"><figcaption class="note">{NOTES[key]}</figcaption></figure></div>' if img else ""
@@ -363,7 +377,7 @@ def home_parts():
     hero = """<div class="pad">
       <div class="stage" id="top">
         <div class="say">
-          <h1>Professor based in Maastricht. Studying how entrepreneurs decide under uncertainty, and <em>what data can really tell them.</em></h1>
+          <h1>Causal inference and machine learning for <em>the decisions founders actually make.</em></h1>
           <dl class="facts">
             <div><dt>Based</dt><dd>Maastricht University, School of Business and Economics</dd></div>
             <div><dt>Focus</dt><dd>Entrepreneurship, strategy, causal machine learning</dd></div>

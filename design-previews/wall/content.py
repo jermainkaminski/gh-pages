@@ -55,5 +55,33 @@ def pillars_html():
         for i, (t, d, ps) in enumerate(PILLARS, 1)) + "</ol>"
 
 
-BIO = "My work brings together causal inference, language and vision to study how text, images and behaviour change financing and innovation outcomes."
+NEWS = [  # the three pieces of coverage shown on the home page; the News page has them all
+    ("GitHub Blog", "How researchers are using GitHub Innovation Graph data to reveal the “digital complexity” of nations", "https://github.blog/news-insights/policy-news-and-insights/how-researchers-are-using-github-innovation-graph-data-to-reveal-the-digital-complexity-of-nations/", "2026"),
+    ("Poets&amp;Quants", "Best 40 Under 40 MBA Professors", "https://poetsandquants.com/2024/05/18/2024-best-40-under-40-mba-professors-jermain-kaminski-maastricht-university-school-of-business-and-economics/", "2024"),
+    ("Einstein Telescope", "The entrepreneurial side of fundamental research", "https://www.einsteintelescope-emr.eu/en/2024/07/04/the-entrepreneurial-side-of-fundamental-research/", "2024"),
+]
+COLLAB = [  # work with me: three doors, all open
+    ("Research collaboration",
+     "Causal inference, machine learning, and text and image data on entrepreneurship, strategy and innovation. I’m open to co-authoring, to joint data projects, and to companies and public bodies with a question that deserves a proper answer.",
+     "Write to me", "mailto:j.kaminski@maastrichtuniversity.nl"),
+    ("Speaking, workshops and advisory",
+     "Keynotes and executive workshops on causal thinking and AI in strategy, and advisory for teams that need to know what their data can and cannot tell them.",
+     "Speaking and advisory", "speaking.html"),
+    ("Students",
+     "I supervise PhD, master’s and honours students at Maastricht, and I’m always glad to hear from prospective PhD candidates with a causal or machine-learning question in mind.",
+     "Working with students", "students.html"),
+]
+
+
+def news_html():
+    return '<div class="sched news">' + "".join(
+        f'<a href="{u}"><span><span class="o">{o}</span>{t}</span><span>{y}</span></a>' for o, t, u, y in NEWS) + "</div>"
+
+
+def collab_html():
+    return '<div class="collab">' + "".join(
+        f'<div><h3>{t}</h3><p>{d}</p><a class="more" href="{u}">{l}</a></div>' for t, d, l, u in COLLAB) + "</div>"
+
+
+BIO ="My work brings together causal inference, language and vision to study how text, images and behaviour change financing and innovation outcomes."
 ROLE = "Associate Professor of Entrepreneurship and Innovation, Maastricht University"

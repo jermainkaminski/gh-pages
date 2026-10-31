@@ -6,7 +6,7 @@ import subprocess
 from pathlib import Path
 
 import build as b
-from content import PHOTO
+from content import PHOTO, collab_html, news_html
 from fonts import VARIANTS
 
 HERE = Path(__file__).parent
@@ -67,10 +67,14 @@ def rest_of(named, *keys):
     return "\n".join(named[k] for k in keys)
 
 
-REST = ("pillars", "work", "river", "about", "teaching", "events")
+REST = ("pillars", "work", "river", "about", "teaching", "collab", "news", "events")
 
 
 def home_page(hero, s):
+    s = dict(s)
+    s["collab"] = f'<section class="sec pad" id="collab"><h2 class="sec-h">Work with me</h2>{collab_html()}</section>'
+    s["news"] = (f'<section class="sec pad" id="news"><div class="bh"><h2 class="sec-h">In the news</h2>'
+                 f'<a class="more" href="news.html">All coverage</a></div>{news_html()}</section>')
     return hero + f'<section class="sec pad blog">{head()}{cards()}</section>' + rest_of(s, *REST)
 
 
@@ -134,6 +138,7 @@ def build(out, variant=None):
     pages.update({f"{key}.html": b.subpage(key) for key in b.PAGES})
     pages.update({p["file"]: post_page(p) for p in POSTS})
     pages["writing.html"] = writing_page()
+    pages["news.html"] = b.news_page()
     for file, page in pages.items():
         page = localize(page)
         if variant:

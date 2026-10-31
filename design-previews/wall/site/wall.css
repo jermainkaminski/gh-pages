@@ -417,3 +417,15 @@ h1{letter-spacing:-.015em}
   .close h2{font-size:min(12.3vw,177px)}
   .card .pic{height:min(34.5vw,497px)}
 }
+
+/* work with me: three doors, and the news rows */
+.collab{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px clamp(24px,3vw,48px)}
+.collab h3{margin:0 0 14px;font:350 clamp(24px,2.2vw,32px)/1.15 var(--serif);letter-spacing:-.018em}
+.collab p{margin:0;color:var(--ink-2);font-size:var(--text);line-height:1.55;max-width:38ch;text-wrap:pretty}
+.collab .more{margin-top:18px}
+.sched.news{grid-template-columns:minmax(0,1fr)}
+.sched.news a span:first-child{white-space:normal}
+.sched.news .o{color:var(--ink-3);margin-right:14px}
+.colophon .upd{margin-left:24px;color:var(--ink-3)}
+@media (max-width:1000px){.collab{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.colophon .upd{display:block;margin:4px 0 0}}
