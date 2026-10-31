@@ -41,6 +41,7 @@ PILLARS = [
      "Software as a lens on what economies know how to do. With Juhász, Wachs and Hidalgo, measuring the complexity of the code that countries produce and how it relates to their development.", [
         ("The software complexity of nations", "https://doi.org/10.1016/j.respol.2026.105422", "Research Policy, 2026"),
         ("Creative complexity", None, "Under review"),
+        ("How researchers are using GitHub Innovation Graph data to reveal the “digital complexity” of nations", "https://github.blog/news-insights/policy-news-and-insights/how-researchers-are-using-github-innovation-graph-data-to-reveal-the-digital-complexity-of-nations/", "GitHub Blog, 2026"),
     ]),
 ]
 

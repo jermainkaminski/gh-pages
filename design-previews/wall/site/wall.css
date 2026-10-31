@@ -30,8 +30,9 @@ nav.top ul a[aria-current]{text-decoration:underline;text-underline-offset:5px}
 
 /* logo: same place and size as the live site */
 .m-only{display:none}
-/* the badge hangs from the top edge beside the name; zero height so it never changes the nav's row */
-.badge{display:block;width:100px;height:0;overflow:visible;align-self:flex-start;margin:-24px 0 0 28px;position:relative;z-index:9}
+/* the badge hangs from the top-right corner, as on the live site; every page keeps that corner free so the menu never moves */
+nav.top{padding-right:128px}
+.badge{position:absolute;top:0;right:0;width:100px;z-index:9;display:block}
 .badge img{display:block;width:100%;height:auto}
 .facts a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--rule)}
 .facts a:hover{color:inherit;text-decoration-color:currentColor}
@@ -366,7 +367,8 @@ h1{letter-spacing:-.015em}
 .menu-t,.burger,.soc{display:none}
 @media (max-width:800px){
   nav.top{flex-wrap:nowrap;justify-content:space-between;padding-block:18px}
-  .badge{width:56px;margin:-18px 0 0 16px}
+  nav.top{padding-right:72px}
+  .badge{width:56px}
   .stage{padding-top:44px}
   nav.top .pill{display:none}
   nav.top .who{position:relative;z-index:2}

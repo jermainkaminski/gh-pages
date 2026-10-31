@@ -103,6 +103,8 @@ TYPOS = {  # corrected here until the live pages are fixed in Publii
 }
 
 
+GITHUB_POST = ('GitHub Blog (2026). <a href="https://github.blog/news-insights/policy-news-and-insights/how-researchers-are-using-github-innovation-graph-data-to-reveal-the-digital-complexity-of-nations/">'
+               'How researchers are using GitHub Innovation Graph data to reveal the “digital complexity” of nations</a>.')
 SILICON = "Kaminski, J. (2026). Silicon sampling for product feedback in entrepreneurship. Working paper. The title was changed for peer review."
 
 
@@ -234,17 +236,17 @@ def nav(current=None):
     items = "".join(
         f'<li><a href="{k}.html"{" aria-current=" + chr(34) + "page" + chr(34) if k == current else ""}>{v}</a></li>'
         for k, v in NAV)
-    badge = ("" if current else  # hangs from the top edge beside the name, so the menu sits in the same place on every page
+    badge = ("" if current else  # hangs from the top-right corner; every page keeps the corner free, so the menu never moves
              '<a class="badge" href="https://poetsandquants.com/2024/05/18/2024-best-40-under-40-mba-professors-jermain-kaminski-maastricht-university-school-of-business-and-economics/">'
              '<img src="media/40under40logo.jpg" width="271" height="459" alt="Poets&amp;Quants Best 40 Under 40 Professors"></a>')
     # On phones the list becomes a full-screen sheet, opened by the checkbox behind the burger; no script needed
     return (f'<div class="pad"><nav class="top{"" if current else " home"}" aria-label="Main">'
-            f'<input type="checkbox" id="menu" class="menu-t" aria-label="Menu" autocomplete="off"><a class="who" href="index.html">Jermain C. Kaminski</a>{badge}'
+            f'<input type="checkbox" id="menu" class="menu-t" aria-label="Menu" autocomplete="off"><a class="who" href="index.html">Jermain C. Kaminski</a>'
             f'<label for="menu" class="burger" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24">'
             f'<line x1="2" y1="5" x2="22" y2="5"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="19" x2="22" y2="19"/></svg></label>'
             f'<ul>{items}<li class="m-only"><a href="#contact">Get in touch</a></li>'
             f'<li class="m-only soc"><a href="https://www.linkedin.com/in/jermainkaminski/">LinkedIn</a><a href="https://bsky.app/profile/jermainkaminski.bsky.social">Bluesky</a></li></ul>'
-            f'<a class="pill" href="#contact">Get in touch</a></nav></div>')
+            f'<a class="pill" href="#contact">Get in touch</a>{badge}</nav></div>')
 
 
 FOOT = """<footer class="close" id="contact">
@@ -329,6 +331,7 @@ def subpage(key):
                  + "".join(f'<a href="{u}">{n}{ARROW}</a>' for u, n in links) + "</p>")
         h = h[m.end():]
         h = h.replace("<h2>Working Papers</h2>", "<h2>Working Papers</h2><p>" + SILICON + "</p>", 1)
+        h = h.replace("<h2>Press Mentions</h2>", "<h2>Press Mentions</h2><p>" + GITHUB_POST + "</p>", 1)
     if key == "research":  # the pillars lead the research page
         h = f"<h2>Three pillars of current research</h2>{pillars_html()}" + h
     band = f'<div class="pad"><figure class="band"><img src="media/{img}" alt="{alt}"><figcaption class="note">{NOTES[key]}</figcaption></figure></div>' if img else ""
