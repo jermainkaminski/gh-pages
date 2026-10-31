@@ -1,9 +1,0 @@
-{{!-- Under articles: the author in one sentence. --}}
-<div class="au au-g">
-  {{#if @config.custom.heroImage}}<img src="{{@config.custom.heroImage}}" {{responsiveSrcSet @config.custom.heroImage}} sizes="72px" width="72" height="72" alt="{{@config.custom.heroImageAlt}}" loading="lazy">{{/if}}
-  <div>
-    <p class="say">{{{@config.custom.authorSentence}}}</p>
-    <span class="n">{{@website.name}}</span>
-    <span class="r">{{@config.custom.authorRole}} · {{#getPage 12}}<a href="{{url}}">About</a>{{/getPage}}</span>
-  </div>
-</div>

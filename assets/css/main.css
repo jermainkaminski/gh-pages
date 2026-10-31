@@ -22,7 +22,7 @@ a:hover{color:var(--accent-text)}
 ::selection{background:var(--accent-tint)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 h2,h3,.t,.big{text-wrap:balance}
-.s,.body p,.about p{text-wrap:pretty}
+.s,.body p{text-wrap:pretty}
 /* every block sits in .pad: 24px gutters on phones, 48px from 900px, centred and capped at 1440px */
 .pad{max-width:1440px;margin-inline:auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
 .lbl,.facts dt{font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
@@ -93,7 +93,8 @@ h1 em{font-style:italic;color:var(--accent)}
 .card .s strong,.card .s em{font-weight:inherit;font-style:inherit}
 /* three numbered pillars; from 1001px each list starts on one line across the three */
 .pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(24px,3vw,48px);list-style:none;margin:0;padding:0}
-.body li.pillar,.body li.pillar:first-child,.pillar{display:block;padding:28px 0 0;border-top:1px solid var(--accent)}
+.body li.pillar,.body li.pillar:first-child,.pillar{display:block;padding:40px 0 0;border-top:1px solid var(--accent)}
+.pillar .pn{display:block;margin-bottom:28px;font:var(--display-weight) clamp(72px,7.5vw,112px)/.9 var(--serif);letter-spacing:-.02em;color:var(--accent);font-variant-numeric:lining-nums}
 .pillar h3{margin:0 0 20px;font:350 clamp(24px,2.2vw,32px)/1.1 var(--serif);letter-spacing:-.018em;overflow-wrap:normal}
 .pillar p,.body .pillar p{margin:0 0 20px;max-width:40ch;font-size:var(--small);line-height:1.5;color:var(--ink-2);text-wrap:pretty}
 .pillar ul{list-style:none;margin:0;padding:0}
@@ -103,27 +104,12 @@ h1 em{font-style:italic;color:var(--accent)}
 .part:has(.pillars){display:block}
 .part:has(.pillars) h2{position:static;margin-bottom:24px}
 .part:has(.pillars) .body{max-width:none}
-/* selected work: title, year and a line; on hover the rule turns orange and an arrow follows the last word */
-.work{margin:0;padding:0;list-style:none;border-top:1px solid var(--rule)}
-.work li{position:relative;border-bottom:1px solid var(--rule)}
-.work a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 32px;align-items:baseline;padding:22px 0;text-decoration:none}
-.work .t{font:350 clamp(24px,2.1vw,30px)/1.12 var(--serif);letter-spacing:-.015em}
-.work .y{font-size:16px;color:var(--ink-3);font-variant-numeric:tabular-nums}
-.work .s{grid-column:1/-1;max-width:52ch;font-size:var(--text);line-height:var(--lh);color:var(--ink-2)}
-.work li::after,.sched a::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 260ms cubic-bezier(.2,.7,.2,1)}
-.work li:has(a:hover,a:focus-visible)::after,.sched a:hover::after,.sched a:focus-visible::after{transform:scaleX(1)}
-.work li .y::after,.sched a>span:last-child::after{content:"→";display:inline-block;margin-left:8px;color:var(--accent);opacity:0;transform:translateX(-4px);transition:opacity 160ms linear,transform 200ms cubic-bezier(.2,.7,.2,1)}
+.sched a::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 260ms cubic-bezier(.2,.7,.2,1)}
+.sched a:hover::after,.sched a:focus-visible::after{transform:scaleX(1)}
+.sched a>span:last-child::after{content:"→";display:inline-block;margin-left:8px;color:var(--accent);opacity:0;transform:translateX(-4px);transition:opacity 160ms linear,transform 200ms cubic-bezier(.2,.7,.2,1)}
 /* in the news and events lists the arrow takes no room, so years and places end exactly at the right edge */
-.sched a>span:last-child::after{width:0;white-space:nowrap}
-.work li:has(a:hover,a:focus-visible) .y::after,.sched a:hover>span:last-child::after,.sched a:focus-visible>span:last-child::after{opacity:1;transform:none}
-/* wide photograph; from 1001px it bleeds past the gutters */
-.river{margin:0}
-.river img{display:block;width:100%;height:auto;aspect-ratio:21/9;object-fit:cover;object-position:50% 72%}
-.river figcaption{margin-top:12px;font-size:16px;line-height:1.4;color:var(--ink-3);text-align:left}
-.river figcaption b{margin-right:10px;font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
-.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px 64px}
-.about p{margin:0 0 1em;max-width:62ch;font-size:var(--text);line-height:var(--lh);color:var(--ink-2)}
-.about .big{margin:0;max-width:none;font:var(--display-weight) clamp(28px,2.8vw,40px)/var(--lead-lh) var(--serif);letter-spacing:-.015em;color:var(--ink)}
+.sched a>span:last-child::after{width:0;margin-right:-8px;white-space:nowrap}
+.sched a:hover>span:last-child::after,.sched a:focus-visible>span:last-child::after{opacity:1;transform:none}
 .teach{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:center;min-width:0}
 .teach figure{margin:0;min-width:0}
 .teach img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
@@ -132,10 +118,6 @@ h1 em{font-style:italic;color:var(--accent)}
 .nums dd{margin:0;font:var(--display-weight) clamp(40px,3.6vw,52px)/1 var(--serif);letter-spacing:-.03em;font-variant-numeric:lining-nums}
 .nums dd small{font-size:.42em;letter-spacing:0;color:var(--ink-3)}
 .nums dt{order:2;margin-top:6px;font-size:16px;line-height:1.3;color:var(--ink-2)}
-.collab{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px clamp(24px,3vw,48px)}
-.collab h3{margin:0 0 14px;font:350 clamp(24px,2.2vw,32px)/1.15 var(--serif);letter-spacing:-.018em}
-.collab p{margin:0;max-width:38ch;font-size:var(--text);line-height:1.55;color:var(--ink-2);text-wrap:pretty}
-.collab .more{margin-top:18px}
 /* news and events: rows with the place or year on the right; the arrow goes after that last span only, not after the label inside the first */
 .sched{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
 /* a ledger: headline left, place or source and year right in small grey tabular figures, hairlines between rows */
@@ -150,7 +132,10 @@ h1 em{font-style:italic;color:var(--accent)}
 .sched.news .o{grid-column:2;grid-row:1;margin-right:.2em;color:#7f869a;font-size:15px;text-align:right}
 .sched.news a>span:last-child{grid-column:3;grid-row:1}
 .sched.news .o::after{content:" ·"}
-#events{padding-top:clamp(64px,8vw,96px)}
+/* news and upcoming side by side, each its own ledger */
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px 72px}
+.duo .sched{grid-template-columns:minmax(0,1fr)}
+.duo .sched a:nth-last-child(2){border-bottom:0}
 
 /* pages and parts */
 .head{padding-block:clamp(48px,7vw,96px) clamp(32px,4vw,56px)}
@@ -192,13 +177,10 @@ h1 em{font-style:italic;color:var(--accent)}
 .play{margin:1.4em 0}
 
 /* publications */
-.prof-line{display:flex;flex-wrap:wrap;align-items:center;gap:10px 0;margin:28px 0 0;font-size:16px}
-.prof-line .lbl{margin-right:24px}
-.prof-line a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;padding:4px 0;color:var(--ink)}
-.prof-line a+a{margin-left:24px;padding-left:24px;border-left:1px solid var(--rule)}
-.prof-line a svg{color:var(--ink-3);transition:transform 160ms cubic-bezier(.2,.7,.2,1),color 160ms}
-.prof-line a:hover{color:var(--accent-text)}
-.prof-line a:hover svg{color:var(--accent);transform:translate(1px,-1px)}
+/* Publications: one sentence in the lead type under the title, the profile links inside the prose */
+.prof-lead{margin:28px 0 0;max-width:34ch;font:var(--display-weight) clamp(22px,2.2vw,30px)/1.3 var(--serif);letter-spacing:-.01em;color:var(--ink-2);text-wrap:pretty}
+.prof-lead a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--accent);text-underline-offset:5px}
+.prof-lead a:hover{color:var(--accent-text)}
 .cite{display:grid;grid-template-columns:60px minmax(0,1fr);gap:12px;padding:18px 0;border-top:1px solid var(--rule)}
 .cite:first-of-type{border-top:0;padding-top:0}
 .yr{font-size:var(--small);line-height:var(--lh);color:var(--ink-3);font-variant-numeric:tabular-nums}
@@ -271,12 +253,12 @@ h1 em{font-style:italic;color:var(--accent)}
   @keyframes read{to{transform:scaleX(1)}}
 }
 /* previous and next, then the author: in a sentence under articles, as a byline card on the Writing page */
-/* the pillar numerals and the previous/next row share the class .pn, so they share this first rule */
-.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:56px 0 0;padding:28px 0 0;border-top:1px solid var(--rule);font:var(--display-weight) clamp(72px,7.5vw,112px)/.9 var(--serif);letter-spacing:-.02em;color:var(--accent);font-variant-numeric:lining-nums}
-.pn a{text-decoration:none;color:inherit;min-width:0}
-.pn .next{text-align:right;grid-column:2}
-.pn .lbl{display:block;margin-bottom:8px}
-.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 var(--serif);letter-spacing:-.01em}
+/* previous and next at the foot of an article; its type settings are what the small labels and titles inherit */
+nav.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:56px 0 0;padding:28px 0 0;border-top:1px solid var(--rule);font:var(--display-weight) clamp(72px,7.5vw,112px)/.9 var(--serif);letter-spacing:-.02em;color:var(--accent);font-variant-numeric:lining-nums}
+nav.pn a{text-decoration:none;color:inherit;min-width:0}
+nav.pn .next{text-align:right;grid-column:2}
+nav.pn .lbl{display:block;margin-bottom:8px}
+nav.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 var(--serif);letter-spacing:-.01em}
 /* the footer's own rule sits above both cards, so they draw none */
 .au-g img,.au-a img{display:block;object-fit:cover;object-position:50% 18%}
 .au-g{display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;align-items:start;padding:44px 0 8px}
@@ -353,17 +335,11 @@ h1 em{font-style:italic;color:var(--accent)}
 /* responsive: 1001px and up, the desktop layouts */
 @media (min-width:1001px){
   h1{font-size:clamp(40px,3.9vw,58px)}
-  #work{padding-top:0}
   .portrait{align-self:stretch;position:relative;min-height:0;margin-right:-48px}
   .portrait>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%}
   .badge{width:100px;top:calc(100% + 44px)}
   .pillars{grid-template-rows:repeat(4,auto)}
   .body li.pillar,.body li.pillar:first-child,.pillar{display:grid;grid-row:span 4;grid-template-rows:subgrid}
-  .work a{grid-template-columns:7fr 5fr;column-gap:48px;padding:20px 0}
-  .work .t{grid-row:1/3}
-  .work .y,.work .s{grid-column:2}
-  .river{margin-inline:-48px}
-  .river figcaption{padding-inline:48px}
   .teach img{margin-left:-48px;width:calc(100% + 48px)}
   .article{margin-inline:calc((100% - 64px)*4/12 + 64px) 0}
   .body p.pull{float:left;width:calc(100% * 4/8 - 24px);margin:6px 0 20px calc(-100% * 4/8 - 64px);border:0;padding:0}
@@ -401,8 +377,7 @@ h1 em{font-style:italic;color:var(--accent)}
   .sec{padding-block:64px}
   .blog{padding-bottom:0}
   .pillars{grid-template-columns:minmax(0,1fr);row-gap:28px}
-  .river img{aspect-ratio:4/3;object-position:30% 70%}
-  .about,.teach,.sched,.part,.collab,.routes{grid-template-columns:minmax(0,1fr)}
+  .teach,.sched,.part,.routes,.duo{grid-template-columns:minmax(0,1fr)}
   .sched a:nth-last-child(2){border-bottom:0}
   .cards .card:first-child{grid-column:1/-1}
   .cards .card:first-child .pic{aspect-ratio:2/1}
@@ -440,10 +415,9 @@ h1 em{font-style:italic;color:var(--accent)}
   html:has(.menu-t:checked) .badge{display:none}
   .stage{padding-top:44px}
   .note,figcaption.note{display:block;margin:6px 24px 0}
-  .portrait,.band,.river,.standing figure,.teach figure,.card .pic,.article figure{margin-inline:-24px}
+  .portrait,.band,.standing figure,.teach figure,.card .pic,.article figure{margin-inline:-24px}
   /* About on a phone: a square cut-out around the face */
   .standing figure img{aspect-ratio:1;object-position:50% 8%;scale:1.35;transform-origin:45% 40%}
-  .river figcaption{padding-inline:24px}
 }
 /* the sheet fades in; written flat, because Publii's CSS compression cannot read nested at-rules */
 @media (max-width:800px) and (prefers-reduced-motion:no-preference){
@@ -456,10 +430,9 @@ h1 em{font-style:italic;color:var(--accent)}
   h1{font-size:34px;line-height:1.08}
   .portrait>img{aspect-ratio:1;object-position:94% 50%}
   .badge-m{top:14px;right:14px;width:77px}
-  .prof-line{gap:2px 22px}
-  .prof-line .lbl{width:100%;margin:0 0 4px}
-  .prof-line a+a{margin-left:0;padding-left:0;border-left:0}
   .cite{grid-template-columns:minmax(0,1fr);gap:0}
+  .sched a{flex-direction:column;gap:4px}
+  .sched span:last-child{text-align:left}
   .sched.news a{grid-template-columns:minmax(0,1fr) auto;gap:4px 20px}
   .sched.news .t{grid-column:1/-1}
   .sched.news .o{grid-column:1;grid-row:2;margin-right:0;text-align:left}
@@ -475,8 +448,8 @@ h1 em{font-style:italic;color:var(--accent)}
   .mag:first-child{grid-column:auto}
   .mag:first-child .pic{aspect-ratio:3/2}
   .mag .pic{margin-inline:-24px}
-  .pn{grid-template-columns:minmax(0,1fr)}
-  .pn .next{text-align:left;grid-column:1}
+  nav.pn{grid-template-columns:minmax(0,1fr)}
+  nav.pn .next{text-align:left;grid-column:1}
   .close h2{font-size:clamp(36px,10.5vw,56px)}
   .colophon .upd{text-align:left}
 }
@@ -489,7 +462,7 @@ h1 em{font-style:italic;color:var(--accent)}
 /* motion */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .work li::after,.sched a::after{transition:none}
+  .sched a::after{transition:none}
 }
 @media (prefers-reduced-motion:no-preference){
   /* pages hand over rather than reload (the @view-transition switch itself is in head.hbs: Publii's compression drops it) */

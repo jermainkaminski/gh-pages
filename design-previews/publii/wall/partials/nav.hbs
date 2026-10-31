@@ -1,9 +1,0 @@
-{{!-- The header. On phones the list becomes a full-screen sheet, opened by the checkbox behind the burger. --}}
-<div class="pad"><nav class="top{{#is "index"}} home{{/is}}" aria-label="Main">
-<input type="checkbox" id="menu" class="menu-t" aria-label="Menu" autocomplete="off"><a class="who" href="{{@website.url}}"><svg class="logo" viewBox="0 0 100 100" aria-hidden="true"><path class="f1" d="M50 50L50 6L56.12 35.22ZM50 50L94 50L64.78 56.12ZM50 50L50 94L43.88 64.78ZM50 50L6 50L35.22 43.88Z"/><path class="f2" d="M50 50L50 6L43.88 35.22ZM50 50L94 50L64.78 43.88ZM50 50L50 94L56.12 64.78ZM50 50L6 50L35.22 56.12Z"/><path class="f3" d="M50 50L72.63 27.37L64.78 43.88ZM50 50L72.63 72.63L56.12 64.78ZM50 50L27.37 72.63L35.22 56.12ZM50 50L27.37 27.37L43.88 35.22Z"/><path class="f4" d="M50 50L72.63 27.37L56.12 35.22ZM50 50L72.63 72.63L64.78 56.12ZM50 50L27.37 72.63L43.88 64.78ZM50 50L27.37 27.37L35.22 43.88Z"/></svg>{{@website.name}}</a>
-<label for="menu" class="burger" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><line x1="2" y1="5" x2="22" y2="5"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="19" x2="22" y2="19"/></svg></label>
-<ul>{{#if menus.mainMenu}}{{#each menus.mainMenu.items}}{{#unless isHidden}}<li{{menuItemClasses}}><a href="{{menuUrl}}"{{#if target}} target="{{target}}"{{/if}}>{{label}}</a></li>{{/unless}}{{/each}}{{/if}}<li class="m-only"><a href="#contact">Get in touch</a></li>
-<li class="m-only soc"><a href="{{@config.custom.linkedin}}">LinkedIn</a><a href="{{@config.custom.bluesky}}">Bluesky</a></li></ul>
-<a class="pill" href="#contact">Get in touch</a>
-{{#is "index"}}<a class="badge" href="{{@config.custom.badgeLink}}"><img src="{{@website.assetsUrl}}/img/40under40logo.jpg" width="271" height="459" alt="Poets&amp;Quants Best 40 Under 40 Professors"></a>{{/is}}
-</nav></div>
