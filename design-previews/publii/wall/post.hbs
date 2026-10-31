@@ -7,8 +7,16 @@
 <div class="pad"><figure class="band post"><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}" style="view-transition-name:post-{{../id}}">{{#if caption}}<figcaption class="note">{{{caption}}}</figcaption>{{/if}}</figure></div>
 {{/if}}{{/featuredImage}}
 <div class="pad page{{#each tags}}{{#checkIf slug '==' 'essay'}} is-essay{{/checkIf}}{{/each}}"><article class="body article">{{{text}}}
-{{#checkIfAny ../previousPost ../nextPost}}<nav class="pn" aria-label="More writing">{{#../previousPost}}<a class="prev" href="{{url}}"><span class="lbl">← Previous</span><span class="t">{{title}}</span></a>{{/../previousPost}}{{#../nextPost}}<a class="next" href="{{url}}"><span class="lbl">Next →</span><span class="t">{{title}}</span></a>{{/../nextPost}}</nav>{{/checkIfAny}}
+<div class="post-end">
+<ul class="kw" aria-label="Keywords">{{#each tags}}{{#checkIf slug '==' 'essay'}}{{else}}{{#checkIf slug '==' 'news'}}{{else}}{{#checkIf slug '==' 'editors-picks'}}{{else}}<li><a href="{{url}}">{{name}}</a></li>{{/checkIf}}{{/checkIf}}{{/checkIf}}{{/each}}</ul>
+{{> share}}
+</div>
 </article></div>
+{{#if ../relatedPosts}}
+<section class="sec pad more-w"><div class="bh"><h2 class="sec-h">More writing</h2>{{#getPage 24}}<a class="more" href="{{url}}">All writing</a>{{/getPage}}</div>
+  <div class="others">{{#each ../relatedPosts}}<a class="other" href="{{url}}"><span class="pic">{{#featuredImage}}{{#if url}}<img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.card sizes.card}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}" style="view-transition-name:post-{{../id}}" loading="lazy">{{/if}}{{/featuredImage}}</span><span class="t">{{title}}</span><span class="d">{{date createdAt "D MMMM YYYY"}}</span></a>{{/each}}</div>
+</section>
+{{/if}}
 </main>
 {{/post}}
 {{> footer}}

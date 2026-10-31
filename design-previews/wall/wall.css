@@ -137,13 +137,16 @@ h1 em{font-style:italic;color:var(--accent)}
 .duo .sched a:nth-last-child(2){border-bottom:0}
 
 /* pages and parts */
-.head{padding-block:clamp(48px,7vw,96px) clamp(32px,4vw,56px)}
-.head h1{font-size:clamp(48px,7.2vw,104px);line-height:.98;letter-spacing:-.02em}
+.head{padding-block:48px 28px}
+.head h1{font-size:clamp(44px,4.6vw,66px);line-height:.98;letter-spacing:-.02em}
 .band{margin:0}
-.band img{display:block;width:100%;height:clamp(240px,46vw,620px);object-fit:cover}
+.band img{display:block;width:100%;height:clamp(190px,21vw,300px);object-fit:cover}
+.band.post img{height:clamp(240px,46vw,620px)}
 .band:has(img[src*="MITSailing"]) img{object-position:50% 85%}
 .band:has(img[src*="Will20"]) img{object-position:50% 28%}
+.band:has(img[src*="Jermain-Kaminski-1-md"]) img{object-position:58% 28%}
 .page{padding-block:clamp(48px,6vw,88px) 96px}
+.page.sub{padding-top:40px}
 .part{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:16px 64px;padding-block:40px;border-top:1px solid var(--rule)}
 .part:first-child{border-top:0;padding-top:0}
 .part h2{margin:0;font:var(--display-weight) clamp(30px,3vw,44px)/1.14 var(--serif);letter-spacing:-.015em;align-self:start;position:sticky;top:24px}
@@ -177,7 +180,7 @@ h1 em{font-style:italic;color:var(--accent)}
 
 /* publications */
 /* one sentence in the lead type under a page title: Publications (with the profile links in the prose), Writing */
-.head-lead{margin:28px 0 0;max-width:34ch;font:var(--display-weight) clamp(22px,2.2vw,30px)/1.3 var(--serif);letter-spacing:-.01em;color:var(--ink-2);text-wrap:pretty}
+.head-lead{margin:14px 0 0;max-width:44ch;font:var(--display-weight) clamp(20px,1.7vw,24px)/1.3 var(--serif);letter-spacing:-.01em;color:var(--ink-2);text-wrap:pretty}
 .head-lead a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--accent);text-underline-offset:5px}
 .head-lead a:hover{color:var(--accent-text)}
 .cite{display:grid;grid-template-columns:60px minmax(0,1fr);gap:12px;padding:18px 0;border-top:1px solid var(--rule)}
@@ -207,6 +210,7 @@ h1 em{font-style:italic;color:var(--accent)}
 .rate small{font-size:.5em;color:var(--ink-3)}
 
 /* posts and essays */
+.post-head{padding-block:clamp(48px,7vw,96px) clamp(32px,4vw,56px)}
 .post-head .d{margin-bottom:22px}
 .post-head h1{font-size:clamp(40px,5.6vw,80px);line-height:1.04}
 .article{max-width:720px;margin-inline:auto;overflow-wrap:anywhere}
@@ -256,6 +260,27 @@ h1 em{font-style:italic;color:var(--accent)}
 }
 /* previous and next, then the author: in a sentence under articles, as a byline card on the Writing page */
 /* previous and next at the foot of an article; its type settings are what the small labels and titles inherit */
+.post-end{display:flex;justify-content:space-between;align-items:baseline;gap:12px 32px;margin:56px 0 0;padding-top:20px;border-top:1px solid var(--rule);font-size:15.5px;line-height:1.4}
+.post-end .kw{display:flex;flex:1 1 0;flex-wrap:wrap;gap:4px 20px;margin:0;padding:0;list-style:none}
+.post-end .kw li{margin:0;padding:0;list-style:none}
+.kw a{color:var(--ink-2);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--rule);text-underline-offset:4px}
+.kw a:hover{color:var(--accent-text);text-decoration-color:currentColor}
+.share{position:relative;flex:none;margin-left:auto}
+.share summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;color:var(--ink-2)}
+.share summary::-webkit-details-marker{display:none}
+.share summary:hover,.share[open] summary{color:var(--accent-text)}
+.share svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5}
+.share-m{position:absolute;right:0;bottom:calc(100% + 10px);z-index:5;min-width:160px;padding:6px 0;background:var(--page);border:1px solid var(--rule)}
+.share-m a,.share-m button{display:block;width:100%;padding:7px 14px;background:none;border:0;font:inherit;text-align:left;color:var(--ink);text-decoration:none;cursor:pointer}
+.share-m a:hover,.share-m button:hover{color:var(--accent-text)}
+.more-w{padding-top:24px}
+.others{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 48px}
+.other{display:grid;grid-template-columns:168px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:20px;color:inherit;text-decoration:none}
+.other .pic{grid-row:1/3;aspect-ratio:3/2;overflow:hidden}
+.other .pic img{display:block;width:100%;height:100%;object-fit:cover}
+.other .t{font:var(--display-weight) clamp(22px,1.9vw,28px)/1.15 var(--serif);letter-spacing:-.012em}
+.other .d{margin-top:8px;font-size:14px;color:#858585}
+.other:hover .t{color:var(--accent-text)}
 nav.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:56px 0 0;padding:28px 0 0;border-top:1px solid var(--rule);font:var(--display-weight) clamp(72px,7.5vw,112px)/.9 var(--serif);letter-spacing:-.02em;color:var(--accent);font-variant-numeric:lining-nums}
 nav.pn a{text-decoration:none;color:inherit;min-width:0}
 nav.pn .next{text-align:right;grid-column:2}
@@ -454,6 +479,8 @@ nav.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 va
   .mag:first-child .pic{aspect-ratio:3/2}
   .mag .pic{margin-inline:-24px}
   nav.pn{grid-template-columns:minmax(0,1fr)}
+  .others{grid-template-columns:minmax(0,1fr);gap:20px}
+  .other{grid-template-columns:104px minmax(0,1fr);column-gap:16px}
   nav.pn .next{text-align:left;grid-column:1}
   .close h2{font-size:clamp(36px,10.5vw,56px)}
   .colophon .upd{text-align:left}
@@ -476,9 +503,9 @@ nav.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 va
   ::view-transition-old(post-cdsm),::view-transition-new(post-cdsm),::view-transition-old(post-essay),::view-transition-new(post-essay){height:100%;object-fit:cover;overflow:hidden}
   .badge{view-transition-name:badge}
   /* a picture zooms slightly when the pointer is anywhere on its card, row or frame, not only on the picture */
-  .card .pic img,.mag .pic img,.portrait>img,.standing img{transition:transform 600ms cubic-bezier(.2,.7,.2,1)}
+  .card .pic img,.mag .pic img,.other .pic img,.portrait>img,.standing img{transition:transform 600ms cubic-bezier(.2,.7,.2,1)}
   @media (hover:hover){
-    .card:hover .pic img,.mag:hover .pic img,.portrait:hover img,.standing figure:hover img{transform:scale(1.04)}
+    .card:hover .pic img,.mag:hover .pic img,.other:hover .pic img,.portrait:hover>img,.standing figure:hover img{transform:scale(1.04)}
   }
   .card:focus-visible .pic img,.mag:focus-visible .pic img{transform:scale(1.04)}
   /* the hero assembles on load: headline rises, facts follow, the photograph sharpens */

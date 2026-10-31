@@ -10,8 +10,8 @@
         }
     },
     "renderer": {
-        "relatedPostsNumber": 0,
-        "renderRelatedPosts": false,
+        "relatedPostsNumber": 4,
+        "renderRelatedPosts": true,
         "renderSimilarPosts": false,
         "renderPrevNextPosts": true,
         "createContentStructure": true,
@@ -21,7 +21,7 @@
         "featuredPostsNumber": 0,
         "tagsFeaturedPostsNumber": 0,
         "authorsFeaturedPostsNumber": 0,
-        "createTagPages": false,
+        "createTagPages": true,
         "createAuthorPages": false,
         "createTagsList": false,
         "create404page": true,
@@ -30,7 +30,7 @@
     "supportedFeatures": {
         "blockEditor": true,
         "tagsList": false,
-        "tagPages": false,
+        "tagPages": true,
         "tagImages": false,
         "authorPages": false,
         "authorImages": false,

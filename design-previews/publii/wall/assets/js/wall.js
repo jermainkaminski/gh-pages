@@ -5,7 +5,8 @@
    4. the running head on articles, shown once the title has scrolled away
    5. page bodies: each h2 and what follows it becomes a two-column section; Publications
       rows become citations with a BibTeX toggle; grants, courses and quotes get their shapes
-   6. straight quotes curl */
+   6. straight quotes curl
+   7. the share button under articles */
 (function () {
   "use strict";
 
@@ -225,4 +226,36 @@
   shapeBodies();
   bibToggle();
   curlAll(document.getElementById("main"));
+  /* 7 */
+  function share() {
+    var box = document.querySelector(".share");
+    if (!box) return;
+    var link = document.querySelector('link[rel="canonical"]'),
+        url = link ? link.href : location.href.split("#")[0],
+        title = document.querySelector("h1").textContent.trim(),
+        e = encodeURIComponent,
+        hrefs = {
+          linkedin: "https://www.linkedin.com/sharing/share-offsite/?url=" + e(url),
+          bluesky: "https://bsky.app/intent/compose?text=" + e(title + " " + url),
+          mail: "mailto:?subject=" + e(title) + "&body=" + e(url)
+        };
+    box.querySelectorAll("a[data-share]").forEach(function (a) { a.href = hrefs[a.dataset.share]; });
+    box.hidden = false;
+    box.querySelector("summary").addEventListener("click", function (ev) {
+      if (!navigator.share || !matchMedia("(pointer:coarse)").matches) return;
+      ev.preventDefault();
+      navigator.share({ title: title, url: url }).catch(function () {});
+    });
+    var copy = box.querySelector("[data-share=copy]");
+    if (!navigator.clipboard) copy.remove();
+    else copy.addEventListener("click", function () {
+      navigator.clipboard.writeText(url).then(function () {
+        copy.textContent = "Copied";
+        setTimeout(function () { copy.textContent = "Copy link"; box.open = false; }, 1200);
+      });
+    });
+    document.addEventListener("click", function (ev) { if (!box.contains(ev.target)) box.open = false; });
+    document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") box.open = false; });
+  }
+  share();
 })();
