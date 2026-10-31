@@ -402,7 +402,7 @@ h1{letter-spacing:-.015em}
 }
 
 /* phones: photographs run edge to edge, each with a short note beneath */
-.note{display:none}
+@media (min-width:801px){.note{display:none}}
 .teach figure{margin:0;min-width:0}
 @media (max-width:800px){
   .portrait,.band,.river,.standing figure,.teach figure,.card .pic,.article figure{margin-inline:-24px}
