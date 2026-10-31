@@ -2,6 +2,7 @@
 """Page helpers for the site preview. Sub-page text and links are read
 from the live site's pages in this repo, so the wording stays Jermain's own."""
 import html
+import json
 import re
 from datetime import date
 from html.parser import HTMLParser
@@ -266,24 +267,75 @@ FOOT = """<footer class="close" id="contact">
 
 
 DESCRIPTIONS = {
-    None: "Associate Professor in Entrepreneurship and Innovation at Maastricht University. Researcher in machine learning and causal machine learning, with particular focus on entrepreneurial finance and strategy.",
+    None: "Associate Professor of Entrepreneurship and Innovation at Maastricht University. Causal inference and machine learning for the decisions founders make.",
     "about": "About Jermain C. Kaminski, Associate Professor of Entrepreneurship and Innovation at Maastricht University.",
-    "research": "Research, grants and service of Jermain C. Kaminski, with three pillars: causality in strategic decision making, machine learning and simulacra in entrepreneurship, and the economic complexity of software.",
+    "research": "Jermain C. Kaminski's research: causality in strategic decision making, machine learning in entrepreneurship, and the economic complexity of software.",
     "publications": "Working papers, journal articles and conference papers by Jermain C. Kaminski.",
     "teaching": "Courses and teaching statement of Jermain C. Kaminski at Maastricht University.",
     "students": "PhD, master and honours students supervised by Jermain C. Kaminski.",
-    "speaking": "Speaking, workshops and advisory with Jermain C. Kaminski.",
-    "writing": "Writing by Jermain C. Kaminski.",
+    "speaking": "Keynotes, executive workshops and advisory by Jermain C. Kaminski on causal thinking, AI and strategy, and advisor to Texterous.",
+    "writing": "Essays and announcements by Jermain C. Kaminski on learning, AI, causality and entrepreneurship.",
     "news": "Press and media coverage of Jermain C. Kaminski's research and teaching.",
 }
 ICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23d0450c'/%3E"
         "%3Cpath d='M6 16h18M17 9l7 7-7 7' fill='none' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E")
 OG_IMAGE = "https://jermainkaminski.com/media/posts/12/Jermain-Kaminski-1-md-Kopie-3.jpg"
+IMAGE_ALT = {OG_IMAGE: "Jermain Kaminski in a bright university corridor at Maastricht University, in a blue blazer and pink bow tie"}
 
 
-def page(title, main, current=None, desc=None, image=OG_IMAGE):
+SITE = "https://jermainkaminski.com/"
+PERSON = {  # structured data shared by every page: who the site is about, and where else he is
+    "@type": "Person", "@id": SITE + "#person", "name": "Jermain C. Kaminski", "givenName": "Jermain", "familyName": "Kaminski",
+    "jobTitle": "Associate Professor of Entrepreneurship and Innovation", "url": SITE, "image": OG_IMAGE,
+    "email": "mailto:j.kaminski@maastrichtuniversity.nl",
+    "description": "Associate Professor of Entrepreneurship and Innovation at Maastricht University School of Business and Economics. "
+                   "Research on causal inference and machine learning for entrepreneurial and strategic decisions, and on the economic "
+                   "complexity of software. Co-founder of the Causal Data Science Meeting and Moviegalaxies; advisor to Texterous.",
+    "worksFor": {"@type": "Organization", "name": "Maastricht University School of Business and Economics", "url": "https://www.maastrichtuniversity.nl/about-um/faculties/school-business-and-economics"},
+    "affiliation": [
+        {"@type": "Organization", "name": "Maastricht University", "url": "https://www.maastrichtuniversity.nl/"},
+        {"@type": "Organization", "name": "Causal Data Science Meeting", "url": "https://causalscience.org/"},
+        {"@type": "Organization", "name": "Texterous", "url": "https://texterous.com/"},
+    ],
+    "hasOccupation": [
+        {"@type": "Role", "roleName": "Associate Professor", "worksFor": {"@type": "Organization", "name": "Maastricht University"}},
+        {"@type": "Role", "roleName": "Advisor", "worksFor": {"@type": "Organization", "name": "Texterous", "url": "https://texterous.com/"}},
+    ],
+    "alumniOf": [{"@type": "CollegeOrUniversity", "name": "RWTH Aachen University"}],
+    "award": "Poets&Quants Best 40 Under 40 MBA Professors, 2024",
+    "knowsAbout": ["causal inference", "causal machine learning", "machine learning", "entrepreneurship", "entrepreneurial finance",
+                   "crowdfunding", "strategy", "innovation", "economic complexity", "open-source software", "large language models"],
+    "sameAs": ["https://www.linkedin.com/in/jermainkaminski/", "https://bsky.app/profile/jermainkaminski.bsky.social",
+               "https://scholar.google.com/citations?user=b-HX-AYAAAAJ", "https://www.semanticscholar.org/author/Jermain-Kaminski/39736726",
+               "https://policyprofiles.sagepub.com/profile/6676/jermain-kaminski", "https://www.rankless.org/authors/jermain-kaminski",
+               "https://www.maastrichtuniversity.nl/j.kaminski"],
+}
+WEBSITE = {"@type": "WebSite", "@id": SITE + "#website", "url": SITE, "name": "Jermain C. Kaminski", "inLanguage": "en",
+           "publisher": {"@id": SITE + "#person"}}
+
+
+def page(title, main, current=None, desc=None, image=OG_IMAGE, path=None, article=None):
+    """One page. path is the page's folder on the live site; article is (date ISO, headline) for a post."""
     desc = html.escape(desc or DESCRIPTIONS.get(current) or DESCRIPTIONS[None], quote=True)
     t = html.escape(title, quote=True)
+    if path is None:
+        path = "" if current is None else PAGES[current][0] + "/" if current in PAGES else current + "/"
+    url = SITE + path
+    kind = "article" if article else ("profile" if current is None else "website")
+    graph = [PERSON, WEBSITE, {"@type": "WebPage", "@id": url, "url": url, "name": html.unescape(title), "description": html.unescape(desc),
+                               "isPartOf": {"@id": SITE + "#website"}, "about": {"@id": SITE + "#person"}, "inLanguage": "en",
+                               "primaryImageOfPage": image}]
+    if current is None:
+        graph[2]["@type"] = "ProfilePage"
+        graph[2]["mainEntity"] = {"@id": SITE + "#person"}
+    extra = ""
+    if article:
+        published, headline = article
+        graph.append({"@type": "BlogPosting", "@id": url + "#post", "headline": headline, "url": url, "datePublished": published,
+                      "dateModified": published, "image": image, "description": html.unescape(desc), "inLanguage": "en",
+                      "author": {"@id": SITE + "#person"}, "publisher": {"@id": SITE + "#person"}, "mainEntityOfPage": {"@id": url}})
+        extra = f'\n<meta property="article:published_time" content="{published}">\n<meta property="article:author" content="{SITE}">'
+    ld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False).replace("</", "<\\/")
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -291,12 +343,23 @@ def page(title, main, current=None, desc=None, image=OG_IMAGE):
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{t}</title>
 <meta name="description" content="{desc}">
+<meta name="author" content="Jermain C. Kaminski">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="{url}">
 <meta name="theme-color" content="#ffffff">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{kind}">
+<meta property="og:site_name" content="Jermain C. Kaminski">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="{url}">
 <meta property="og:title" content="{t}">
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="{image}">
+<meta property="og:image:alt" content="{html.escape(IMAGE_ALT.get(image, 'Jermain C. Kaminski'), quote=True)}">{extra}
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{t}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{image}">
+<script type="application/ld+json">{ld}</script>
 <link rel="icon" href="{ICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -382,7 +445,7 @@ def home_parts():
             <div><dt>Based</dt><dd>Maastricht University, School of Business and Economics</dd></div>
             <div><dt>Focus</dt><dd>Entrepreneurship, strategy, causal machine learning</dd></div>
             <div><dt>Co-founded</dt><dd><a href="https://causalscience.org">Causal Data Science Meeting</a>, <a href="https://moviegalaxies.gf52t95h4b.workers.dev">MovieGalaxies</a></dd></div>
-            <div><dt>Open for</dt><dd>Research collaboration, speaking, advisory</dd></div>
+            <div><dt>Advisor</dt><dd><a href="https://texterous.com">Texterous</a>, on AI that people actually use</dd></div>
           </dl>
         </div>
         <figure class="portrait"><img src="media/Jermain-Kaminski-1-md-Kopie-3.jpg" width="2000" height="1333" fetchpriority="high" alt="Jermain Kaminski smiling in a bright university corridor, in a blue blazer and pink bow tie"><figcaption class="note">""" + NOTES["home"] + """</figcaption></figure>

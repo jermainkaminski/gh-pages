@@ -14,13 +14,15 @@ OUT = HERE / "site"
 
 POSTS = [
     {"file": "cdsm-2026.html", "vt": "post-cdsm", "og": "https://jermainkaminski.com/media/posts/9/cdsm-2026-header.jpg", "src": "causal-data-science-meeting-2026", "title": "Causal Data Science Meeting 2026",
-     "date": "16 October 2026", "img": "UM-Tapijn-202011-022.jpg", "w": 7952, "h": 5304,
+     "date": "16 October 2026", "iso": "2026-10-16", "img": "UM-Tapijn-202011-022.jpg", "w": 7952, "h": 5304,
      "alt": "A corridor at Tapijn with yellow, orange, red and blue study alcoves in timber frames", "note": "Tapijn campus, Maastricht University.",
-     "blurb": "Online on 4–5 November: two days of talks and discussion on causal data science, machine learning and AI. Attendance is free, and more than 650 participants have already registered."},
+     "blurb": "Online on 4–5 November: two days of talks and discussion on causal data science, machine learning and AI. Attendance is free, and more than 650 participants have already registered.",
+     "desc": "Causal Data Science Meeting 2026, online on 4–5 November: two free days of talks on causal data science, machine learning and AI."},
     {"file": "essay.html", "vt": "post-essay", "og": "https://jermainkaminski.com/media/posts/19/Will20Hunting.jpg.webp", "src": "the-sistine-chapel-problem", "title": "The Sistine Chapel Problem",
-     "date": "8 September 2025", "img": "Will20Hunting.jpg.webp", "w": 1280, "h": 720,
+     "date": "8 September 2025", "iso": "2025-09-08", "img": "Will20Hunting.jpg.webp", "w": 1280, "h": 720,
      "alt": "Park bench scene from the 1997 film Good Will Hunting", "note": "Good Will Hunting (1997): the park bench scene.",
-     "blurb": "When language models can write a seemingly beautiful essay in seconds, what is the most important thing about learning? The answer can be found in a park bench conversation from a 1997 movie."},
+     "blurb": "When language models can write a seemingly beautiful essay in seconds, what is the most important thing about learning? The answer can be found in a park bench conversation from a 1997 movie.",
+     "desc": "When language models write a beautiful essay in seconds, what still matters about learning? An answer from a park bench in Good Will Hunting."},
 ]
 b.LOCAL["causal-data-science-meeting-2026"] = "cdsm-2026"
 b.NAV.insert(3, ("writing", "Writing"))
@@ -102,7 +104,7 @@ def localize(s):
         w, h = size_of(m.group(1))
         return f'<img src="media/{m.group(1)}" width="{w}" height="{h}"'
     s = re.sub(r'<img src="media/([^"]+)"(?! width)', sized, s)
-    s = s.replace('src="media/', 'src="../media/').replace("https://jermainkaminski.com/causal-data-science-meeting-2026/", "cdsm-2026.html")
+    s = s.replace('src="media/', 'src="../media/').replace('<a href="https://jermainkaminski.com/causal-data-science-meeting-2026/"', '<a href="cdsm-2026.html"')
     return typeset(s)
 
 
@@ -112,7 +114,7 @@ def post_page(p):
     main = (f'<div class="pad head post-head"><span class="d">{p["date"]}</span><h1>{p["title"]}</h1></div>'
             f'<div class="pad"><figure class="band post">{img(p, False)}<figcaption class="note">{p["note"]}</figcaption></figure></div>'
             f'<div class="pad page"><article class="body article">{h}</article></div>')
-    return b.page(f'{p["title"]}: Jermain C. Kaminski', main, "writing", p["blurb"], p["og"])
+    return b.page(f'{p["title"]}: Jermain C. Kaminski', main, "writing", p["desc"], p["og"], path=p["src"] + "/", article=(p["iso"], p["title"]))
 
 
 def writing_page():
@@ -134,7 +136,7 @@ def build(out, variant=None):
     out.mkdir(exist_ok=True)
     (out / "wall.css").write_text((HERE / "wall.css").read_text(encoding="utf8") + v["css"] + (PV_CSS if variant else ""), encoding="utf8")
     hero, named = sections()
-    pages = {"index.html": b.page("Jermain C. Kaminski, Associate Professor of Entrepreneurship and Innovation", home_page(hero, named))}
+    pages = {"index.html": b.page("Jermain C. Kaminski, Associate Professor, Maastricht University", home_page(hero, named))}
     pages.update({f"{key}.html": b.subpage(key) for key in b.PAGES})
     pages.update({p["file"]: post_page(p) for p in POSTS})
     pages["writing.html"] = writing_page()
