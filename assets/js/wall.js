@@ -5,7 +5,8 @@
    4. the running head on articles, shown once the title has scrolled away
    5. page bodies: each h2 and what follows it becomes a two-column section; Publications
       rows become citations with a BibTeX toggle; grants, courses and quotes get their shapes
-   6. straight quotes curl */
+   6. straight quotes curl
+   7. the share button under articles */
 (function () {
   "use strict";
 
@@ -117,12 +118,18 @@
     });
   }
 
-  function grants(chunk) {
-    return chunk.replace(/<li>(\d{4})\s+([\s\S]*?)<\/li>/g, function (_, year, rest) {
+  function grants(chunk) {  // own grants first, then those where I am collaborator or project partner
+    var own = "", others = "";
+    chunk.replace(/<li>(\d{4})\s+([\s\S]*?)<\/li>/g, function (_, year, rest) {
       var amount = rest.match(/\s*\(([\d,]+ [A-Z]{3})\)/);
       var what = amount ? rest.replace(amount[0], "") : rest;
-      return '<li class="grant"><span class="yr">' + year + "</span><span>" + what.trim() + '</span><span class="amt">' + (amount ? amount[1] : "") + "</span></li>";
+      var role = what.match(/^\s*<em>((?:Collaborator|Project-Partner)[^<]*)<\/em>[:.]?\s*/);
+      if (role) what = what.slice(role[0].length) + '<span class="role">' + role[1].replace("Project-Partner", "Project partner").replace("/Co-Supervisor", " and co-supervisor") + "</span>";
+      var row = '<li class="grant"><span class="yr">' + year + "</span><span>" + what.trim() + '</span><span class="amt">' + (amount ? amount[1] : "") + "</span></li>";
+      if (role) others += row; else own += row;
     });
+    if (!own && !others) return chunk;
+    return "<ul>" + own + "</ul>" + (others ? "<h3>As collaborator or project partner</h3><ul>" + others + "</ul>" : "");
   }
 
   function awards(chunk) {
@@ -134,6 +141,7 @@
 
   function courses(chunk) {
     return chunk.replace(/<li>([\s\S]*?)<\/li>/g, function (_, inner) {
+      inner = inner.replace(/<\/?span[^>]*>/g, "").trim();  // the editor leaves styled spans around some ratings
       var rate = inner.match(/\s*\(\s*([\d.]+)\s*\/\s*([\d.]+)\s*\)\s*$/);
       if (!rate) return '<li class="course"><span>' + inner + "</span></li>";
       return '<li class="course"><span>' + inner.slice(0, rate.index) + '</span><span class="rate">' + rate[1] + "<small> / " + rate[2] + "</small></span></li>";
@@ -149,9 +157,9 @@
     chunk.replace(/<a [^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, function (_, u, n) { by[n.replace(/<[^>]+>/g, "").trim()] = u; });
     var g = by["Google Scholar"], m = by["Semantic Scholar"], sg = by["Sage Policy Impact"], r = by["Rankless"];
     var a = function (u, t) { return '<a href="' + u + '">' + t + "</a>"; };
-    if (g && m && sg && r) return '<p class="prof-lead">My papers are indexed on ' + a(g, "Google Scholar") + " and " + a(m, "Semantic Scholar") + ", and their use in policy is tracked by " + a(sg, "Sage") + " and " + a(r, "Rankless") + ".</p>";
+    if (g && m && sg && r) return '<p class="head-lead">My papers are indexed on ' + a(g, "Google Scholar") + " and " + a(m, "Semantic Scholar") + ", and their use in policy is tracked by " + a(sg, "Sage") + " and " + a(r, "Rankless") + ".</p>";
     var all = Object.keys(by).map(function (k) { return a(by[k], k); });
-    return all.length ? '<p class="prof-lead">Find my work on ' + all.join(", ") + ".</p>" : "";
+    return all.length ? '<p class="head-lead">Find my work on ' + all.join(", ") + ".</p>" : "";
   }
 
   var SHAPE = { "Grants and Collaborations": grants, "Awards and Honors (Selection)": awards, "Courses": courses, "Teaching Statement": quotes };
@@ -218,4 +226,36 @@
   shapeBodies();
   bibToggle();
   curlAll(document.getElementById("main"));
+  /* 7 */
+  function share() {
+    var box = document.querySelector(".share");
+    if (!box) return;
+    var link = document.querySelector('link[rel="canonical"]'),
+        url = link ? link.href : location.href.split("#")[0],
+        title = document.querySelector("h1").textContent.trim(),
+        e = encodeURIComponent,
+        hrefs = {
+          linkedin: "https://www.linkedin.com/sharing/share-offsite/?url=" + e(url),
+          bluesky: "https://bsky.app/intent/compose?text=" + e(title + " " + url),
+          mail: "mailto:?subject=" + e(title) + "&body=" + e(url)
+        };
+    box.querySelectorAll("a[data-share]").forEach(function (a) { a.href = hrefs[a.dataset.share]; });
+    box.hidden = false;
+    box.querySelector("summary").addEventListener("click", function (ev) {
+      if (!navigator.share || !matchMedia("(pointer:coarse)").matches) return;
+      ev.preventDefault();
+      navigator.share({ title: title, url: url }).catch(function () {});
+    });
+    var copy = box.querySelector("[data-share=copy]");
+    if (!navigator.clipboard) copy.remove();
+    else copy.addEventListener("click", function () {
+      navigator.clipboard.writeText(url).then(function () {
+        copy.textContent = "Copied";
+        setTimeout(function () { copy.textContent = "Copy link"; box.open = false; }, 1200);
+      });
+    });
+    document.addEventListener("click", function (ev) { if (!box.contains(ev.target)) box.open = false; });
+    document.addEventListener("keydown", function (ev) { if (ev.key === "Escape") box.open = false; });
+  }
+  share();
 })();

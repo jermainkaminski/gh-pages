@@ -1,8 +1,0 @@
-# Most files here are copies of images the site already has under media/posts and assets.
-# Only the two that exist nowhere else are tracked; DESIGN.md says how to restore the rest.
-*
-!.gitignore
-!Jermain-standing.jpg
-!originals/
-!originals/**
-!Jermain-Kos.jpg
