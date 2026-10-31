@@ -17,7 +17,7 @@ ARROW = ('<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">'
          '<path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>')
 NOTES = {  # the short note under each photograph on phones
     "home": "<b>School of Business and Economics</b>Maastricht University",
-    "about": "<b>School of Business and Economics</b>Maastricht University",
+    "about": "<b>Kos</b>Greece",
     "research": "<b>Charles River</b>MIT, Cambridge, Massachusetts",
     "teaching": "<b>MBA class</b>Maastricht University",
     "students": "<b>Tapijn campus</b>Maastricht University",
@@ -421,7 +421,7 @@ def subpage(key):
     band = f'<div class="pad"><figure class="band"><img src="media/{img}" alt="{alt}"><figcaption class="note">{NOTES[key]}</figcaption></figure></div>' if img else ""
     if key == "about":  # the full-length photograph, shown whole beside the page text
         main = (f'<div class="pad head"><h1>{title}</h1></div><div class="pad page standing">'
-                f'<figure><img src="media/Jermain-standing.jpg" width="3170" height="3560" alt="Jermain Kaminski standing full length in a bright university corridor, in a blue suit and pink bow tie, hands in pockets, beside a cobalt blue alcove"><figcaption class="note">{NOTES["about"]}</figcaption></figure>'
+                f'<figure><img src="media/Jermain-Kos.jpg" width="3296" height="4609" alt="Jermain Kaminski on a beach at sunset in Kos, in a light blue shirt and sunglasses"><figcaption class="note">{NOTES["about"]}</figcaption></figure>'
                 f'<div class="body">{tidy(h)}</div></div>')
         return page("About: Jermain C. Kaminski", main, key)
     main = (f'<div class="pad head"><h1>{title}</h1>{chips}</div>{band}'

@@ -8,3 +8,5 @@
 .standing figure+.body>p:first-child{font:var(--display-weight) clamp(28px,2.8vw,40px)/var(--lead-lh) var(--serif);letter-spacing:-.015em;color:var(--ink);margin-bottom:1em}
 nav.top li{list-style:none}
 nav.top li.active>a{color:var(--accent-text);text-decoration:underline;text-underline-offset:5px}
+/* About on phones: the portrait is cropped to four by five rather than shown full height */
+@media (max-width:800px){.standing figure img{aspect-ratio:4/5;object-fit:cover;object-position:50% 22%}}
