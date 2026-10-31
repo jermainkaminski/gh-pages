@@ -15,7 +15,7 @@
 {{/if}}{{/featuredImage}}
 <div class="pad page">
   {{#checkIf id '==' 11}}<section class="part"><h2>Three pillars of current research</h2><div class="body">{{> pillars}}</div></section>{{/checkIf}}
-  <div class="raw"{{#checkIf id '==' 15}} data-cite{{/checkIf}}>{{{text}}}</div>
+  <div class="raw"{{#checkIf id '==' 15}} data-cite{{/checkIf}}{{#checkIf id '==' 25}} data-cite{{/checkIf}}>{{{text}}}</div>
 </div>
 {{/checkIf}}
 </main>
