@@ -495,7 +495,7 @@ def home_parts():
         <div class="say">
           <h1>Causal inference and <br>machine learning for <br><em>the decisions <br>entrepreneurs make.</em></h1>
           <dl class="facts">
-            <div><dt>Based</dt><dd>Maastricht University, School of Business and Economics</dd></div>
+            <div><dt>At</dt><dd>Maastricht University, School of Business and Economics</dd></div>
             <div><dt>Research</dt><dd>Entrepreneurship, strategy, causal machine learning</dd></div>
             <div><dt>Co-founded</dt><dd><a href="https://causalscience.org">Causal Data Science Meeting</a>, <a href="https://moviegalaxies.gf52t95h4b.workers.dev">MovieGalaxies</a></dd></div>
             <div><dt>Advisor</dt><dd><a href="https://texterous.com">Texterous</a>, on AI that people actually use</dd></div>

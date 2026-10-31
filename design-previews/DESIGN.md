@@ -13,7 +13,7 @@ The chosen design, final. It exists twice: as an HTML preview built from the liv
 `wall/media/` is mostly copies of images the site already has; only `Jermain-standing.jpg`, `Jermain-Kos.jpg` and `originals/` are tracked, and nothing in it is ever downscaled or deleted. To restore the rest after a fresh clone, copy from the repository root: `assets/40under40logo.jpg`, `media/posts/12/Jermain-Kaminski-1-md-Kopie-3.jpg` (also saved as `Jermain-Kaminski-1-md.jpg`), `media/posts/18/MBA-LR-5.jpg`, `media/posts/11/MITSailing-1.jpg`, `media/posts/16/UM-Tapijn-202011-022.jpg`, `media/posts/9/cdsm-2026-header.jpg`, `media/posts/19/pierre-goiffon-aR_COwiGzP0-unsplash.jpg`, `media/posts/19/Will20Hunting.jpg.webp`, `media/posts/19/image.png`. `design-previews/media/` holds four leftover images from discarded attempts; it is ignored by git and unused.
 
 ## Tokens
-- Colour: white page, ink #141c30 (#2f3850, #535c75), rule #dde2ec, accent #d0450c (4.63:1 on white, white text on it), accent text #b83d0a. No rounded corners. Light footer.
+- Colour: white page, neutral ink #161616 (#3a3a3a, #5e5e5e), rule #e2e2e2, accent #d0450c (4.63:1 on white, white text on it), accent text #b83d0a. No rounded corners. Light footer.
 - Type: Newsreader (light, optical sizes) for display, Geist for text; both come from Google Fonts in `head.hbs` and in the preview. Reading text 18/1.6.
 - Ladder at 1440: hero line 56, page titles 104, sign-off 177, section heads 33, card titles 39, work and pillar titles 30 to 32, Writing page lead 56 and others 34, numerals on the home page 52.
 

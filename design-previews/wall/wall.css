@@ -4,8 +4,8 @@
 
 /* tokens */
 :root{
-  --page:#fff; --rule:#dde2ec;
-  --ink:#141c30; --ink-2:#2f3850; --ink-3:#535c75;
+  --page:#fff; --rule:#e2e2e2;
+  --ink:#161616; --ink-2:#3a3a3a; --ink-3:#5e5e5e;
   --accent:#d0450c; --accent-deep:#a83608; --accent-tint:#ffe4d6; --accent-text:#b83d0a; --on-accent:#fff;
   --text:18px; --lh:1.6; --small:16px; --lead-lh:1.25; --display-weight:300; --nav:15.5px;
   --serif:"Newsreader",Georgia,"Times New Roman",serif;
@@ -33,14 +33,14 @@ a:hover>.t{color:var(--accent-text)}
 .pic{display:block;background:var(--accent-tint)}
 .pic img{display:block;width:100%;height:100%;object-fit:cover}
 /* the short note under a photograph; phones only */
-.note,figcaption.note{display:none;font:300 11px/1.35 var(--sans);color:#aab0bf;letter-spacing:.01em}
-.note b{display:inline-block;margin-right:8px;font-size:9.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#8c92a4}
+.note,figcaption.note{display:none;font:300 11px/1.35 var(--sans);color:#aeaeae;letter-spacing:.01em}
+.note b{display:inline-block;margin-right:8px;font-size:9.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#909090}
 .skip{position:absolute;left:12px;top:-60px;z-index:20;background:var(--ink);color:#fff;padding:10px 14px;text-decoration:none}
 .skip:focus{top:12px;color:#fff}
 
 /* header and menu */
 nav.top{position:relative;z-index:3;display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding-block:24px;font-size:var(--nav);line-height:1.3;border-bottom:1px solid var(--rule)}
-nav.top .who{display:inline-flex;align-items:center;gap:12px;font-weight:300;font-size:17px;text-decoration:none}
+nav.top .who{display:inline-flex;align-items:center;gap:9px;font-weight:300;font-size:17px;text-decoration:none}
 /* the compass: a lit half and a shaded half in two oranges; in the footer the same mark in very light grey */
 .logo{flex:none;width:30px;height:30px}
 .logo .f1{fill:#f4702f}
@@ -50,7 +50,6 @@ nav.top .who{display:inline-flex;align-items:center;gap:12px;font-weight:300;fon
 nav.top ul{display:flex;gap:24px;list-style:none;margin:0 0 0 auto;padding:0}
 nav.top ul a{text-decoration:none}
 nav.top ul a:hover,nav.top ul a[aria-current],nav.top li.active>a{color:var(--accent-text)}
-nav.top ul a[aria-current],nav.top li.active>a{text-decoration:underline;text-underline-offset:5px}
 .pill{display:inline-block;background:var(--accent);color:var(--on-accent);text-decoration:none;font-size:var(--nav);font-weight:400;line-height:1.3;padding:9px 18px;white-space:nowrap}
 .pill:hover{background:var(--accent-deep);color:#fff}
 /* the badge hangs below the menu at the right edge of the home page; the menu itself never moves */
@@ -68,7 +67,7 @@ nav.top ul a[aria-current],nav.top li.active>a{text-decoration:underline;text-un
 h1{margin:0;font:var(--display-weight) clamp(38px,4vw,64px)/1.05 var(--serif);letter-spacing:-.015em;text-wrap:pretty}
 h1 em{font-style:italic;color:var(--accent)}
 .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 28px;margin:40px 0 0}
-.facts dt{margin-bottom:6px;font-size:11.5px;font-weight:400;letter-spacing:.09em;color:#8d94a7}
+.facts dt{margin-bottom:6px;font-size:11.5px;font-weight:400;letter-spacing:.09em;color:#929292}
 .facts dd{margin:0;font-size:17px;line-height:1.35}
 .facts a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--rule)}
 .facts a:hover{color:inherit;text-decoration-color:currentColor}
@@ -84,7 +83,7 @@ h1 em{font-style:italic;color:var(--accent)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:0 clamp(24px,3vw,40px)}
 .card{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:0;padding-bottom:40px;text-decoration:none}
 .card .pic{aspect-ratio:3/2;margin-bottom:18px;overflow:hidden}
-.card .d{margin-bottom:10px;font-size:14px;color:#7f869a}
+.card .d{margin-bottom:10px;font-size:14px;color:#858585}
 .card .t{display:block;margin:0 0 8px;font:var(--display-weight) clamp(28px,2.7vw,40px)/1.1 var(--serif);letter-spacing:-.02em}
 /* blurbs are the same length: one paragraph, plain type, four lines */
 .card .s{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;max-width:56ch;font-size:var(--small);line-height:1.5;color:var(--ink-2)}
@@ -123,13 +122,13 @@ h1 em{font-style:italic;color:var(--accent)}
 /* a ledger: headline left, place or source and year right in small grey tabular figures, hairlines between rows */
 .sched a{position:relative;display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-top:1px solid var(--rule);text-decoration:none;font-size:18px}
 .sched a:nth-last-child(-n+2){border-bottom:1px solid var(--rule)}
-.sched span:last-child{color:#7f869a;text-align:right;white-space:nowrap;font-size:15px;font-variant-numeric:tabular-nums}
+.sched span:last-child{color:#858585;text-align:right;white-space:nowrap;font-size:15px;font-variant-numeric:tabular-nums}
 .sched.news{grid-template-columns:minmax(0,1fr)}
 /* news: one column; the source and the year share the right-hand side */
 .sched.news a{display:grid;grid-template-columns:minmax(0,1fr) auto auto}
 .sched.news a:nth-last-child(2){border-bottom:0}
 .sched.news .t{grid-column:1;grid-row:1}
-.sched.news .o{grid-column:2;grid-row:1;margin-right:.2em;color:#7f869a;font-size:15px;text-align:right}
+.sched.news .o{grid-column:2;grid-row:1;margin-right:.2em;color:#858585;font-size:15px;text-align:right}
 .sched.news a>span:last-child{grid-column:3;grid-row:1}
 .sched.news .o::after{content:" ·"}
 /* news and upcoming side by side, each its own ledger */
@@ -177,15 +176,16 @@ h1 em{font-style:italic;color:var(--accent)}
 .play{margin:1.4em 0}
 
 /* publications */
-/* Publications: one sentence in the lead type under the title, the profile links inside the prose */
-.prof-lead{margin:28px 0 0;max-width:34ch;font:var(--display-weight) clamp(22px,2.2vw,30px)/1.3 var(--serif);letter-spacing:-.01em;color:var(--ink-2);text-wrap:pretty}
-.prof-lead a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--accent);text-underline-offset:5px}
-.prof-lead a:hover{color:var(--accent-text)}
+/* one sentence in the lead type under a page title: Publications (with the profile links in the prose), Writing */
+.head-lead{margin:28px 0 0;max-width:34ch;font:var(--display-weight) clamp(22px,2.2vw,30px)/1.3 var(--serif);letter-spacing:-.01em;color:var(--ink-2);text-wrap:pretty}
+.head-lead a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--accent);text-underline-offset:5px}
+.head-lead a:hover{color:var(--accent-text)}
 .cite{display:grid;grid-template-columns:60px minmax(0,1fr);gap:12px;padding:18px 0;border-top:1px solid var(--rule)}
 .cite:first-of-type{border-top:0;padding-top:0}
 .yr{font-size:var(--small);line-height:var(--lh);color:var(--ink-3);font-variant-numeric:tabular-nums}
 /* a row reads title, authors, venue; the BibTeX toggle shares the venue line and sits at the right edge, so the toggles form one quiet column */
-.cite p{margin:0;font-size:var(--small);line-height:1.5;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px;align-items:baseline}
+.cite p{margin:0;font-size:var(--small);line-height:1.5}
+.cite p:has(.bib){display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px;align-items:baseline}
 .cite span:not(.yr){display:block}
 .cite .au,.cite .ti{grid-column:1/-1}
 .cite .ve{grid-column:1}
@@ -199,6 +199,8 @@ h1 em{font-style:italic;color:var(--accent)}
 .cite pre{grid-column:2;margin:10px 0 0;padding:14px 16px;background:#f6f4f2;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink-2)}
 .cite pre[hidden]{display:none}
 .body li.grant{display:grid;grid-template-columns:60px minmax(0,1fr) auto;gap:12px}
+.amt:empty{display:none}
+.grant .role{display:block;margin-top:2px;font-size:14px;line-height:1.4;color:#858585}
 .amt{white-space:nowrap;color:var(--ink);font-size:var(--small);line-height:var(--lh);font-variant-numeric:tabular-nums}
 .body li.course{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:baseline}
 .rate{font:var(--display-weight) clamp(28px,2.6vw,36px)/1 var(--serif);color:var(--ink);white-space:nowrap}
@@ -217,7 +219,7 @@ h1 em{font-style:italic;color:var(--accent)}
 /* click-to-play video: a 16:9 stage; nothing is requested from YouTube until it is played */
 .yt-click{margin:2em 0}
 .article .yt-click a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;aspect-ratio:16/9;padding:24px;background:var(--ink);color:#fff;text-align:center;text-decoration:none;transition:background 200ms}
-.article .yt-click a:hover{background:#1d2742;color:#fff}
+.article .yt-click a:hover{background:#2a2a2a;color:#fff}
 .yt-click__play{width:64px;height:64px;margin-bottom:10px;transition:transform 240ms cubic-bezier(.2,.7,.2,1)}
 .yt-click__play circle{fill:var(--accent)}
 .yt-click__play path{fill:#fff}
@@ -257,7 +259,7 @@ h1 em{font-style:italic;color:var(--accent)}
 nav.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:56px 0 0;padding:28px 0 0;border-top:1px solid var(--rule);font:var(--display-weight) clamp(72px,7.5vw,112px)/.9 var(--serif);letter-spacing:-.02em;color:var(--accent);font-variant-numeric:lining-nums}
 nav.pn a{text-decoration:none;color:inherit;min-width:0}
 nav.pn .next{text-align:right;grid-column:2}
-nav.pn .lbl{display:block;margin-bottom:8px}
+nav.pn .lbl{display:block;margin-bottom:8px;font:400 11.5px/1.3 var(--sans);letter-spacing:.09em;color:#929292}
 nav.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 var(--serif);letter-spacing:-.01em}
 /* the footer's own rule sits above both cards, so they draw none */
 .au-g img,.au-a img{display:block;object-fit:cover;object-position:50% 18%}
@@ -273,6 +275,7 @@ nav.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 va
 .au-a .r{display:block;margin-top:6px;font-size:14px;line-height:1.4;color:var(--ink-3)}
 .au-a p{margin:16px 0 0;max-width:52ch;font-size:var(--small);line-height:1.55;color:var(--ink-2);text-wrap:pretty}
 .au-a .more{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:15px;color:var(--ink);text-decoration:none}
+.au-a .more+.more{margin-left:24px}
 .au-a .more svg{color:var(--accent);transition:transform 160ms cubic-bezier(.2,.7,.2,1)}
 .au-a .more:hover svg{transform:translate(1px,-1px)}
 /* writing: the magazine grid. The newest piece spans two columns; kicker, picture, headline, dek, date. */
@@ -306,17 +309,17 @@ nav.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 va
 .mail{font:var(--display-weight) clamp(20px,2.1vw,30px)/1.25 var(--serif);overflow-wrap:anywhere}
 .mail a{text-decoration:none}
 .mail a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
-.colophon{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;margin-top:72px;padding-top:16px;border-top:1px solid rgba(83,92,117,.35);font-size:16px}
+.colophon{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;margin-top:72px;padding-top:16px;border-top:1px solid rgba(94,94,94,.35);font-size:16px}
 .routes p,.colophon{color:var(--ink-3)}
 .colophon nav{display:flex;flex-wrap:wrap;gap:6px 20px}
 .colophon a{display:inline-block;padding-block:6px;text-decoration:none}
-.colophon .sig{display:inline-flex;align-items:center;gap:10px}
+.colophon .sig{display:inline-flex;align-items:center;gap:8px}
 .colophon .logo{width:22px;height:22px}
-.colophon .logo .f1{fill:#eceff4}
-.colophon .logo .f2{fill:#e1e5ed}
-.colophon .logo .f3{fill:#f2f4f8}
-.colophon .logo .f4{fill:#e9ecf2}
-.colophon .upd{width:100%;margin-top:-2px;text-align:right;font-size:13px;color:#b4b9c6}
+.colophon .logo .f1{fill:#efefef}
+.colophon .logo .f2{fill:#e4e4e4}
+.colophon .logo .f3{fill:#f4f4f4}
+.colophon .logo .f4{fill:#ebebeb}
+.colophon .upd{width:100%;margin-top:-2px;text-align:right;font-size:13px;color:#b8b8b8}
 
 /* Publii page bodies arrive as one flow of h2 and paragraphs; wall.js shapes them, this is the fallback */
 .raw{max-width:68ch}
@@ -389,7 +392,9 @@ nav.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 va
 
 /* responsive: 800px, the phone menu and edge-to-edge photographs */
 @media (max-width:800px){
-  nav.top{flex-wrap:nowrap;justify-content:space-between;padding-block:18px}
+  nav.top{flex-wrap:nowrap;justify-content:space-between;margin-inline:-24px;padding:6px 24px}
+  nav.top .who{gap:8px;font-size:16px}
+  nav.top .logo{width:26px;height:26px}
   nav.top .pill{display:none}
   nav.top .who{position:relative;z-index:2}
   .menu-t{display:block;position:absolute;width:1px;height:1px;margin:0;opacity:0;pointer-events:none}
@@ -401,19 +406,19 @@ nav.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 va
   .menu-t:checked ~ .burger line:last-child{transform:translateY(-7px) rotate(-45deg)}
   .menu-t:checked ~ .burger line:nth-child(2){opacity:0}
   .menu-t:checked ~ .who,.menu-t:checked ~ .burger{color:#fff}
-  nav.top ul{display:none;position:fixed;inset:0;z-index:1;width:auto;margin:0;padding:96px max(24px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px));flex-direction:column;justify-content:center;gap:0;background:var(--ink);color:#fff;overflow:auto;order:0}
+  nav.top ul{display:none;position:fixed;inset:0;z-index:1;width:auto;margin:0;padding:84px max(24px,env(safe-area-inset-right,0px)) max(28px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px));flex-direction:column;flex-wrap:nowrap;justify-content:flex-start;gap:0;background:var(--ink);color:#fff;overflow:auto;order:0}
   .menu-t:checked ~ ul{display:flex}
   nav.top ul li{flex:none}
-  nav.top ul a{display:block;padding:9px 0;font:300 clamp(34px,8.5vw,44px)/1.1 var(--serif);letter-spacing:-.02em;color:#fff;text-decoration:none}
-  nav.top ul a:hover,nav.top ul a[aria-current],nav.top li.active>a{color:#fff;text-decoration:underline;text-decoration-thickness:1.5px;text-decoration-color:#f26625;text-underline-offset:7px}
+  nav.top ul a{display:block;padding:7px 0;font:300 clamp(28px,7.4vw,34px)/1.15 var(--serif);letter-spacing:-.02em;color:#fff;text-decoration:none}
+  nav.top ul a:hover,nav.top ul a[aria-current],nav.top li.active>a{color:#f26625}
   nav.top ul .m-only{display:list-item}
-  nav.top ul .m-only a{color:#f26625;font-style:italic}
-  nav.top ul .soc{display:flex;gap:24px;margin-top:auto;padding-top:40px}
+  nav.top ul .m-only a{font-style:italic}
+  nav.top ul .soc{display:flex;gap:28px;margin-top:auto;padding-top:18px;border-top:1px solid rgba(255,255,255,.18)}
   nav.top ul .soc a{font:400 15px/1 var(--sans);letter-spacing:.02em;color:rgba(255,255,255,.7);font-style:normal;padding:10px 0}
   nav.top ul .soc a:hover{color:#fff;text-decoration:none}
   html:has(.menu-t:checked){overflow:hidden}
   html:has(.menu-t:checked) .badge{display:none}
-  .stage{padding-top:44px}
+  .stage{padding-top:32px}
   .note,figcaption.note{display:block;margin:6px 24px 0}
   .portrait,.band,.standing figure,.teach figure,.card .pic,.article figure{margin-inline:-24px}
   /* About on a phone: a square cut-out around the face */
