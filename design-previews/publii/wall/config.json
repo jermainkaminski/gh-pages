@@ -46,50 +46,210 @@
         "writing": "Writing (list of posts)"
     },
     "config": [
-        {"name": "postsPerPage", "label": "Posts per page", "value": 20, "type": "number"},
-        {"name": "tagsPostsPerPage", "label": "Tags posts per page", "value": 20, "type": "number"},
-        {"name": "authorsPostsPerPage", "label": "Authors posts per page", "value": 20, "type": "number"},
-        {"name": "excerptLength", "label": "Excerpt length", "value": 40, "type": "number"},
-        {"name": "logo", "label": "Website logo", "value": "", "type": "upload", "upload": true}
+        {
+            "name": "postsPerPage",
+            "label": "Posts per page",
+            "value": 20,
+            "type": "number"
+        },
+        {
+            "name": "tagsPostsPerPage",
+            "label": "Tags posts per page",
+            "value": 20,
+            "type": "number"
+        },
+        {
+            "name": "authorsPostsPerPage",
+            "label": "Authors posts per page",
+            "value": 20,
+            "type": "number"
+        },
+        {
+            "name": "excerptLength",
+            "label": "Excerpt length",
+            "value": 40,
+            "type": "number"
+        },
+        {
+            "name": "logo",
+            "label": "Website logo",
+            "value": "",
+            "type": "upload",
+            "upload": true
+        }
     ],
     "customConfig": [
-        {"name": "sepHero", "type": "separator", "label": "Home page", "group": "Home", "size": "small"},
-        {"name": "heroText", "label": "Headline", "value": "Causal inference and machine learning for <em>the decisions entrepreneurs actually make.</em>", "type": "textarea", "group": "Home", "note": "The orange italic part goes inside <em>…</em>."},
-        {"name": "heroImage", "label": "Portrait", "value": "", "type": "upload", "upload": true, "group": "Home"},
-        {"name": "heroImageAlt", "label": "Portrait alt text", "value": "Jermain Kaminski in a bright university corridor at Maastricht University, in a blue blazer and pink bow tie", "type": "text", "group": "Home"},
-        {"name": "heroImageNote", "label": "Portrait note (phones)", "value": "<b>School of Business and Economics</b>Maastricht University", "type": "text", "group": "Home"},
-        {"name": "factBased", "label": "Based", "value": "Maastricht University, School of Business and Economics", "type": "text", "group": "Home"},
-        {"name": "factFocus", "label": "Focus", "value": "Entrepreneurship, strategy, causal machine learning", "type": "text", "group": "Home"},
-        {"name": "factCofounded", "label": "Co-founded (HTML)", "value": "<a href=\"https://causalscience.org\">Causal Data Science Meeting</a>, <a href=\"https://moviegalaxies.gf52t95h4b.workers.dev\">MovieGalaxies</a>", "type": "text", "group": "Home"},
-        {"name": "factAdvisor", "label": "Advisor (HTML)", "value": "<a href=\"https://texterous.com\">Texterous</a>, on AI that people actually use", "type": "text", "group": "Home"},
-        {"name": "writingPosts", "label": "Posts on the home page and the Writing page", "value": "26,9,19", "type": "text", "group": "Home", "note": "Post IDs, newest first, separated by commas."},
-        {"name": "sepBadge", "type": "separator", "label": "Badge", "group": "Home", "size": "small"},
-        {"name": "badgeLink", "label": "Badge link", "value": "https://poetsandquants.com/2024/05/18/2024-best-40-under-40-mba-professors-jermain-kaminski-maastricht-university-school-of-business-and-economics/", "type": "text", "group": "Home"},
-        {"name": "sepContact", "type": "separator", "label": "Contact", "group": "Contact", "size": "small"},
-        {"name": "mailUser1", "label": "Research email, part before @", "value": "j.kaminski", "type": "text", "group": "Contact"},
-        {"name": "mailDomain1", "label": "Research email, domain", "value": "maastrichtuniversity.nl", "type": "text", "group": "Contact"},
-        {"name": "mailUser2", "label": "Speaking email, part before @", "value": "jermain.kaminski", "type": "text", "group": "Contact"},
-        {"name": "mailDomain2", "label": "Speaking email, domain", "value": "gmail.com", "type": "text", "group": "Contact"},
-        {"name": "linkedin", "label": "LinkedIn", "value": "https://www.linkedin.com/in/jermainkaminski/", "type": "text", "group": "Contact"},
-        {"name": "bluesky", "label": "Bluesky", "value": "https://bsky.app/profile/jermainkaminski.bsky.social", "type": "text", "group": "Contact"}
+        {
+            "name": "sepHero",
+            "type": "separator",
+            "label": "Home page",
+            "group": "Home",
+            "size": "small"
+        },
+        {
+            "name": "heroText",
+            "label": "Headline",
+            "value": "Causal inference and machine learning for <em>the decisions entrepreneurs actually make.</em>",
+            "type": "textarea",
+            "group": "Home",
+            "note": "The orange italic part goes inside <em>\u2026</em>."
+        },
+        {
+            "name": "heroImage",
+            "label": "Portrait",
+            "value": "",
+            "type": "upload",
+            "upload": true,
+            "group": "Home"
+        },
+        {
+            "name": "heroImageAlt",
+            "label": "Portrait alt text",
+            "value": "Jermain Kaminski in a bright university corridor at Maastricht University, in a blue blazer and pink bow tie",
+            "type": "text",
+            "group": "Home"
+        },
+        {
+            "name": "heroImageNote",
+            "label": "Portrait note (phones)",
+            "value": "<b>School of Business and Economics</b>Maastricht University",
+            "type": "text",
+            "group": "Home"
+        },
+        {
+            "name": "factBased",
+            "label": "Based",
+            "value": "Maastricht University, School of Business and Economics",
+            "type": "text",
+            "group": "Home"
+        },
+        {
+            "name": "factFocus",
+            "label": "Focus",
+            "value": "Entrepreneurship, strategy, causal machine learning",
+            "type": "text",
+            "group": "Home"
+        },
+        {
+            "name": "factCofounded",
+            "label": "Co-founded (HTML)",
+            "value": "<a href=\"https://causalscience.org\">Causal Data Science Meeting</a>, <a href=\"https://moviegalaxies.gf52t95h4b.workers.dev\">MovieGalaxies</a>",
+            "type": "text",
+            "group": "Home"
+        },
+        {
+            "name": "factAdvisor",
+            "label": "Advisor (HTML)",
+            "value": "<a href=\"https://texterous.com\">Texterous</a>, on AI that people actually use",
+            "type": "text",
+            "group": "Home"
+        },
+        {
+            "name": "writingPosts",
+            "label": "Posts on the home page and the Writing page",
+            "value": "26,9,19",
+            "type": "text",
+            "group": "Home",
+            "note": "Post IDs, newest first, separated by commas."
+        },
+        {
+            "name": "sepBadge",
+            "type": "separator",
+            "label": "Badge",
+            "group": "Home",
+            "size": "small"
+        },
+        {
+            "name": "badgeLink",
+            "label": "Badge link",
+            "value": "https://poetsandquants.com/2024/05/18/2024-best-40-under-40-mba-professors-jermain-kaminski-maastricht-university-school-of-business-and-economics/",
+            "type": "text",
+            "group": "Home"
+        },
+        {
+            "name": "sepContact",
+            "type": "separator",
+            "label": "Contact",
+            "group": "Contact",
+            "size": "small"
+        },
+        {
+            "name": "mailUser1",
+            "label": "Research email, part before @",
+            "value": "j.kaminski",
+            "type": "text",
+            "group": "Contact"
+        },
+        {
+            "name": "mailDomain1",
+            "label": "Research email, domain",
+            "value": "maastrichtuniversity.nl",
+            "type": "text",
+            "group": "Contact"
+        },
+        {
+            "name": "mailUser2",
+            "label": "Speaking email, part before @",
+            "value": "jermain.kaminski",
+            "type": "text",
+            "group": "Contact"
+        },
+        {
+            "name": "mailDomain2",
+            "label": "Speaking email, domain",
+            "value": "gmail.com",
+            "type": "text",
+            "group": "Contact"
+        },
+        {
+            "name": "linkedin",
+            "label": "LinkedIn",
+            "value": "https://www.linkedin.com/in/jermainkaminski/",
+            "type": "text",
+            "group": "Contact"
+        },
+        {
+            "name": "bluesky",
+            "label": "Bluesky",
+            "value": "https://bsky.app/profile/jermainkaminski.bsky.social",
+            "type": "text",
+            "group": "Contact"
+        }
     ],
     "postConfig": [],
     "pageConfig": [],
     "authorConfig": [],
     "tagConfig": [],
     "files": {
-        "ignoreAssets": [".DS_Store"],
+        "ignoreAssets": [
+            ".DS_Store"
+        ],
         "assetsPath": "assets",
         "partialsPath": "partials",
         "responsiveImages": {
             "contentImages": {
                 "sizes": "(max-width: 1440px) 100vw, 1440px",
                 "dimensions": {
-                    "sm": {"width": 480, "height": "auto"},
-                    "md": {"width": 800, "height": "auto"},
-                    "lg": {"width": 1200, "height": "auto"},
-                    "xl": {"width": 1600, "height": "auto"},
-                    "xxl": {"width": 2400, "height": "auto"}
+                    "sm": {
+                        "width": 480,
+                        "height": "auto"
+                    },
+                    "md": {
+                        "width": 800,
+                        "height": "auto"
+                    },
+                    "lg": {
+                        "width": 1200,
+                        "height": "auto"
+                    },
+                    "xl": {
+                        "width": 1600,
+                        "height": "auto"
+                    },
+                    "xxl": {
+                        "width": 2400,
+                        "height": "auto"
+                    }
                 }
             },
             "featuredImages": {
@@ -98,22 +258,56 @@
                     "card": "(max-width: 800px) 100vw, 800px"
                 },
                 "dimensions": {
-                    "sm": {"width": 480, "height": "auto", "group": "post,card"},
-                    "md": {"width": 800, "height": "auto", "group": "post,card"},
-                    "lg": {"width": 1200, "height": "auto", "group": "post,card"},
-                    "xl": {"width": 1600, "height": "auto", "group": "post,card"},
-                    "xxl": {"width": 2400, "height": "auto", "group": "post"},
-                    "xxxl": {"width": 2880, "height": "auto", "group": "post"}
+                    "sm": {
+                        "width": 480,
+                        "height": "auto",
+                        "group": "post,card"
+                    },
+                    "md": {
+                        "width": 800,
+                        "height": "auto",
+                        "group": "post,card"
+                    },
+                    "lg": {
+                        "width": 1200,
+                        "height": "auto",
+                        "group": "post,card"
+                    },
+                    "xl": {
+                        "width": 1600,
+                        "height": "auto",
+                        "group": "post,card"
+                    },
+                    "xxl": {
+                        "width": 2400,
+                        "height": "auto",
+                        "group": "post"
+                    }
                 }
             },
             "optionImages": {
                 "sizes": "(max-width: 1000px) 100vw, 60vw",
                 "dimensions": {
-                    "sm": {"width": 480, "height": "auto"},
-                    "md": {"width": 800, "height": "auto"},
-                    "lg": {"width": 1200, "height": "auto"},
-                    "xl": {"width": 1600, "height": "auto"},
-                    "xxl": {"width": 2000, "height": "auto"}
+                    "sm": {
+                        "width": 480,
+                        "height": "auto"
+                    },
+                    "md": {
+                        "width": 800,
+                        "height": "auto"
+                    },
+                    "lg": {
+                        "width": 1200,
+                        "height": "auto"
+                    },
+                    "xl": {
+                        "width": 1600,
+                        "height": "auto"
+                    },
+                    "xxl": {
+                        "width": 2000,
+                        "height": "auto"
+                    }
                 }
             }
         }
