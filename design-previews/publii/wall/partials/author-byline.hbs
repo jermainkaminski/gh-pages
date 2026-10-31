@@ -1,0 +1,10 @@
+{{!-- On the Writing page: the byline card. --}}
+<div class="au au-a">
+  {{#if @config.custom.heroImage}}<img src="{{@config.custom.heroImage}}" {{responsiveSrcSet @config.custom.heroImage}} sizes="96px" width="96" height="96" alt="{{@config.custom.heroImageAlt}}" loading="lazy">{{/if}}
+  <div>
+    <span class="n">{{@website.name}}</span>
+    <span class="r">{{@config.custom.authorRole}}</span>
+    <p>{{{@config.custom.authorBlurb}}}</p>
+    {{#getPage 12}}<a class="more" href="{{url}}">More about me</a>{{/getPage}}
+  </div>
+</div>

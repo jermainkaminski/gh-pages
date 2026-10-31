@@ -328,17 +328,15 @@ WEBSITE = {"@type": "WebSite", "@id": SITE + "#website", "url": SITE, "name": "J
            "publisher": {"@id": SITE + "#person"}}
 
 
-AUTHOR = """<footer class="close slim" id="contact">
-  <div class="pad in">
-    <div class="author-card">
-      <img src="media/Jermain-Kaminski-1-md-Kopie-3.jpg" width="112" height="112" alt="Jermain Kaminski" loading="lazy">
-      <div>
-        <span class="n">Jermain C. Kaminski</span>
-        <p>Associate Professor of Entrepreneurship and Innovation at Maastricht University. Causal inference and machine learning for the decisions entrepreneurs make.</p>
-        <nav aria-label="Author"><a href="about.html">About</a><a href="writing.html">All writing</a><a href="https://www.linkedin.com/in/jermainkaminski/">LinkedIn</a><a href="https://bsky.app/profile/jermainkaminski.bsky.social">Bluesky</a>""" + mail("j.kaminski", "maastrichtuniversity.nl", "Email") + """</nav>
-      </div>
-    </div>
-    <div class="colophon">""" + FOOT.split('<div class="colophon">', 1)[1]
+PORTRAIT = '<img src="media/Jermain-Kaminski-1-md-Kopie-3.jpg" alt="Jermain Kaminski" loading="lazy">'
+COLOPHON = '<div class="colophon">' + FOOT.split('<div class="colophon">', 1)[1]
+AUTHOR = ('<footer class="close slim" id="contact"><div class="pad in"><div class="au au-g">' + PORTRAIT
+          + '<div><p class="say">I study how entrepreneurs decide, and what data can and cannot tell them.</p><span class="n">Jermain C. Kaminski</span>'
+          + '<span class="r">Associate Professor of Entrepreneurship and Innovation, Maastricht University · <a href="about.html">About</a></span></div></div>' + COLOPHON)
+AUTHOR_WRITING = ('<footer class="close slim" id="contact"><div class="pad in"><div class="au au-a">' + PORTRAIT
+                  + '<div><span class="n">Jermain C. Kaminski</span><span class="r">Associate Professor, Maastricht University</span>'
+                  + '<p>I work on causal inference and machine learning for the decisions entrepreneurs make, and on the economic complexity of software.</p>'
+                  + '<a class="more" href="about.html">More about me</a></div></div>' + COLOPHON)
 
 
 def page(title, main, current=None, desc=None, image=OG_IMAGE, path=None, article=None, author=False):
@@ -399,7 +397,7 @@ def page(title, main, current=None, desc=None, image=OG_IMAGE, path=None, articl
 <main id="main">
 {main}
 </main>
-{AUTHOR if (article or author) else FOOT}
+{AUTHOR if article else AUTHOR_WRITING if author else FOOT}
 <script>
 // The sheet menu works without this; it only closes the sheet on a same-page link and on Escape.
 document.querySelectorAll("a.mailto").forEach(function(a){{var e=a.dataset.u+"@"+a.dataset.d;a.href="mailto:"+e;if(a.querySelector(".at"))a.textContent=e}});

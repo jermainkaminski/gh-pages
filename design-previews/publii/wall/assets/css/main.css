@@ -485,16 +485,6 @@ nav.top{padding-right:0}
 .note,figcaption.note{font:300 11px/1.35 var(--sans);color:#8d93a6;letter-spacing:.01em}
 .note b{font-size:9.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#6b7186;margin-right:8px}
 
-/* article pages close with the author, not the sign-off */
-.close.slim .in{padding-top:0}
-.author-card{display:grid;grid-template-columns:112px minmax(0,1fr);gap:28px;align-items:center;padding:40px 0 8px;border-top:1px solid var(--rule)}
-.author-card img{display:block;width:112px;height:112px;object-fit:cover;object-position:50% 18%}
-.author-card .n{display:block;font:var(--display-weight) clamp(24px,2.2vw,30px)/1.1 var(--serif);letter-spacing:-.015em}
-.author-card p{margin:8px 0 12px;font-size:var(--small);line-height:1.5;color:var(--ink-2);max-width:60ch}
-.author-card nav{display:flex;flex-wrap:wrap;gap:4px 20px}
-.author-card nav a{font-size:15px;text-decoration:none;color:var(--accent-text)}
-.author-card nav a:hover{text-decoration:underline;text-underline-offset:4px}
-@media (max-width:640px){.author-card{grid-template-columns:minmax(0,1fr);gap:16px}.author-card img{width:88px;height:88px}}
 
 /* hero: text and photograph start on the same line and end on the same line; the photo fills the column */
 @media (min-width:1001px){
@@ -510,6 +500,31 @@ nav.top{padding-right:0}
 .work li::before,.sched a::before{display:none}
 .work li .y::after,.sched a span:last-child::after{content:"→";display:inline-block;margin-left:8px;color:var(--accent);opacity:0;transform:translateX(-4px);transition:opacity 160ms linear,transform 200ms cubic-bezier(.2,.7,.2,1)}
 .work li:has(a:hover,a:focus-visible) .y::after,.sched a:hover span:last-child::after,.sched a:focus-visible span:last-child::after{opacity:1;transform:none}
+
+/* articles close with previous/next, then the author in a sentence; the Writing page with a byline card */
+.close.slim .in{padding-top:0}
+.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:56px 0 0;padding:28px 0 0;border-top:1px solid var(--rule)}
+.pn a{text-decoration:none;color:inherit;min-width:0}
+.pn .next{text-align:right;grid-column:2}
+.pn .lbl{display:block;margin-bottom:8px}
+.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 var(--serif);letter-spacing:-.01em;text-wrap:balance}
+.pn a:hover .t{color:var(--accent-text)}
+.au{border-top:1px solid var(--rule)}
+.au img{display:block;object-fit:cover;object-position:50% 18%}
+.au-g{display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;align-items:start;padding:44px 0 8px}
+.au-g img{width:72px;height:72px;margin-top:6px}
+.au-g .say{margin:0 0 14px;font:var(--display-weight) clamp(22px,2.2vw,30px)/1.3 var(--serif);letter-spacing:-.01em;color:var(--ink);max-width:40ch;text-wrap:pretty}
+.au-g .n{display:block;font-size:15px;font-weight:500}
+.au-g .r{display:block;margin-top:2px;font-size:14px;color:var(--ink-3)}
+.au-g .r a{color:var(--accent-text);text-decoration:none}
+.au-a{display:grid;grid-template-columns:96px minmax(0,1fr);gap:24px;align-items:start;padding:40px 0 8px}
+.au-a img{width:96px;height:96px}
+.au-a .n{display:block;font:var(--display-weight) 26px/1.1 var(--serif);letter-spacing:-.015em}
+.au-a .r{display:block;margin-top:4px;font-size:14px;color:var(--ink-3)}
+.au-a p{margin:12px 0 0;font-size:var(--small);line-height:1.5;color:var(--ink-2);max-width:56ch}
+.au-a .more{margin-top:12px;font-size:15px}
+.colophon .upd{color:#b4b9c6}
+@media (max-width:640px){.pn{grid-template-columns:minmax(0,1fr)}.pn .next{text-align:left;grid-column:1}}
 
 /* Publii: page bodies arrive as one flow of h2 and paragraphs; the script shapes them, this is the fallback and the About layout */
 .raw{max-width:68ch}

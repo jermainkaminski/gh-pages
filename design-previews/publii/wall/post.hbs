@@ -5,7 +5,9 @@
 {{#featuredImage}}{{#if url}}
 <div class="pad"><figure class="band post"><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}" style="view-transition-name:post-{{../id}}">{{#if caption}}<figcaption class="note">{{{caption}}}</figcaption>{{/if}}</figure></div>
 {{/if}}{{/featuredImage}}
-<div class="pad page"><article class="body article">{{{text}}}</article></div>
+<div class="pad page"><article class="body article">{{{text}}}
+{{#checkIfAny ../previousPost ../nextPost}}<nav class="pn" aria-label="More writing">{{#../previousPost}}<a class="prev" href="{{url}}"><span class="lbl">← Previous</span><span class="t">{{title}}</span></a>{{/../previousPost}}{{#../nextPost}}<a class="next" href="{{url}}"><span class="lbl">Next →</span><span class="t">{{title}}</span></a>{{/../nextPost}}</nav>{{/checkIfAny}}
+</article></div>
 </main>
 {{/post}}
 {{> footer}}

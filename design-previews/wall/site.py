@@ -108,12 +108,25 @@ def localize(s):
     return typeset(s)
 
 
+def prev_next(p):
+    """Newest first in POSTS: next is the newer piece, previous the older."""
+    i = POSTS.index(p)
+    older = POSTS[i + 1] if i + 1 < len(POSTS) else None
+    newer = POSTS[i - 1] if i > 0 else None
+    links = ""
+    if older:
+        links += f'<a class="prev" href="{older["file"]}"><span class="lbl">← Previous</span><span class="t">{older["title"]}</span></a>'
+    if newer:
+        links += f'<a class="next" href="{newer["file"]}"><span class="lbl">Next →</span><span class="t">{newer["title"]}</span></a>'
+    return f'<nav class="pn" aria-label="More writing">{links}</nav>' if links else ""
+
+
 def post_page(p):
     h = b.tidy(b.body_of(p["src"]))
     h = re.sub(r'(<a href="[^"]*youtube[^"]*">)(<strong>.*?</strong>)(.*?)</a>', r'<p class="play">\1\2</a><br>\3</p>', h)
     main = (f'<div class="pad head post-head"><span class="d">{p["date"]}</span><h1>{p["title"]}</h1></div>'
             f'<div class="pad"><figure class="band post">{img(p, False)}<figcaption class="note">{p["note"]}</figcaption></figure></div>'
-            f'<div class="pad page"><article class="body article">{h}</article></div>')
+            f'<div class="pad page"><article class="body article">{h}{prev_next(p)}</article></div>')
     return b.page(f'{p["title"]}: Jermain C. Kaminski', main, "writing", p["desc"], p["og"], path=p["src"] + "/", article=(p["iso"], p["title"]))
 
 
