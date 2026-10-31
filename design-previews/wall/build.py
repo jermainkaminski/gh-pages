@@ -102,6 +102,7 @@ TYPOS = {  # corrected here until the live pages are fixed in Publii
     "powerful and tools": "powerful tools",
     "18-39 year old who": "18–39-year-olds who",
     "Awwards": "Awwwards",
+    "more than 650 participants": "more than 1,600 participants",  # the live page is behind
 }
 
 
