@@ -333,7 +333,7 @@ AUTHOR = """<footer class="close slim" id="contact">
     <div class="colophon">""" + FOOT.split('<div class="colophon">', 1)[1]
 
 
-def page(title, main, current=None, desc=None, image=OG_IMAGE, path=None, article=None):
+def page(title, main, current=None, desc=None, image=OG_IMAGE, path=None, article=None, author=False):
     """One page. path is the page's folder on the live site; article is (date ISO, headline) for a post."""
     desc = html.escape(desc or DESCRIPTIONS.get(current) or DESCRIPTIONS[None], quote=True)
     t = html.escape(title, quote=True)
@@ -391,7 +391,7 @@ def page(title, main, current=None, desc=None, image=OG_IMAGE, path=None, articl
 <main id="main">
 {main}
 </main>
-{AUTHOR if article else FOOT}
+{AUTHOR if (article or author) else FOOT}
 <script>
 // The sheet menu works without this; it only closes the sheet on a same-page link and on Escape.
 document.querySelectorAll("a.mailto").forEach(function(a){{var e=a.dataset.u+"@"+a.dataset.d;a.href="mailto:"+e;if(a.querySelector(".at"))a.textContent=e}});

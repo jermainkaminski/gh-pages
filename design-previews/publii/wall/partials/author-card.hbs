@@ -1,0 +1,9 @@
+{{!-- The author, shown under articles and on the Writing page instead of the sign-off. --}}
+<div class="author-card">
+  {{#if @config.custom.heroImage}}<img src="{{@config.custom.heroImage}}" {{responsiveSrcSet @config.custom.heroImage}} sizes="112px" width="112" height="112" alt="{{@config.custom.heroImageAlt}}" loading="lazy">{{/if}}
+  <div>
+    <span class="n">{{@website.name}}</span>
+    <p>{{{@config.custom.authorBlurb}}}</p>
+    <nav aria-label="Author">{{#getPage 12}}<a href="{{url}}">About</a>{{/getPage}}{{#getPage 24}}<a href="{{url}}">All writing</a>{{/getPage}}<a class="mailto" data-u="{{@config.custom.mailUser1}}" data-d="{{@config.custom.mailDomain1}}" href="#contact">Email</a></nav>
+  </div>
+</div>

@@ -121,7 +121,7 @@ def writing_page():
     cards = "".join(f'<a class="mag" href="{p["file"]}"><span class="pic">{img(p)}</span><span class="kick">{p["kicker"]} · {p["read"]} read</span>'
                     f'<span class="t">{p["title"]}</span><span class="s">{p["blurb"]}</span><span class="meta">{p["date"]}</span></a>' for p in POSTS)
     main = f'<div class="pad head"><h1>Writing</h1></div><div class="pad page"><div class="maggrid">{cards}</div></div>'
-    return b.page("Writing: Jermain C. Kaminski", main, "writing")
+    return b.page("Writing: Jermain C. Kaminski", main, "writing", author=True)
 
 
 def switcher(variant, file):
