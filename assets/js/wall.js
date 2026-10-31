@@ -1,29 +1,27 @@
-/* The Wall theme. Everything here is progressive: the pages read fine without it.
+/* The Wall theme. Everything here is progressive: the pages read fine without it. In this order:
    1. email links assembled from parts, so the addresses are not in the source
    2. the phone sheet menu closes on Escape and on same-page links
    3. the footer's "last updated" date, from the page's own modification time
-   4. page bodies: each h2 and what follows it becomes a two-column section; Publications
-      rows become citations; grants, courses and quotes get their shapes; quotes curl */
+   4. the running head on articles, shown once the title has scrolled away
+   5. page bodies: each h2 and what follows it becomes a two-column section; Publications
+      rows become citations with a BibTeX toggle; grants, courses and quotes get their shapes
+   6. straight quotes curl */
 (function () {
   "use strict";
 
-  /* 0 BibTeX toggles, bound after the citations are built (see the end) */
-  function bindBib() {
-    document.querySelectorAll("a[data-bib]").forEach(function (a) {
-      a.addEventListener("click", function (e) { e.preventDefault(); var p = a.closest(".cite").querySelector("pre"); p.hidden = !p.hidden; a.textContent = p.hidden ? "BibTeX" : "Hide"; });
+  /* 1 */
+  function mailLinks() {
+    document.querySelectorAll("a.mailto").forEach(function (a) {
+      var e = a.dataset.u + "@" + a.dataset.d;
+      a.href = "mailto:" + e;
+      if (a.querySelector(".at")) a.textContent = e;
     });
   }
 
-  /* 1 */
-  document.querySelectorAll("a.mailto").forEach(function (a) {
-    var e = a.dataset.u + "@" + a.dataset.d;
-    a.href = "mailto:" + e;
-    if (a.querySelector(".at")) a.textContent = e;
-  });
-
   /* 2 */
-  var m = document.getElementById("menu");
-  if (m) {
+  function phoneMenu() {
+    var m = document.getElementById("menu");
+    if (!m) return;
     m.checked = false;
     window.addEventListener("pageshow", function () { m.checked = false; });
     document.querySelectorAll("nav.top ul a").forEach(function (a) { a.addEventListener("click", function () { m.checked = false; }); });
@@ -31,19 +29,21 @@
   }
 
   /* 3 */
-  var upd = document.querySelector("[data-updated]");
-  if (upd) {
+  function updatedDate() {
+    var upd = document.querySelector("[data-updated]");
+    if (!upd) return;
     var d = new Date(document.lastModified);
     if (!isNaN(d)) upd.textContent = "Last updated " + d.getDate() + " " + d.toLocaleString("en-GB", { month: "long" }) + " " + d.getFullYear();
   }
 
-  /* 3b running head on articles */
-  var h1 = document.querySelector(".post-head h1");
-  if (h1 && "IntersectionObserver" in window) {
+  /* 4 */
+  function runningHead() {
+    var h1 = document.querySelector(".post-head h1");
+    if (!h1 || !("IntersectionObserver" in window)) return;
     new IntersectionObserver(function (es) { document.body.classList.toggle("past", !es[0].isIntersecting && es[0].boundingClientRect.top < 0); }).observe(h1);
   }
 
-  /* 4 */
+  /* 5 */
   function tidy(h) {
     h = h.replace(/<(p|div|h[1-6])\s[^>]*>/g, "<$1>").replace(/<\/?div>/g, "").replace(/<h[1-6]>\s*<\/h[1-6]>/g, "");
     h = h.replace(/<br\s*\/?>/g, " ").replace(/;\s*<\/a>/g, "</a>; ").replace(/\s+/g, " ").replace(/\s+<\/a>/g, "</a> ");
@@ -146,6 +146,52 @@
 
   var SHAPE = { "Grants and Collaborations": grants, "Awards and Honors (Selection)": awards, "Courses": courses, "Teaching Statement": quotes };
 
+  function shapeBodies() {
+    document.querySelectorAll(".raw").forEach(function (raw) {
+      var h = tidy(raw.innerHTML);
+      var cite = raw.hasAttribute("data-cite");
+      var bits = h.split(/<h[2-4]>([\s\S]*?)<\/h[2-4]>/);
+      var out = [];
+      var lead = bits[0].trim();
+      var profiles = "";
+      if (lead) out.push('<section class="part lead"><div></div><div class="body">' + lead + "</div></section>");
+      for (var i = 1; i < bits.length; i += 2) {
+        var title = bits[i].replace(/<[^>]+>/g, "").trim();
+        var chunk = bits[i + 1] || "";
+        if (cite && title === "Links") {  // the profile links go under the page title as one line
+          var links = [];
+          chunk.replace(/<a [^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, function (_, u, n) { links.push([u, n.replace(/<[^>]+>/g, "")]); });
+          profiles = '<p class="prof-line"><span class="lbl">Profiles</span>' + links.map(function (l) {
+            return '<a href="' + l[0] + '">' + l[1] + '<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>';
+          }).join("") + "</p>";
+          continue;
+        }
+        chunk = cite ? citations(chunk) : (SHAPE[title] ? SHAPE[title](chunk) : chunk);
+        out.push('<section class="part"><h2>' + title + '</h2><div class="body">' + chunk.trim() + "</div></section>");
+      }
+      var wrap = document.createElement("div");
+      wrap.className = "parts";
+      wrap.innerHTML = out.join("");
+      raw.replaceWith(wrap);
+      if (profiles) {
+        var head = document.querySelector(".head");
+        if (head) head.insertAdjacentHTML("beforeend", profiles);
+      }
+    });
+  }
+
+  function bibToggle() {  // one listener, so it also serves the citations built above
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[data-bib]");
+      if (!a) return;
+      e.preventDefault();
+      var p = a.closest(".cite").querySelector("pre");
+      p.hidden = !p.hidden;
+      a.textContent = p.hidden ? "BibTeX" : "Hide";
+    });
+  }
+
+  /* 6 */
   function curly(text) {
     text = text.replace(/(?<=\w)'/g, "’").replace(/(^|[\s(\[])'/g, "$1‘").replace(/'/g, "’");
     text = text.replace(/(^|[\s(\[])"/g, "$1“");
@@ -153,6 +199,7 @@
   }
 
   function curlAll(root) {
+    if (!root) return;
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     var n;
     while ((n = walker.nextNode())) {
@@ -161,39 +208,11 @@
     }
   }
 
-  document.querySelectorAll(".raw").forEach(function (raw) {
-    var h = tidy(raw.innerHTML);
-    var cite = raw.hasAttribute("data-cite");
-    var bits = h.split(/<h[2-4]>([\s\S]*?)<\/h[2-4]>/);
-    var out = [];
-    var lead = bits[0].trim();
-    var profiles = "";
-    if (lead) out.push('<section class="part lead"><div></div><div class="body">' + lead + "</div></section>");
-    for (var i = 1; i < bits.length; i += 2) {
-      var title = bits[i].replace(/<[^>]+>/g, "").trim();
-      var chunk = bits[i + 1] || "";
-      if (cite && title === "Links") {  // the profile links go under the page title as one line
-        var links = [];
-        chunk.replace(/<a [^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, function (_, u, n) { links.push([u, n.replace(/<[^>]+>/g, "")]); });
-        profiles = '<p class="prof-line"><span class="lbl">Profiles</span>' + links.map(function (l) {
-          return '<a href="' + l[0] + '">' + l[1] + '<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>';
-        }).join("") + "</p>";
-        continue;
-      }
-      chunk = cite ? citations(chunk) : (SHAPE[title] ? SHAPE[title](chunk) : chunk);
-      out.push('<section class="part"><h2>' + title + '</h2><div class="body">' + chunk.trim() + "</div></section>");
-    }
-    var wrap = document.createElement("div");
-    wrap.className = "parts";
-    wrap.innerHTML = out.join("");
-    raw.replaceWith(wrap);
-    if (profiles) {
-      var head = document.querySelector(".head");
-      if (head) head.insertAdjacentHTML("beforeend", profiles);
-    }
-  });
-
-  var main = document.getElementById("main");
-  if (main) curlAll(main);
-  bindBib();
+  mailLinks();
+  phoneMenu();
+  updatedDate();
+  runningHead();
+  shapeBodies();
+  bibToggle();
+  curlAll(document.getElementById("main"));
 })();
