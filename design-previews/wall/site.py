@@ -14,8 +14,8 @@ OUT = HERE / "site"
 
 POSTS = [
     {"file": "cdsm-2026.html", "vt": "post-cdsm", "og": "https://jermainkaminski.com/media/posts/9/cdsm-2026-header.jpg", "src": "causal-data-science-meeting-2026", "title": "Causal Data Science Meeting 2026",
-     "date": "16 October 2026", "img": "cdsm-2026-header.jpg", "w": 2560, "h": 1707,
-     "alt": "Causal Data Science Meeting, November 4–5, 2026, online", "note": "Causal Data Science Meeting 2026, online on 4–5 November.",
+     "date": "16 October 2026", "img": "UM-Tapijn-202011-022.jpg", "w": 7952, "h": 5304,
+     "alt": "A corridor at Tapijn with yellow, orange, red and blue study alcoves in timber frames", "note": "Tapijn campus, Maastricht University.",
      "blurb": "Online on 4–5 November: two days of talks and discussion on causal data science, machine learning and AI. Attendance is free, and more than 650 participants have already registered."},
     {"file": "essay.html", "vt": "post-essay", "og": "https://jermainkaminski.com/media/posts/19/Will20Hunting.jpg.webp", "src": "the-sistine-chapel-problem", "title": "The Sistine Chapel Problem",
      "date": "8 September 2025", "img": "Will20Hunting.jpg.webp", "w": 1280, "h": 720,
