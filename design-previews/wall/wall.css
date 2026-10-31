@@ -164,11 +164,11 @@ h1 em{font-style:italic;color:var(--accent)}
 .rate small{font-size:.5em;color:var(--ink-3)}
 
 /* about page: full-length photograph beside the text */
-.standing{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:start;padding-top:0}
+.standing{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,4vw,64px);align-items:start;padding-top:0}
 .standing figure{margin:0;position:sticky;top:24px}
-.standing img{display:block;width:100%;height:auto;border-radius:var(--radius)}
-.standing .body{max-width:68ch}
-.standing .body>p:first-child{font:var(--display-weight) clamp(28px,2.8vw,40px)/var(--lead-lh) var(--serif);letter-spacing:-.015em;color:var(--ink);margin-bottom:1em}
+.standing img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:var(--radius)}
+.standing .body{max-width:64ch}
+.standing .body>p:first-child{font:var(--display-weight) clamp(22px,2vw,28px)/1.35 var(--serif);letter-spacing:-.01em;color:var(--ink);margin-bottom:1em}
 
 /* essay page */
 .article{max-width:720px;margin-inline:auto;overflow-wrap:anywhere}
