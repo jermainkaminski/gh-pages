@@ -416,6 +416,8 @@ def subpage(key):
         h = h[m.end():]
         h = h.replace("<h2>Working Papers</h2>", "<h2>Working Papers</h2><p>" + SILICON + "</p>", 1)
         h = h.split("<h2>Press Mentions</h2>", 1)[0]  # press has its own page, see news_page
+    if key == "students":  # committee work, not yet on the live page
+        h = h.replace("<h2>Honours Programme", '<h2>PhD Committees</h2><p>Member of the PhD committee of <a href="https://marcbecker.nl">Marc Becker</a>.</p><h2>Honours Programme', 1)
     if key == "research":  # the pillars lead the research page
         h = f"<h2>Three pillars of current research</h2>{pillars_html()}" + h
     band = f'<div class="pad"><figure class="band"><img src="media/{img}" alt="{alt}"><figcaption class="note">{NOTES[key]}</figcaption></figure></div>' if img else ""
