@@ -110,8 +110,16 @@ GITHUB_POST = ('GitHub Blog (2026). <a href="https://github.blog/news-insights/p
 SILICON = "Kaminski, J. (2026). Silicon sampling for product feedback in entrepreneurship. Working paper. The title was changed for peer review."
 
 
+ALTS = {  # pictures the live essay left without a description
+    'pierre-goiffon-aR_COwiGzP0-unsplash.jpg" alt=""': 'pierre-goiffon-aR_COwiGzP0-unsplash.jpg" alt="The painted ceiling of a baroque church, figures and clouds receding into a bright centre"',
+    'image.png" alt=""': 'image.png" alt="Will and Sean in the office scene from Good Will Hunting, facing each other across a low table of books"',
+}
+
+
 def body_of(folder):
     s = (REPO / folder / "index.html").read_text(encoding="utf8")
+    for wrong, right in ALTS.items():
+        s = s.replace(wrong, right)
     for wrong, right in TYPOS.items():
         s = s.replace(wrong, right)
     i = s.index('content__inner content__entry"')
@@ -462,7 +470,7 @@ def home_parts():
     hero = """<div class="pad">
       <div class="stage" id="top">
         <div class="say">
-          <h1>Causal inference and machine learning for <em>the decisions entrepreneurs actually make.</em></h1>
+          <h1>Causal inference and <br>machine learning for <br><em>the decisions <br>entrepreneurs make.</em></h1>
           <dl class="facts">
             <div><dt>Based</dt><dd>Maastricht University, School of Business and Economics</dd></div>
             <div><dt>Focus</dt><dd>Entrepreneurship, strategy, causal machine learning</dd></div>

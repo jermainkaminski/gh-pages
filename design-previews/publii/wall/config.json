@@ -89,7 +89,7 @@
         {
             "name": "heroText",
             "label": "Headline",
-            "value": "Causal inference and machine learning for <em>the decisions entrepreneurs actually make.</em>",
+            "value": "Causal inference and <br>machine learning for <br><em>the decisions <br>entrepreneurs make.</em>",
             "type": "textarea",
             "group": "Home",
             "note": "The orange italic part goes inside <em>\u2026</em>."
