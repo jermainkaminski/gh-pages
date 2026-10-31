@@ -1,29 +1,5 @@
-"""Content shared by the site generator: selected work, ratings, events and the research pillars."""
+"""Content shared by the site generator: the research pillars, news and the three ways to work together. Selected work, ratings and events are in home_sections.html."""
 
-PHOTO = '<img src="media/Jermain-Kaminski-1-md-Kopie-3.jpg" width="2000" height="1333" alt="Jermain Kaminski smiling in a bright university corridor, in a blue blazer and pink bow tie">'
-
-WORK = [
-    ("The software complexity of nations", "2026", "Research Policy", "With Juhász, Wachs and Hidalgo. Economic complexity, measured through the software countries produce.", "https://doi.org/10.1016/j.respol.2026.105422"),
-    ("Launching for success", "2021", "Journal of Business Venturing", "How psychological distance and mental simulation shape crowdfunding decisions.", "https://www.sciencedirect.com/science/article/abs/pii/S0883902618308619"),
-    ("Predicting outcomes in crowdfunding", "2020", "Small Business Economics", "An early multimodal classifier for venture outcomes, reading text, images and language.", "https://link.springer.com/content/pdf/10.1007/s11187-019-00218-w.pdf"),
-    ("What 40 years of research reveals", "2018", "Harvard Business Review", "The difference between disruptive and radical innovation, drawn from topic models.", "https://hbr.org/2018/04/what-40-years-of-research-reveals-about-the-difference-between-disruptive-and-radical-innovation"),
-    ("Causal Data Science Meeting", "2020–", "Co-founded with Paul Hünermund", "Keynotes have included Guido Imbens, Susan Athey and Judea Pearl.", "https://causalscience.org"),
-    ("Moviegalaxies", "2012–", "Harvard Dataverse", "Social networks in movies, open data. An Awwwards Honorable Mention along the way.", "https://doi.org/10.7910/DVN/T4HBA3"),
-]
-RATINGS = [
-    ("Commercializing Science and Technology", "Bachelor", "9.6", "10"),
-    ("Technology Entrepreneurship", "Bachelor", "9.4", "10"),
-    ("Digital Entrepreneurship", "Master", "9.2", "10"),
-    ("Entrepreneurship and New Business Development", "MBA", "5.0", "5"),
-]
-EVENTS = [
-    ("Causal Data Science Meeting 2026", "Online, 4–5 Nov", "https://causalscience.org"),
-    ("NATO STO Symposium on Autonomy, Space, and AI", "Brussels", "https://www-eur.cvent.com/c/calendar/8b04e847-c70e-4051-9367-ac0c991ebffe"),
-    ("Academy of Management 2026", "Philadelphia", "https://events.aom.org/events/aom-2026/session/qoG_QwylktF7p7uQxZdfj"),
-    ("Research in Behavioral Finance Conference", "Amsterdam", "https://www.rbfc.eu"),
-    ("Innovation &amp; Entrepreneurship Seminar", "Max Planck", "https://www.ip.mpg.de/en/the-institute/all-events/innovation-entrepreneurship-seminar-how-causal-graphs-can-improve-strategic-decision-making.html"),
-    ("Frontiers of Causal Inference and ML", "IMT Lucca", "https://cimlconference.imtlucca.it"),
-]
 PILLARS = [
     ("Causality in Strategic Decision Making",
      "How managers can reason about cause and effect before they act. Causal diagrams make a strategy’s theory of value explicit; causal discovery and structural causal models put it to the test.", [
@@ -75,7 +51,7 @@ COLLAB = [  # work with me: three doors, all open
 
 def news_html():
     return '<div class="sched news">' + "".join(
-        f'<a href="{u}"><span><span class="o">{o}</span>{t}</span><span>{y}</span></a>' for o, t, u, y in NEWS) + "</div>"
+        f'<a href="{u}"><span class="o">{o}</span><span class="t">{t}</span><span>{y}</span></a>' for o, t, u, y in NEWS) + "</div>"
 
 
 def collab_html():
@@ -83,7 +59,3 @@ def collab_html():
         f'<div><h3>{t}</h3><p>{d}</p><a class="more{" mailto" if u == "#contact" else ""}" href="{u}"'
         f'{" data-u=" + chr(34) + "j.kaminski" + chr(34) + " data-d=" + chr(34) + "maastrichtuniversity.nl" + chr(34) if u == "#contact" else ""}>{l}</a></div>'
         for t, d, l, u in COLLAB) + "</div>"
-
-
-BIO ="My work brings together causal inference, language and vision to study how text, images and behaviour change financing and innovation outcomes."
-ROLE = "Associate Professor of Entrepreneurship and Innovation, Maastricht University"

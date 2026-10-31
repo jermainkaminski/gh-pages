@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 """Builds the site preview into site/: home, sub-pages, writing page and posts."""
 import re
-import shutil
 import subprocess
 from pathlib import Path
 
 import build as b
-from content import PHOTO, collab_html, news_html
-from fonts import VARIANTS
+from content import collab_html, news_html
 
 PULL = '<p class="pull">Experience cannot be summarized or transferred; it has to be discovered through years of attention, presence, and engagement.</p>\n'
 
@@ -40,16 +38,10 @@ def head(title="Latest writing"):
     return f'<div class="bh"><h2 class="sec-h">{title}</h2><a class="more" href="writing.html">All writing</a></div>'
 
 
-def cards(cls=""):
-    items = "".join(f'<a class="card" href="{p["file"]}"><span class="pic">{img(p)}</span><span class="note">{p["note"]}</span><span class="d">{p["date"]}</span>'
+def cards():
+    items = "".join(f'<a class="card" href="{p["file"]}"><span class="pic">{img(p)}</span><span class="d">{p["date"]}</span>'
                     f'<span class="t">{p["title"]}</span><span class="s">{p["blurb"]}</span></a>' for p in POSTS)
-    return f'<div class="cards {cls}">{items}</div>'
-
-
-def rows():
-    return '<div class="rows">' + "".join(
-        f'<a class="rw" href="{p["file"]}"><span class="d">{p["date"]}</span><span class="t">{p["title"]}</span>'
-        f'<span class="s">{p["blurb"]}</span><span class="pic">{img(p)}</span></a>' for p in POSTS) + "</div>"
+    return f'<div class="cards">{items}</div>'
 
 
 def sections():
@@ -62,7 +54,6 @@ def sections():
             named[m.group(1)] = bit
         elif "river" in bit[:80]:
             named["river"] = bit
-    named["pillars"] = named["pillars"].replace('class="sec pad"', 'class="sec pad"', 1)
     named["work"] = named["work"].replace(' style="padding-top:0"', "")
     return hero, named
 
@@ -142,19 +133,10 @@ def writing_page():
     return b.page("Writing: Jermain C. Kaminski", main, "writing", author=True)
 
 
-def switcher(variant, file):
-    """Preview only: a small fixed bar for moving between the type versions of the same page."""
-    links = "".join(f'<a href="../site-{k}/{file}"{" aria-current=" + chr(34) + "true" + chr(34) if k == variant else ""}>{v["name"]}</a>'
-                    for k, v in VARIANTS.items())
-    return f'<nav class="pv" aria-label="Type versions"><span>Type</span>{links}</nav></body>'
-
-
-def build(out, variant=None):
-    """Writes every page into out/. With a variant, its fonts and CSS replace the Newsreader pairing."""
-    v = VARIANTS[variant or "newsreader"]
-    b.FONTS = v["fonts"]
+def build(out):
+    """Writes every page into out/."""
     out.mkdir(exist_ok=True)
-    (out / "wall.css").write_text((HERE / "wall.css").read_text(encoding="utf8") + v["css"] + (PV_CSS if variant else ""), encoding="utf8")
+    (out / "wall.css").write_text((HERE / "wall.css").read_text(encoding="utf8"), encoding="utf8")
     hero, named = sections()
     pages = {"index.html": b.page("Jermain C. Kaminski, Associate Professor, Maastricht University", home_page(hero, named))}
     pages.update({f"{key}.html": b.subpage(key) for key in b.PAGES})
@@ -162,26 +144,8 @@ def build(out, variant=None):
     pages["writing.html"] = writing_page()
     pages["news.html"] = b.news_page()
     for file, page in pages.items():
-        page = localize(page)
-        if variant:
-            page = page.replace("</body>", switcher(variant, file), 1)
-        (out / file).write_text(page, encoding="utf8")
-
-
-PV_CSS = """
-/* preview switcher, not part of the design */
-.pv{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;gap:2px;background:var(--ink);color:#fff;font:500 12px/1 var(--sans);letter-spacing:.02em;padding:4px;box-shadow:0 2px 12px rgba(20,28,48,.25)}
-.pv span,.pv a{padding:7px 9px;text-decoration:none;color:#fff}
-.pv span{opacity:.6}
-.pv a:hover{background:rgba(255,255,255,.14);color:#fff}
-.pv a[aria-current]{background:#fff;color:var(--ink)}
-@media print{.pv{display:none}}
-"""
+        (out / file).write_text(localize(page), encoding="utf8")
 
 
 if __name__ == "__main__":
-    import sys
     build(OUT)
-    if "--variants" in sys.argv:  # the other type pairings, for comparison only
-        for k in VARIANTS:
-            build(HERE / f"site-{k}", k)
