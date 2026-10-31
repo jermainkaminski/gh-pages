@@ -144,6 +144,16 @@
     return chunk.replace(/<blockquote><p>([\s\S]*?)\s*[–—]\s*([^–—]*?)<\/p><\/blockquote>/g, "<blockquote><p>$1</p><footer>$2</footer></blockquote>");
   }
 
+  function profileSentence(chunk) {  // the profile links as one sentence in the lead type, the links inside the prose
+    var by = {};
+    chunk.replace(/<a [^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, function (_, u, n) { by[n.replace(/<[^>]+>/g, "").trim()] = u; });
+    var g = by["Google Scholar"], m = by["Semantic Scholar"], sg = by["Sage Policy Impact"], r = by["Rankless"];
+    var a = function (u, t) { return '<a href="' + u + '">' + t + "</a>"; };
+    if (g && m && sg && r) return '<p class="prof-lead">My papers are indexed on ' + a(g, "Google Scholar") + " and " + a(m, "Semantic Scholar") + ", and their use in policy is tracked by " + a(sg, "Sage") + " and " + a(r, "Rankless") + ".</p>";
+    var all = Object.keys(by).map(function (k) { return a(by[k], k); });
+    return all.length ? '<p class="prof-lead">Find my work on ' + all.join(", ") + ".</p>" : "";
+  }
+
   var SHAPE = { "Grants and Collaborations": grants, "Awards and Honors (Selection)": awards, "Courses": courses, "Teaching Statement": quotes };
 
   function shapeBodies() {
@@ -158,14 +168,7 @@
       for (var i = 1; i < bits.length; i += 2) {
         var title = bits[i].replace(/<[^>]+>/g, "").trim();
         var chunk = bits[i + 1] || "";
-        if (cite && title === "Links") {  // the profile links go under the page title as one line
-          var links = [];
-          chunk.replace(/<a [^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, function (_, u, n) { links.push([u, n.replace(/<[^>]+>/g, "")]); });
-          profiles = '<p class="prof-line"><span class="lbl">Profiles</span>' + links.map(function (l) {
-            return '<a href="' + l[0] + '">' + l[1] + '<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>';
-          }).join("") + "</p>";
-          continue;
-        }
+        if (cite && title === "Links") { profiles = profileSentence(chunk); continue; }  // goes under the page title
         chunk = cite ? citations(chunk) : (SHAPE[title] ? SHAPE[title](chunk) : chunk);
         out.push('<section class="part"><h2>' + title + '</h2><div class="body">' + chunk.trim() + "</div></section>");
       }
