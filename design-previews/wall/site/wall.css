@@ -440,3 +440,20 @@ h1{letter-spacing:-.015em}
 .head h1{font-size:clamp(48px,7.2vw,104px)}
 h1{font-size:clamp(38px,4vw,64px)}
 @media (max-width:640px){h1{font-size:34px}}
+
+/* writing: the magazine grid. The newest piece spans two columns; kicker, picture, headline, dek, date. */
+.maggrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px clamp(24px,3vw,48px);border-top:1px solid var(--ink);padding-top:32px}
+.mag{display:block;text-decoration:none;color:inherit}
+.mag:first-child{grid-column:span 2}
+.mag .pic{display:block;aspect-ratio:3/2;overflow:hidden;margin-bottom:18px}
+.mag:first-child .pic{aspect-ratio:2/1}
+.mag .pic img{width:100%;height:100%;object-fit:cover;display:block}
+.kick{display:block;font:500 12.5px/1.3 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--accent-text);margin-bottom:10px}
+.mag .t{display:block;font:var(--display-weight) clamp(26px,2.4vw,34px)/1.1 var(--serif);letter-spacing:-.018em;text-wrap:balance}
+.mag:first-child .t{font-size:clamp(34px,4vw,56px);letter-spacing:-.025em;max-width:20ch}
+.mag .s{display:block;margin-top:10px;font-size:var(--small);line-height:1.5;color:var(--ink-2);max-width:52ch}
+.mag:first-child .s{font-size:var(--text)}
+.mag .meta{display:block;margin-top:12px;font-size:14px;color:var(--ink-3)}
+.mag:hover .t{color:var(--accent-text)}
+@media (max-width:1000px){.maggrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.maggrid{grid-template-columns:minmax(0,1fr)}.mag:first-child{grid-column:auto}.mag .pic{margin-inline:-24px}}

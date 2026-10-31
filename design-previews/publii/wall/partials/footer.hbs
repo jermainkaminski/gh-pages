@@ -1,0 +1,19 @@
+<footer class="close" id="contact">
+  <div class="pad in">
+    <h2>Let’s <em>work together.</em></h2>
+    <div class="routes">
+      <div><p>Research collaboration:</p><div class="mail"><a class="mailto" data-u="{{@config.custom.mailUser1}}" data-d="{{@config.custom.mailDomain1}}" href="#contact">{{@config.custom.mailUser1}}<span class="at"> at </span>{{@config.custom.mailDomain1}}</a></div></div>
+      <div><p>Speaking, workshops and advisory:</p><div class="mail"><a class="mailto" data-u="{{@config.custom.mailUser2}}" data-d="{{@config.custom.mailDomain2}}" href="#contact">{{@config.custom.mailUser2}}<span class="at"> at </span>{{@config.custom.mailDomain2}}</a></div></div>
+    </div>
+    <div class="colophon">
+      <span>{{@website.name}}</span>
+      <nav aria-label="Elsewhere">{{#getPage 24}}<a href="{{url}}">Writing</a>{{/getPage}}<a href="{{@config.custom.linkedin}}">LinkedIn</a><a href="{{@config.custom.bluesky}}">Bluesky</a>{{#getPage 23}}<a href="{{url}}">Privacy</a>{{/getPage}}</nav>
+      <span class="upd" data-updated></span>
+    </div>
+  </div>
+</footer>
+<script src="{{js "wall.js"}}" defer></script>
+{{{@footerCustomCode}}}
+{{{publiiFooter}}}
+</body>
+</html>

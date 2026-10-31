@@ -1,0 +1,9 @@
+{{!-- The header. On phones the list becomes a full-screen sheet, opened by the checkbox behind the burger. --}}
+<div class="pad"><nav class="top{{#is "index"}} home{{/is}}" aria-label="Main">
+<input type="checkbox" id="menu" class="menu-t" aria-label="Menu" autocomplete="off"><a class="who" href="{{@website.url}}">{{@website.name}}</a>
+<label for="menu" class="burger" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><line x1="2" y1="5" x2="22" y2="5"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="19" x2="22" y2="19"/></svg></label>
+<ul>{{#if menus.mainMenu}}{{#each menus.mainMenu.items}}{{#unless isHidden}}<li{{menuItemClasses}}><a href="{{menuUrl}}"{{#if target}} target="{{target}}"{{/if}}>{{label}}</a></li>{{/unless}}{{/each}}{{/if}}<li class="m-only"><a href="#contact">Get in touch</a></li>
+<li class="m-only soc"><a href="{{@config.custom.linkedin}}">LinkedIn</a><a href="{{@config.custom.bluesky}}">Bluesky</a></li></ul>
+<a class="pill" href="#contact">Get in touch</a>
+{{#is "index"}}<a class="badge" href="{{@config.custom.badgeLink}}"><img src="{{@website.assetsUrl}}/img/40under40logo.jpg" width="271" height="459" alt="Poets&amp;Quants Best 40 Under 40 Professors"></a>{{/is}}
+</nav></div>

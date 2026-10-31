@@ -1,0 +1,11 @@
+{{> head}}
+{{#post}}
+<main id="main">
+<div class="pad head post-head"><span class="d">{{date createdAt "D MMMM YYYY"}}</span><h1>{{title}}</h1></div>
+{{#featuredImage}}{{#if url}}
+<div class="pad"><figure class="band post"><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}" style="view-transition-name:post-{{../id}}">{{#if caption}}<figcaption class="note">{{{caption}}}</figcaption>{{/if}}</figure></div>
+{{/if}}{{/featuredImage}}
+<div class="pad page"><article class="body article">{{{text}}}</article></div>
+</main>
+{{/post}}
+{{> footer}}
