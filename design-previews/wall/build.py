@@ -357,7 +357,7 @@ WEBSITE = {"@type": "WebSite", "@id": SITE + "#website", "url": SITE, "name": "J
 PORTRAIT = '<img src="media/Jermain-Kaminski-1-md-Kopie-3.jpg" alt="Jermain Kaminski" loading="lazy">'
 COLOPHON = '<div class="colophon">' + FOOT.split('<div class="colophon">', 1)[1]
 AUTHOR = ('<footer class="close slim" id="contact"><div class="pad in"><div class="au au-g">' + PORTRAIT
-          + '<div><p class="say">I study how entrepreneurs decide, and what data can and cannot tell them.</p><span class="n">Jermain C. Kaminski</span>'
+          + '<div><p class="say">I work on causal inference and machine learning for the decisions entrepreneurs make.</p><span class="n">Jermain C. Kaminski</span>'
           + '<span class="r">Associate Professor of Entrepreneurship and Innovation, Maastricht University · <a href="about.html">About</a></span></div></div>' + COLOPHON)
 AUTHOR_WRITING = ('<footer class="close slim" id="contact"><div class="pad in"><div class="au au-a">' + PORTRAIT
                   + '<div><span class="n">Jermain C. Kaminski</span><span class="r">Associate Professor, Maastricht University</span>'
@@ -458,7 +458,7 @@ def subpage(key):
     if key == "publications":  # the profile links sit under the title rather than as a section
         m = re.match(r"<h2>Links</h2>(.*?)(?=<h2>)", h, flags=re.S)
         links = re.findall(r'<a class="chip" href="([^"]*)"[^>]*>(.*?)</a>', m.group(1))  # one quiet line of profiles
-        chips = ('<p class="prof-line"><span class="lbl">Profiles</span>'
+        chips = ('<p class="prof-line"><span class="lbl">Links</span>'
                  + "".join(f'<a href="{u}">{n}{ARROW}</a>' for u, n in links) + "</p>")
         h = h[m.end():]
         h = h.replace("<h2>Working Papers</h2>", "<h2>Working Papers</h2><p>" + SILICON + "</p>", 1)

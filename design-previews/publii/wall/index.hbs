@@ -12,7 +12,7 @@
       </dl>
     </div>
     {{#if @config.custom.heroImage}}
-    <figure class="portrait"><img src="{{@config.custom.heroImage}}" {{responsiveImageAttributes @config.custom.heroImage}} {{imageDimensions @config.custom.heroImage}} fetchpriority="high" alt="{{@config.custom.heroImageAlt}}"><figcaption class="note">{{{@config.custom.heroImageNote}}}</figcaption></figure>
+    <figure class="portrait"><img src="{{@config.custom.heroImage}}" {{responsiveImageAttributes @config.custom.heroImage}} {{imageDimensions @config.custom.heroImage}} fetchpriority="high" alt="{{@config.custom.heroImageAlt}}"><a class="badge-m" href="{{@config.custom.badgeLink}}"><img src="{{@website.assetsUrl}}/img/40under40logo.jpg" width="271" height="459" alt="Poets&amp;Quants Best 40 Under 40 Professors"></a><figcaption class="note">{{{@config.custom.heroImageNote}}}</figcaption></figure>
     {{/if}}
   </div>
 </div>
@@ -24,41 +24,9 @@
 
 <section class="sec pad" id="pillars"><h2 class="sec-h">Three pillars of current research</h2>{{> pillars}}</section>
 
-<section class="sec pad" id="work">
-  <h2 class="sec-h">Selected work</h2>
-  <ul class="work">
-    <li><a href="https://doi.org/10.1016/j.respol.2026.105422"><span class="t">The software complexity of nations</span><span class="y">2026 · Research Policy</span><span class="s">With Juhász, Wachs and Hidalgo. Economic complexity, measured through the software countries produce.</span></a></li>
-    <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S0883902618308619"><span class="t">Launching for success</span><span class="y">2021 · Journal of Business Venturing</span><span class="s">How psychological distance and mental simulation shape crowdfunding decisions.</span></a></li>
-    <li><a href="https://link.springer.com/content/pdf/10.1007/s11187-019-00218-w.pdf"><span class="t">Predicting outcomes in crowdfunding</span><span class="y">2020 · Small Business Economics</span><span class="s">An early multimodal classifier for venture outcomes, reading text, images and language.</span></a></li>
-    <li><a href="https://hbr.org/2018/04/what-40-years-of-research-reveals-about-the-difference-between-disruptive-and-radical-innovation"><span class="t">What 40 years of research reveals</span><span class="y">2018 · Harvard Business Review</span><span class="s">The difference between disruptive and radical innovation, drawn from topic models.</span></a></li>
-    <li><a href="https://causalscience.org"><span class="t">Causal Data Science Meeting</span><span class="y">2020– · Co-founded with Paul Hünermund</span><span class="s">Keynotes have included Guido Imbens, Susan Athey and Judea Pearl.</span></a></li>
-    <li><a href="https://doi.org/10.7910/DVN/T4HBA3"><span class="t">Moviegalaxies</span><span class="y">2012– · Harvard Dataverse</span><span class="s">Social networks in movies, open on Harvard Dataverse. An Awwwards Honorable Mention along the way.</span></a></li>
-  </ul>
-</section>
-
-{{#getPage 11}}{{#featuredImage}}{{#if url}}
-<div class="pad">
-  <figure class="river">
-    <img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy">
-    <figcaption><span>Charles River, seen from the MIT sailing dock.</span><span>Visiting researcher, MIT Sloan and MIT Media Lab</span></figcaption>
-  </figure>
-</div>
-{{/if}}{{/featuredImage}}{{/getPage}}
-
-<section class="sec pad" id="about">
-  <div class="about">
-    <p class="big">My work brings together causal inference, language and vision to study how text, images and behaviour change financing and innovation outcomes.</p>
-    <div>
-      <p>I earned my PhD (summa cum laude) at RWTH Aachen in 2019 and was a visiting researcher with Thomas Malone and Peter Gloor at MIT’s Center for Collective Intelligence, and with César Hidalgo at the MIT Media Lab.</p>
-      <p>Before academia I worked in central marketing at Porsche, in executive consulting, and on data analytics in soccer for a Bundesliga club. My research with colleagues is cited by the OECD and the European Commission’s Joint Research Centre.</p>
-      {{#getPage 12}}<a class="more" style="margin:0" href="{{url}}">More about me</a>{{/getPage}}
-    </div>
-  </div>
-</section>
-
 <section class="pad" id="teaching">
   <div class="teach">
-    {{#getPage 18}}{{#featuredImage}}{{#if url}}<figure><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy">{{#if caption}}<figcaption class="note">{{{caption}}}</figcaption>{{/if}}</figure>{{/if}}{{/featuredImage}}{{/getPage}}
+    {{#getPage 18}}{{#featuredImage}}{{#if url}}<figure><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy"><figcaption class="note">{{#if caption}}{{{caption}}}{{else}}<b>MBA teaching</b>Maastricht University{{/if}}</figcaption></figure>{{/if}}{{/featuredImage}}{{/getPage}}
     <div>
       <h2 class="sec-h" style="margin-bottom:28px">Teaching</h2>
       <dl class="nums">
@@ -72,33 +40,27 @@
   </div>
 </section>
 
-<section class="sec pad" id="collab"><h2 class="sec-h">Work with me</h2>
-  <div class="collab">
-    <div><h3>Research collaboration</h3><p>Causal inference, machine learning, and text and image data on entrepreneurship, strategy and innovation. I’m open to co-authoring, to joint data projects, and to companies and public bodies with a question that deserves a proper answer.</p><a class="more mailto" href="#contact" data-u="{{@config.custom.mailUser1}}" data-d="{{@config.custom.mailDomain1}}">Write to me</a></div>
-    <div><h3>Speaking, workshops and advisory</h3><p>Keynotes and executive workshops on causal thinking and AI in strategy, and advisory for teams that need to know what their data can and cannot tell them.</p>{{#getPage 17}}<a class="more" href="{{url}}">Speaking and advisory</a>{{/getPage}}</div>
-    <div><h3>Students</h3><p>I supervise PhD, master’s and honours students at Maastricht, and I’m always glad to hear from prospective PhD candidates with a causal or machine-learning question in mind.</p>{{#getPage 16}}<a class="more" href="{{url}}">Working with students</a>{{/getPage}}</div>
-  </div>
-</section>
-
-<section class="sec pad" id="news">
+<section class="sec pad duo">
+<div id="news">
   <div class="bh"><h2 class="sec-h">In the news</h2>{{#getPage 25}}<a class="more" href="{{url}}">All coverage</a>{{/getPage}}</div>
   <div class="sched news">
     <a href="https://github.blog/news-insights/policy-news-and-insights/how-researchers-are-using-github-innovation-graph-data-to-reveal-the-digital-complexity-of-nations/"><span class="o">GitHub Blog</span><span class="t">How researchers are using GitHub Innovation Graph data to reveal the “digital complexity” of nations</span><span>2026</span></a>
     <a href="{{@config.custom.badgeLink}}"><span class="o">Poets&amp;Quants</span><span class="t">Best 40 Under 40 MBA Professors</span><span>2024</span></a>
     <a href="https://www.einsteintelescope-emr.eu/en/2024/07/04/the-entrepreneurial-side-of-fundamental-research/"><span class="o">Einstein Telescope</span><span class="t">The entrepreneurial side of fundamental research</span><span>2024</span></a>
   </div>
-</section>
+</div>
 
-<section class="sec pad" id="events">
-  <h2 class="sec-h">Recent and upcoming</h2>
+<div id="events">
+  <div class="bh"><h2 class="sec-h">Recent and upcoming</h2></div>
   <div class="sched">
-    <a href="https://causalscience.org"><span>Causal Data Science Meeting 2026</span><span>Online, 4–5 Nov</span></a>
-    <a href="https://www-eur.cvent.com/c/calendar/8b04e847-c70e-4051-9367-ac0c991ebffe"><span>NATO STO Symposium on Autonomy, Space, and AI</span><span>Brussels</span></a>
-    <a href="https://events.aom.org/events/aom-2026/session/qoG_QwylktF7p7uQxZdfj"><span>Academy of Management 2026</span><span>Philadelphia</span></a>
-    <a href="https://www.rbfc.eu"><span>Research in Behavioral Finance Conference</span><span>Amsterdam</span></a>
-    <a href="https://www.ip.mpg.de/en/the-institute/all-events/innovation-entrepreneurship-seminar-how-causal-graphs-can-improve-strategic-decision-making.html"><span>Innovation &amp; Entrepreneurship Seminar</span><span>Max Planck</span></a>
-    <a href="https://cimlconference.imtlucca.it"><span>Frontiers of Causal Inference and ML</span><span>IMT Lucca</span></a>
+    <a href="https://causalscience.org"><span>Causal Data Science Meeting 2026</span><span>Online · Nov 2026</span></a>
+    <a href="https://www-eur.cvent.com/c/calendar/8b04e847-c70e-4051-9367-ac0c991ebffe"><span>NATO STO Symposium on Autonomy, Space, and AI</span><span>Brussels · Nov 2026</span></a>
+    <a href="https://www.rbfc.eu"><span>Research in Behavioral Finance Conference</span><span>Amsterdam · Sep 2026</span></a>
+    <a href="https://events.aom.org/events/aom-2026/session/qoG_QwylktF7p7uQxZdfj"><span>Academy of Management 2026</span><span>Philadelphia · Jul–Aug 2026</span></a>
+    <a href="https://www.ip.mpg.de/en/the-institute/all-events/innovation-entrepreneurship-seminar-how-causal-graphs-can-improve-strategic-decision-making.html"><span>Innovation &amp; Entrepreneurship Seminar</span><span>Max Planck · Jul 2026</span></a>
+    <a href="https://cimlconference.imtlucca.it"><span>Frontiers of Causal Inference and ML</span><span>IMT Lucca · Apr 2026</span></a>
   </div>
+</div>
 </section>
 </main>
 {{> footer}}

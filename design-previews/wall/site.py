@@ -39,8 +39,8 @@ def head(title="Latest writing"):
 
 
 def cards():
-    items = "".join(f'<a class="card" href="{p["file"]}"><span class="pic">{img(p)}</span><span class="d">{p["date"]}</span>'
-                    f'<span class="t">{p["title"]}</span><span class="s">{p["blurb"]}</span></a>' for p in POSTS)
+    items = "".join(f'<a class="card" href="{p["file"]}"><span class="pic">{img(p)}</span><span class="t">{p["title"]}</span>'
+                    f'<span class="d">{p["date"]}</span><span class="s">{p["blurb"]}</span></a>' for p in POSTS)
     return f'<div class="cards">{items}</div>'
 
 

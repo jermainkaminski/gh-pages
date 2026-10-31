@@ -89,7 +89,7 @@
         {
             "name": "heroText",
             "label": "Headline",
-            "value": "Causal inference and <br>machine learning for <br><em>the decisions <br>entrepreneurs make.</em>",
+            "value": "Causal inference and <span class='brk'></span>machine learning for <span class='brk'></span><em>the decisions <span class='brk'></span>entrepreneurs make.</em>",
             "type": "textarea",
             "group": "Home",
             "note": "The orange italic part goes inside <em>\u2026</em>."
@@ -162,7 +162,7 @@
         {
             "name": "authorSentence",
             "label": "Sentence under articles",
-            "value": "I study how entrepreneurs decide, and what data can and cannot tell them.",
+            "value": "I work on causal inference and machine learning for the decisions entrepreneurs make.",
             "type": "text",
             "group": "Home"
         },
