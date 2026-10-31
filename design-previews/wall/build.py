@@ -251,16 +251,23 @@ def nav(current=None):
             f'<a class="pill" href="#contact">Get in touch</a>{badge}</nav></div>')
 
 
+def mail(user, domain, text=None):
+    """An email link harvesters have to work for: the address is assembled by the script, and reads 'user at domain' without it."""
+    shown = text or f'{user}<span class="at"> at </span>{domain}'
+    return f'<a class="mailto" data-u="{user}" data-d="{domain}" href="#contact">{shown}</a>'
+
+
 FOOT = """<footer class="close" id="contact">
   <div class="pad in">
     <h2>Let's <em>work together.</em></h2>
     <div class="routes">
-      <div><p>Research collaboration:</p><div class="mail"><a href="mailto:j.kaminski@maastrichtuniversity.nl">j.kaminski@maastrichtuniversity.nl</a></div></div>
-      <div><p>Speaking, workshops and advisory:</p><div class="mail"><a href="mailto:jermain.kaminski@gmail.com">jermain.kaminski@gmail.com</a></div></div>
+      <div><p>Research collaboration:</p><div class="mail">""" + mail("j.kaminski", "maastrichtuniversity.nl") + """</div></div>
+      <div><p>Speaking, workshops and advisory:</p><div class="mail">""" + mail("jermain.kaminski", "gmail.com") + """</div></div>
     </div>
     <div class="colophon">
-      <span>Jermain C. Kaminski<span class="upd">Last updated """ + date.today().strftime("%-d %B %Y") + """</span></span>
+      <span>Jermain C. Kaminski</span>
       <nav aria-label="Elsewhere"><a href="essay.html">Writing</a><a href="https://www.linkedin.com/in/jermainkaminski/">LinkedIn</a><a href="https://bsky.app/profile/jermainkaminski.bsky.social">Bluesky</a><a href="https://jermainkaminski.com/privacy/">Privacy</a></nav>
+      <span class="upd">Last updated """ + date.today().strftime("%-d %B %Y") + """</span>
     </div>
   </div>
 </footer>"""
@@ -287,7 +294,6 @@ SITE = "https://jermainkaminski.com/"
 PERSON = {  # structured data shared by every page: who the site is about, and where else he is
     "@type": "Person", "@id": SITE + "#person", "name": "Jermain C. Kaminski", "givenName": "Jermain", "familyName": "Kaminski",
     "jobTitle": "Associate Professor of Entrepreneurship and Innovation", "url": SITE, "image": OG_IMAGE,
-    "email": "mailto:j.kaminski@maastrichtuniversity.nl",
     "description": "Associate Professor of Entrepreneurship and Innovation at Maastricht University School of Business and Economics. "
                    "Research on causal inference and machine learning for entrepreneurial and strategic decisions, and on the economic "
                    "complexity of software. Co-founder of the Causal Data Science Meeting and Moviegalaxies; advisor to Texterous.",
@@ -375,6 +381,7 @@ def page(title, main, current=None, desc=None, image=OG_IMAGE, path=None, articl
 {FOOT}
 <script>
 // The sheet menu works without this; it only closes the sheet on a same-page link and on Escape.
+document.querySelectorAll("a.mailto").forEach(function(a){{var e=a.dataset.u+"@"+a.dataset.d;a.href="mailto:"+e;if(a.querySelector(".at"))a.textContent=e}});
 (function(){{var m=document.getElementById("menu");if(!m)return;
 m.checked=false;window.addEventListener("pageshow",function(){{m.checked=false}});
 document.querySelectorAll("nav.top ul a").forEach(function(a){{a.addEventListener("click",function(){{m.checked=false}})}});

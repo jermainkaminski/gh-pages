@@ -63,7 +63,7 @@ NEWS = [  # the three pieces of coverage shown on the home page; the News page h
 COLLAB = [  # work with me: three doors, all open
     ("Research collaboration",
      "Causal inference, machine learning, and text and image data on entrepreneurship, strategy and innovation. I’m open to co-authoring, to joint data projects, and to companies and public bodies with a question that deserves a proper answer.",
-     "Write to me", "mailto:j.kaminski@maastrichtuniversity.nl"),
+     "Write to me", "#contact"),
     ("Speaking, workshops and advisory",
      "Keynotes and executive workshops on causal thinking and AI in strategy, and advisory for teams that need to know what their data can and cannot tell them.",
      "Speaking and advisory", "speaking.html"),
@@ -80,7 +80,9 @@ def news_html():
 
 def collab_html():
     return '<div class="collab">' + "".join(
-        f'<div><h3>{t}</h3><p>{d}</p><a class="more" href="{u}">{l}</a></div>' for t, d, l, u in COLLAB) + "</div>"
+        f'<div><h3>{t}</h3><p>{d}</p><a class="more{" mailto" if u == "#contact" else ""}" href="{u}"'
+        f'{" data-u=" + chr(34) + "j.kaminski" + chr(34) + " data-d=" + chr(34) + "maastrichtuniversity.nl" + chr(34) if u == "#contact" else ""}>{l}</a></div>'
+        for t, d, l, u in COLLAB) + "</div>"
 
 
 BIO ="My work brings together causal inference, language and vision to study how text, images and behaviour change financing and innovation outcomes."
