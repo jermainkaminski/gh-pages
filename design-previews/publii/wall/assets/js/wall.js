@@ -149,7 +149,7 @@
     chunk.replace(/<a [^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, function (_, u, n) { by[n.replace(/<[^>]+>/g, "").trim()] = u; });
     var g = by["Google Scholar"], m = by["Semantic Scholar"], sg = by["Sage Policy Impact"], r = by["Rankless"];
     var a = function (u, t) { return '<a href="' + u + '">' + t + "</a>"; };
-    if (g && m && sg && r) return '<p class="prof-lead">My papers are indexed on ' + a(g, "Google Scholar") + " and " + a(m, "Semantic Scholar") + ", their use in policy is tracked by " + a(sg, "Sage") + ", and " + a(r, "Rankless") + " ranks the lot.</p>";
+    if (g && m && sg && r) return '<p class="prof-lead">My papers are indexed on ' + a(g, "Google Scholar") + " and " + a(m, "Semantic Scholar") + ", and their use in policy is tracked by " + a(sg, "Sage") + " and " + a(r, "Rankless") + ".</p>";
     var all = Object.keys(by).map(function (k) { return a(by[k], k); });
     return all.length ? '<p class="prof-lead">Find my work on ' + all.join(", ") + ".</p>" : "";
   }
