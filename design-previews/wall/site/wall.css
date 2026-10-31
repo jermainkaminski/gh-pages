@@ -164,7 +164,7 @@ h1 em{font-style:italic;color:var(--accent)}
 .rate small{font-size:.5em;color:var(--ink-3)}
 
 /* about page: full-length photograph beside the text */
-.standing{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,4vw,64px);align-items:start;padding-top:0}
+.standing{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(28px,3.5vw,52px);align-items:start;padding-top:0}
 .standing figure{margin:0;position:sticky;top:24px}
 .standing img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:var(--radius)}
 .standing .body{max-width:64ch}
@@ -473,3 +473,14 @@ h1{font-size:clamp(38px,4vw,64px)}
 
 /* pillars: an orange rule with more air above the numeral */
 .body li.pillar,.body li.pillar:first-child,.pillar{padding-top:28px;border-top:1px solid var(--accent)}
+
+/* the menu sits at the content edge on every page; the badge hangs over the top-right of the portrait on desktop,
+   and below the menu beside the headline on smaller screens */
+nav.top{padding-right:0}
+.badge{right:0;top:calc(100% + 45px);width:80px}
+@media (min-width:1001px){.badge{width:100px;top:calc(100% + 56px);right:-16px}}
+@media (max-width:1000px){.stage h1{padding-right:104px}}
+
+/* picture notes: small, light, the title in spaced capitals */
+.note,figcaption.note{font:300 11px/1.35 var(--sans);color:#8d93a6;letter-spacing:.01em}
+.note b{font-size:9.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#6b7186;margin-right:10px}

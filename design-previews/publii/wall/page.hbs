@@ -6,7 +6,7 @@
 <div class="pad head"><h1>{{title}}</h1></div>
 <div class="pad page standing">
   {{#featuredImage}}{{#if url}}<figure><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}">{{#if caption}}<figcaption class="note">{{{caption}}}</figcaption>{{/if}}</figure>{{/if}}{{/featuredImage}}
-  <div class="body raw about-raw">{{{text}}}</div>
+  <div class="body about-raw">{{{text}}}</div>
 </div>
 {{else}}
 <div class="pad head"><h1>{{title}}</h1></div>
