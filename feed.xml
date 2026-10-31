@@ -3,7 +3,7 @@
     <title>Jermain C. Kaminski</title>
     <link href="https://jermainkaminski.com/feed.xml" rel="self" />
     <link href="https://jermainkaminski.com" />
-    <updated>2026-10-31T10:32:03+01:00</updated>
+    <updated>2026-10-31T12:03:05+01:00</updated>
     <author>
         <name>Jermain Kaminski</name>
     </author>
@@ -34,7 +34,6 @@
 <p><a href="https://already-clean.goodfire.com/" target="_blank" rel="noopener noreferrer">A new essay</a>, <a href="https://www.nytimes.com/2026/10/27/science/ai-problem-interpretability.html" target="_blank" rel="noopener noreferrer">covered in the New York Times this week</a>, argues it might be less messy than we thought. The results are preliminary and contested, but in large models, most neurons seem to have one main job. If the claims hold even in part, switching a neuron off then becomes an intervention on something you can name. For causal inference that’s interesting, because normally we observe data and have to guess at the structure behind it (causal discovery).</p>
 <p>Now, does theory still matter, then? Likely more than before. Machines can propose hypotheses and test them faster than we can read them. What they can’t tell us is which of the many theories that fit the data is the one we need, because that depends on what we want to test. It’s new territory, again moving the bottleneck from computing answers to choosing the right questions, and nobody has a benchmark for that yet.</p>
 <p><em>First published <a href="https://lnkd.in/p/eXcemwvM" target="_blank" rel="noopener noreferrer">on LinkedIn</a>.</em></p>
-
             ]]>
         </content>
     </entry>
