@@ -320,6 +320,19 @@ WEBSITE = {"@type": "WebSite", "@id": SITE + "#website", "url": SITE, "name": "J
            "publisher": {"@id": SITE + "#person"}}
 
 
+AUTHOR = """<footer class="close slim" id="contact">
+  <div class="pad in">
+    <div class="author-card">
+      <img src="media/Jermain-Kaminski-1-md-Kopie-3.jpg" width="112" height="112" alt="Jermain Kaminski" loading="lazy">
+      <div>
+        <span class="n">Jermain C. Kaminski</span>
+        <p>Associate Professor of Entrepreneurship and Innovation at Maastricht University. Causal inference and machine learning for the decisions entrepreneurs make.</p>
+        <nav aria-label="Author"><a href="about.html">About</a><a href="writing.html">All writing</a><a href="https://www.linkedin.com/in/jermainkaminski/">LinkedIn</a><a href="https://bsky.app/profile/jermainkaminski.bsky.social">Bluesky</a>""" + mail("j.kaminski", "maastrichtuniversity.nl", "Email") + """</nav>
+      </div>
+    </div>
+    <div class="colophon">""" + FOOT.split('<div class="colophon">', 1)[1]
+
+
 def page(title, main, current=None, desc=None, image=OG_IMAGE, path=None, article=None):
     """One page. path is the page's folder on the live site; article is (date ISO, headline) for a post."""
     desc = html.escape(desc or DESCRIPTIONS.get(current) or DESCRIPTIONS[None], quote=True)
@@ -378,7 +391,7 @@ def page(title, main, current=None, desc=None, image=OG_IMAGE, path=None, articl
 <main id="main">
 {main}
 </main>
-{FOOT}
+{AUTHOR if article else FOOT}
 <script>
 // The sheet menu works without this; it only closes the sheet on a same-page link and on Escape.
 document.querySelectorAll("a.mailto").forEach(function(a){{var e=a.dataset.u+"@"+a.dataset.d;a.href="mailto:"+e;if(a.querySelector(".at"))a.textContent=e}});
