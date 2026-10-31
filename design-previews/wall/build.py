@@ -150,6 +150,23 @@ def tidy(h):
     return h.replace("<p> ", "<p>").replace(" </p>", "</p>")
 
 
+def bibtex(au, ti, ve, year, inner):
+    """An approximate BibTeX entry from the parsed row: enough to cite, easy to correct."""
+    strip = lambda h: html.unescape(re.sub(r"<[^>]+>", "", h or "")).strip()
+    authors = strip(au).rstrip(",")
+    authors = re.sub(r",?\s*(?:&amp;|&|and)\s+", " and ", authors)
+    authors = re.sub(r"(?<=\w\.),\s+(?=[A-Z][a-z])", " and ", authors)  # "Schmitt, C., Kaminski, J." -> "and"
+    title = strip(ti).strip("“”\"")
+    journal = strip(" ".join(re.findall(r"<em>(.*?)</em>", ve or "")))
+    url = re.search(r'href="([^"]+)"', inner)
+    first = re.sub(r"[^a-z]", "", (authors.split(",")[0].split(" and ")[0].split()[-1] if authors else "kaminski").lower()) or "kaminski"
+    key = f"{first}{year or 'nd'}{re.sub(r'[^a-z]', '', title.split()[0].lower()) if title else ''}"
+    kind = "article" if journal else "misc"
+    fields = [("author", authors), ("title", title), ("journal", journal), ("year", year), ("url", url.group(1) if url else ""), ("note", "" if journal else strip(ve).rstrip("."))]
+    body = ",\n".join(f"  {k} = {{{v}}}" for k, v in fields if v)
+    return f"@{kind}{{{key},\n{body}\n}}"
+
+
 def cite_row(inner):
     """One publication: authors, title on its own line, venue. The year also goes in the margin."""
     inner = inner.strip().rstrip(";").strip()
@@ -184,6 +201,9 @@ def cite_row(inner):
     else:
         content = "".join(f'<span class="{c}">{v.strip()}</span>' for c, v in (("au", au), ("ti", ti), ("ve", ve)) if v and v.strip())
         content = f"<p>{content}</p>"
+    bib = bibtex(au, ti, ve, y.group(0) if y else "", inner) if ti else ""
+    if bib:
+        content = content.replace("</p>", f' <a class="bib" href="#" data-bib>BibTeX</a></p><pre hidden>{html.escape(bib)}</pre>', 1)
     return f'<div class="cite"><span class="yr">{y.group(0) if y else ""}</span>{content}</div>'
 
 
@@ -401,6 +421,8 @@ def page(title, main, current=None, desc=None, image=OG_IMAGE, path=None, articl
 {AUTHOR if article else AUTHOR_WRITING if author else FOOT}
 <script>
 // The sheet menu works without this; it only closes the sheet on a same-page link and on Escape.
+document.querySelectorAll("a[data-bib]").forEach(function(a){{a.addEventListener("click",function(e){{e.preventDefault();var p=a.closest(".cite").querySelector("pre");p.hidden=!p.hidden;a.textContent=p.hidden?"BibTeX":"Hide"}})}});
+(function(){{var h=document.querySelector(".post-head h1");if(!h||!("IntersectionObserver" in window))return;new IntersectionObserver(function(es){{document.body.classList.toggle("past",!es[0].isIntersecting&&es[0].boundingClientRect.top<0)}}).observe(h)}})();
 document.querySelectorAll("a.mailto").forEach(function(a){{var e=a.dataset.u+"@"+a.dataset.d;a.href="mailto:"+e;if(a.querySelector(".at"))a.textContent=e}});
 (function(){{var m=document.getElementById("menu");if(!m)return;
 m.checked=false;window.addEventListener("pageshow",function(){{m.checked=false}});

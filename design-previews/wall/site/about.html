@@ -50,6 +50,8 @@
 </footer>
 <script>
 // The sheet menu works without this; it only closes the sheet on a same-page link and on Escape.
+document.querySelectorAll("a[data-bib]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();var p=a.closest(".cite").querySelector("pre");p.hidden=!p.hidden;a.textContent=p.hidden?"BibTeX":"Hide"})});
+(function(){var h=document.querySelector(".post-head h1");if(!h||!("IntersectionObserver" in window))return;new IntersectionObserver(function(es){document.body.classList.toggle("past",!es[0].isIntersecting&&es[0].boundingClientRect.top<0)}).observe(h)})();
 document.querySelectorAll("a.mailto").forEach(function(a){var e=a.dataset.u+"@"+a.dataset.d;a.href="mailto:"+e;if(a.querySelector(".at"))a.textContent=e});
 (function(){var m=document.getElementById("menu");if(!m)return;
 m.checked=false;window.addEventListener("pageshow",function(){m.checked=false});

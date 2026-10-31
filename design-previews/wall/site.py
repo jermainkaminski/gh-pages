@@ -9,6 +9,8 @@ import build as b
 from content import PHOTO, collab_html, news_html
 from fonts import VARIANTS
 
+PULL = '<p class="pull">Experience cannot be summarized or transferred; it has to be discovered through years of attention, presence, and engagement.</p>\n'
+
 HERE = Path(__file__).parent
 OUT = HERE / "site"
 
@@ -124,9 +126,12 @@ def prev_next(p):
 def post_page(p):
     h = b.tidy(b.body_of(p["src"]))
     h = re.sub(r'(<a href="[^"]*youtube[^"]*">)(<strong>.*?</strong>)(.*?)</a>', r'<p class="play">\1\2</a><br>\3</p>', h)
-    main = (f'<div class="pad head post-head"><span class="d">{p["date"]}</span><h1>{p["title"]}</h1></div>'
+    if p["kicker"] == "Essay":  # one sentence pulled into the margin
+        h = h.replace("<p>Ironically,", PULL + "<p>Ironically,", 1)
+    main = (f'<div class="runhead" aria-hidden="true"><a class="who" href="index.html">Jermain C. Kaminski</a><span class="t">{p["title"]}</span></div>'
+            f'<div class="pad head post-head"><span class="d">{p["date"]}</span><h1>{p["title"]}</h1></div>'
             f'<div class="pad"><figure class="band post">{img(p, False)}<figcaption class="note">{p["note"]}</figcaption></figure></div>'
-            f'<div class="pad page"><article class="body article">{h}{prev_next(p)}</article></div>')
+            f'<div class="pad page{" is-essay" if p["kicker"] == "Essay" else ""}"><article class="body article">{h}{prev_next(p)}</article></div>')
     return b.page(f'{p["title"]}: Jermain C. Kaminski', main, "writing", p["desc"], p["og"], path=p["src"] + "/", article=(p["iso"], p["title"]))
 
 

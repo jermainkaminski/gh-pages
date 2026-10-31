@@ -7,6 +7,13 @@
 (function () {
   "use strict";
 
+  /* 0 BibTeX toggles, bound after the citations are built (see the end) */
+  function bindBib() {
+    document.querySelectorAll("a[data-bib]").forEach(function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); var p = a.closest(".cite").querySelector("pre"); p.hidden = !p.hidden; a.textContent = p.hidden ? "BibTeX" : "Hide"; });
+    });
+  }
+
   /* 1 */
   document.querySelectorAll("a.mailto").forEach(function (a) {
     var e = a.dataset.u + "@" + a.dataset.d;
@@ -28,6 +35,12 @@
   if (upd) {
     var d = new Date(document.lastModified);
     if (!isNaN(d)) upd.textContent = "Last updated " + d.getDate() + " " + d.toLocaleString("en-GB", { month: "long" }) + " " + d.getFullYear();
+  }
+
+  /* 3b running head on articles */
+  var h1 = document.querySelector(".post-head h1");
+  if (h1 && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { document.body.classList.toggle("past", !es[0].isIntersecting && es[0].boundingClientRect.top < 0); }).observe(h1);
   }
 
   /* 4 */
@@ -73,7 +86,25 @@
       content = "<p>" + [["au", au], ["ti", ti], ["ve", ve]].filter(function (p) { return p[1] && p[1].trim(); })
         .map(function (p) { return '<span class="' + p[0] + '">' + p[1].trim() + "</span>"; }).join("") + "</p>";
     }
+    if (ti !== null) {
+      var bib = bibtex(au, ti, ve, y ? y[0] : "", inner);
+      content = content.replace("</p>", ' <a class="bib" href="#" data-bib>BibTeX</a></p><pre hidden>' + bib.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</pre>");
+    }
     return '<div class="cite"><span class="yr">' + (y ? y[0] : "") + "</span>" + content + "</div>";
+  }
+
+  function strip(h) { var d = document.createElement("div"); d.innerHTML = h || ""; return d.textContent.trim(); }
+
+  function bibtex(au, ti, ve, year, inner) {  // an approximate entry: enough to cite, easy to correct
+    var authors = strip(au).replace(/,+$/, "").replace(/,?\s*(?:&|and)\s+/g, " and ").replace(/(\w\.),\s+(?=[A-Z][a-z])/g, "$1 and ");
+    var title = strip(ti).replace(/^[“”"]|[“”"]$/g, "");
+    var journal = strip((ve || "").match(/<em>[\s\S]*?<\/em>/g) ? (ve.match(/<em>([\s\S]*?)<\/em>/g) || []).map(function (e) { return e.replace(/<\/?em>/g, ""); }).join(" ") : "");
+    var url = inner.match(/href="([^"]+)"/);
+    var firstAuthor = authors ? authors.split(" and ")[0] : "Kaminski";
+    var surname = (firstAuthor.indexOf(",") >= 0 ? firstAuthor.split(",")[0] : firstAuthor.split(/\s+/).pop()).toLowerCase().replace(/[^a-z]/g, "") || "kaminski";
+    var key = surname + (year || "nd") + (title ? title.split(/\s+/)[0].toLowerCase().replace(/[^a-z]/g, "") : "");
+    var fields = [["author", authors], ["title", title], ["journal", journal], ["year", year], ["url", url ? url[1] : ""], ["note", journal ? "" : strip(ve).replace(/\.$/, "")]];
+    return "@" + (journal ? "article" : "misc") + "{" + key + ",\n" + fields.filter(function (f) { return f[1]; }).map(function (f) { return "  " + f[0] + " = {" + f[1] + "}"; }).join(",\n") + "\n}";
   }
 
   function citations(chunk) {
@@ -164,4 +195,5 @@
 
   var main = document.getElementById("main");
   if (main) curlAll(main);
+  bindBib();
 })();

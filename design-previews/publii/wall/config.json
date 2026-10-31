@@ -333,5 +333,11 @@
             }
         }
     },
-    "customElements": []
+    "customElements": [
+        {
+            "label": "Pull quote",
+            "cssClasses": "pull",
+            "selector": "p"
+        }
+    ]
 }
