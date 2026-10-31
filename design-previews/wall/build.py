@@ -274,7 +274,7 @@ FOOT = """<footer class="close" id="contact">
 
 
 DESCRIPTIONS = {
-    None: "Associate Professor of Entrepreneurship and Innovation at Maastricht University. Causal inference and machine learning for the decisions founders make.",
+    None: "Associate Professor of Entrepreneurship and Innovation at Maastricht University. Causal inference and machine learning for the decisions entrepreneurs make.",
     "about": "About Jermain C. Kaminski, Associate Professor of Entrepreneurship and Innovation at Maastricht University.",
     "research": "Jermain C. Kaminski's research: causality in strategic decision making, machine learning in entrepreneurship, and the economic complexity of software.",
     "publications": "Working papers, journal articles and conference papers by Jermain C. Kaminski.",
@@ -449,7 +449,7 @@ def home_parts():
     hero = """<div class="pad">
       <div class="stage" id="top">
         <div class="say">
-          <h1>Causal inference and machine learning for <em>the decisions founders actually make.</em></h1>
+          <h1>Causal inference and machine learning for <em>the decisions entrepreneurs actually make.</em></h1>
           <dl class="facts">
             <div><dt>Based</dt><dd>Maastricht University, School of Business and Economics</dd></div>
             <div><dt>Focus</dt><dd>Entrepreneurship, strategy, causal machine learning</dd></div>

@@ -54,7 +54,7 @@
     ],
     "customConfig": [
         {"name": "sepHero", "type": "separator", "label": "Home page", "group": "Home", "size": "small"},
-        {"name": "heroText", "label": "Headline", "value": "Causal inference and machine learning for <em>the decisions founders actually make.</em>", "type": "textarea", "group": "Home", "note": "The orange italic part goes inside <em>…</em>."},
+        {"name": "heroText", "label": "Headline", "value": "Causal inference and machine learning for <em>the decisions entrepreneurs actually make.</em>", "type": "textarea", "group": "Home", "note": "The orange italic part goes inside <em>…</em>."},
         {"name": "heroImage", "label": "Portrait", "value": "", "type": "upload", "upload": true, "group": "Home"},
         {"name": "heroImageAlt", "label": "Portrait alt text", "value": "Jermain Kaminski in a bright university corridor at Maastricht University, in a blue blazer and pink bow tie", "type": "text", "group": "Home"},
         {"name": "heroImageNote", "label": "Portrait note (phones)", "value": "<b>School of Business and Economics</b>Maastricht University", "type": "text", "group": "Home"},
