@@ -5,7 +5,7 @@
 {{!-- About: the full-length photograph beside the text; the page greets instead of announcing itself --}}
 <div class="pad head"><h1>Hello.</h1></div>
 <div class="pad page standing">
-  {{#featuredImage}}{{#if url}}<figure><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}">{{#if caption}}<figcaption class="note">{{{caption}}}</figcaption>{{/if}}</figure>{{/if}}{{/featuredImage}}
+  {{#featuredImage}}{{#if url}}<figure><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.half sizes.half}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}">{{#if caption}}<figcaption class="note">{{{caption}}}</figcaption>{{/if}}</figure>{{/if}}{{/featuredImage}}
   <div class="body about-raw">{{{text}}}</div>
 </div>
 {{else}}
@@ -15,6 +15,7 @@
 {{/if}}{{/featuredImage}}
 <div class="pad page sub">
   {{#checkIf id '==' 11}}<section class="part"><h2>Three pillars of current research</h2><div class="body">{{> pillars}}</div></section>{{/checkIf}}
+  {{#checkIf id '==' 15}}<script src="{{js "citations.js"}}" defer></script>{{/checkIf}}
   <div class="raw"{{#checkIf id '==' 15}} data-cite{{/checkIf}}{{#checkIf id '==' 25}} data-cite{{/checkIf}}>{{{text}}}</div>
 </div>
 {{/checkIf}}

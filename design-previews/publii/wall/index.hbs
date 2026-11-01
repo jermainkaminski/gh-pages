@@ -3,6 +3,7 @@
 <div class="pad">
   <div class="stage" id="top">
     <div class="say">
+      <p class="role-l">{{@config.custom.authorRole}}</p>
       <h1>{{{@config.custom.heroText}}}</h1>
       <dl class="facts">
         <div><dt>At</dt><dd>{{{@config.custom.factBased}}}</dd></div>
@@ -24,11 +25,22 @@
 
 <section class="sec pad" id="pillars"><h2 class="sec-h">Three pillars of current research</h2>{{> pillars}}</section>
 
+<section class="sec pad" id="publications">
+  <div class="bh"><h2 class="sec-h">Selected publications</h2>{{#getPage 15}}<a class="more" href="{{url}}">All publications</a>{{/getPage}}</div>
+  <div class="sched news">
+    <a href="https://doi.org/10.1016/j.respol.2026.105422"><span class="o">Research Policy</span><span class="t">The software complexity of nations</span><span>2026</span></a>
+    <a href="https://doi.org/10.1016/j.jbusvent.2020.106021"><span class="o">Journal of Business Venturing</span><span class="t">Launching for success: The effects of psychological distance and mental simulation on funding decisions and crowdfunding performance</span><span>2021</span></a>
+    <a href="https://doi.org/10.1007/s11187-019-00218-w"><span class="o">Small Business Economics</span><span class="t">Predicting outcomes in crowdfunding campaigns with textual, visual, and linguistic signals</span><span>2020</span></a>
+    <a href="https://doi.org/10.1016/j.techfore.2018.11.015"><span class="o">Technological Forecasting and Social Change</span><span class="t">New technology assessment in entrepreneurial financing: Does crowdfunding predict venture capital investments?</span><span>2019</span></a>
+    <a href="https://doi.org/10.1111/jpim.12440"><span class="o">Journal of Product Innovation Management</span><span class="t">The topic landscape of disruption research: A call for consolidation, reconciliation, and generalization</span><span>2018</span></a>
+  </div>
+</section>
+
 <section class="pad" id="teaching">
   <div class="teach">
-    {{#getPage 18}}{{#featuredImage}}{{#if url}}<figure><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy"><figcaption class="note">{{#if caption}}{{{caption}}}{{else}}<b>MBA teaching</b>Maastricht University{{/if}}</figcaption></figure>{{/if}}{{/featuredImage}}{{/getPage}}
+    {{#getPage 18}}{{#featuredImage}}{{#if url}}<figure><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.half sizes.half}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy"><figcaption class="note">{{#if caption}}{{{caption}}}{{else}}<b>MBA teaching</b>Maastricht University{{/if}}</figcaption></figure>{{/if}}{{/featuredImage}}{{/getPage}}
     <div>
-      <h2 class="sec-h" style="margin-bottom:28px">Teaching</h2>
+      <h2 class="sec-h">Teaching</h2>
       <dl class="nums">
         <div><dt>Commercializing Science and Technology</dt><dd>9.6<small> / 10</small></dd></div>
         <div><dt>Technology Entrepreneurship</dt><dd>9.4<small> / 10</small></dd></div>

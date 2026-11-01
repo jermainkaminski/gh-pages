@@ -10,8 +10,8 @@
         }
     },
     "renderer": {
-        "relatedPostsNumber": 4,
-        "renderRelatedPosts": true,
+        "relatedPostsNumber": 0,
+        "renderRelatedPosts": false,
         "renderSimilarPosts": false,
         "renderPrevNextPosts": true,
         "createContentStructure": true,
@@ -119,7 +119,7 @@
         {
             "name": "factBased",
             "label": "Based",
-            "value": "Maastricht University, School of Business and Economics and Faculty of Science and Engineering",
+            "value": "School of Business and Economics and Faculty of Science and Engineering",
             "type": "text",
             "group": "Home"
         },
@@ -275,29 +275,31 @@
             },
             "featuredImages": {
                 "sizes": {
-                    "post": "(max-width: 1440px) 100vw, 1440px",
-                    "card": "(max-width: 800px) 100vw, 800px"
+                    "post": "(max-width: 1440px) 100vw, 1344px",
+                    "card": "(max-width: 1000px) 100vw, 33vw",
+                    "lead": "(max-width: 1000px) 100vw, 66vw",
+                    "half": "(max-width: 1000px) 100vw, 50vw"
                 },
                 "dimensions": {
                     "sm": {
                         "width": 480,
                         "height": "auto",
-                        "group": "post,card"
+                        "group": "post,card,lead,half"
                     },
                     "md": {
                         "width": 800,
                         "height": "auto",
-                        "group": "post,card"
+                        "group": "post,card,lead,half"
                     },
                     "lg": {
                         "width": 1200,
                         "height": "auto",
-                        "group": "post,card"
+                        "group": "post,card,lead,half"
                     },
                     "xl": {
                         "width": 1600,
                         "height": "auto",
-                        "group": "post,card"
+                        "group": "post,card,lead,half"
                     },
                     "xxl": {
                         "width": 2400,
