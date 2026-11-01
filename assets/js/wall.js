@@ -1,142 +1,147 @@
-/* The Wall theme. Everything here is progressive: the pages read fine without it. In this order:
-   1. email links assembled from parts, so the addresses are not in the source
-   2. the phone sheet menu closes on Escape and on same-page links
-   3. the footer's "last updated" date, from the page's own modification time
-   4. the running head on articles, shown once the title has scrolled away
-   5. page bodies: each h2 and what follows it becomes a two-column section; Publications
-      rows become citations with a BibTeX toggle; grants, courses and quotes get their shapes
-   6. straight quotes curl */
-(function () {
+/* The Wall theme. Everything here is progressive: the pages read fine without it.
+   Page bodies come out of the Publii editor as plain headings and paragraphs; shapeBodies()
+   turns them into two-column sections and gives Publications, grants, courses and quotes their form. */
+(() => {
   "use strict";
 
-  /* 1 */
+  const tag = (name, cls, html) => `<${name} class="${cls}">${html}</${name}>`;
+  const stripTags = (html) => html.replace(/<[^>]+>/g, "");
+  const plainText = (html) => {
+    const div = document.createElement("div");
+    div.innerHTML = html || "";
+    return div.textContent.trim();
+  };
+
+  /* The addresses are assembled here, so they are not in the source. */
   function mailLinks() {
-    document.querySelectorAll("a.mailto").forEach(function (a) {
-      var e = a.dataset.u + "@" + a.dataset.d;
-      a.href = "mailto:" + e;
-      if (a.querySelector(".at")) a.textContent = e;
+    document.querySelectorAll("a.mailto").forEach((a) => {
+      const address = `${a.dataset.u}@${a.dataset.d}`;
+      a.href = `mailto:${address}`;
+      if (a.querySelector(".at")) a.textContent = address;
     });
   }
 
-  /* 2 */
-  function phoneMenu() {
-    var m = document.getElementById("menu");
-    if (!m) return;
-    m.checked = false;
-    window.addEventListener("pageshow", function () { m.checked = false; });
-    document.querySelectorAll("nav.top ul a").forEach(function (a) { a.addEventListener("click", function () { m.checked = false; }); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && m.checked) { m.checked = false; m.focus(); } });
+  /* The full-screen menu is a checkbox; this closes it on Escape, on links and on coming back. */
+  function menuSheet() {
+    const toggle = document.getElementById("menu");
+    if (!toggle) return;
+    const close = () => { toggle.checked = false; };
+    close();
+    window.addEventListener("pageshow", close);
+    document.querySelectorAll("nav.top ul a").forEach((a) => a.addEventListener("click", close));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && toggle.checked) { close(); toggle.focus(); }
+    });
   }
 
-  /* 3 */
   function updatedDate() {
-    var upd = document.querySelector("[data-updated]");
-    if (!upd) return;
-    var d = new Date(document.lastModified);
-    if (!isNaN(d)) upd.textContent = "Last updated " + d.getDate() + " " + d.toLocaleString("en-GB", { month: "long" }) + " " + d.getFullYear();
+    const el = document.querySelector("[data-updated]");
+    const date = new Date(document.lastModified);
+    if (!el || isNaN(date)) return;
+    el.textContent = `Last updated ${date.getDate()} ${date.toLocaleString("en-GB", { month: "long" })} ${date.getFullYear()}`;
   }
 
-  /* 4 */
+  /* On articles, the running head appears once the title has scrolled away. */
   function runningHead() {
-    var h1 = document.querySelector(".post-head h1");
-    if (!h1 || !("IntersectionObserver" in window)) return;
-    new IntersectionObserver(function (es) { document.body.classList.toggle("past", !es[0].isIntersecting && es[0].boundingClientRect.top < 0); }).observe(h1);
+    const title = document.querySelector(".post-head h1");
+    if (!title) return;
+    new IntersectionObserver(([e]) => {
+      document.body.classList.toggle("past", !e.isIntersecting && e.boundingClientRect.top < 0);
+    }).observe(title);
   }
 
-  /* 5 */
-  function tidy(h) {
-    h = h.replace(/<(p|div|h[1-6])\s[^>]*>/g, "<$1>").replace(/<\/?div>/g, "").replace(/<h[1-6]>\s*<\/h[1-6]>/g, "");
-    h = h.replace(/<br\s*\/?>/g, " ").replace(/;\s*<\/a>/g, "</a>; ").replace(/\s+/g, " ").replace(/\s+<\/a>/g, "</a> ");
-    h = h.replace(/(<\/a>|<\/em>)\s+([,.;:!?])/g, "$1$2").replace(/\s+([,;:!?])(?=\s)/g, "$1");
-    return h.replace(/<p> /g, "<p>").replace(/ <\/p>/g, "</p>");
+  /* Removes what the editor leaves behind: attributes, wrappers, empty headings, stray spaces. */
+  function tidy(html) {
+    return html
+      .replace(/<(p|div|h[1-6])\s[^>]*>/g, "<$1>").replace(/<\/?div>/g, "").replace(/<h[1-6]>\s*<\/h[1-6]>/g, "")
+      .replace(/<br\s*\/?>/g, " ").replace(/;\s*<\/a>/g, "</a>; ").replace(/\s+/g, " ").replace(/\s+<\/a>/g, "</a> ")
+      .replace(/(<\/a>|<\/em>)\s+([,.;:!?])/g, "$1$2").replace(/\s+([,;:!?])(?=\s)/g, "$1")
+      .replace(/<p> /g, "<p>").replace(/ <\/p>/g, "</p>");
   }
 
-  function citeRow(inner) {
-    inner = inner.trim().replace(/;$/, "").trim();
-    var text = inner.replace(/<[^>]+>/g, " ");
-    var y = text.match(/\b(?:19|20)\d{2}\b/);
-    var au = null, ti = null, ve = null, mm;
-    inner = inner.replace(/<em>(<a [\s\S]*?<\/a>)([\s\S]*?)<\/em>/, "$1$2");
-    var links = (inner.match(/<a /g) || []).length;
-    var linked = inner.match(/^([\s\S]*?)(<a [^>]*>(?!\()[^<]*<\/a>)\s*([.,?!:]*)\s*([\s\S]*)$/);
-    if (links === 1 && linked) {
-      au = linked[1];
-      ti = linked[2] + (".?!".indexOf(linked[2].charAt(linked[2].length - 5)) >= 0 ? "" : linked[3]);
-      ve = linked[4];
-    } else if (links === 0) {
-      mm = inner.match(/^([\s\S]*?\(\d{4}[^)]*\)\.)\s*([\s\S]*?\.)\s*([\s\S]*)$/) || inner.match(/^([\s\S]*?),\s*(“[\s\S]*?”)\s*([\s\S]*)$/);
-      if (mm) { au = mm[1]; ti = mm[2]; ve = mm[3]; }
+  /* Splits one reference into authors, title and venue; the title stays null when it cannot tell. */
+  function citationParts(html) {
+    let authors = null, title = null, venue = null;
+    const linkCount = (html.match(/<a /g) || []).length;
+    const linked = html.match(/^([\s\S]*?)(<a [^>]*>(?!\()[^<]*<\/a>)\s*([.,?!:]*)\s*([\s\S]*)$/);
+    if (linkCount === 1 && linked) {
+      const endsSentence = ".?!".includes(linked[2].charAt(linked[2].length - 5));  // the character before </a>
+      [authors, title, venue] = [linked[1], linked[2] + (endsSentence ? "" : linked[3]), linked[4]];
+    } else if (linkCount === 0) {
+      const m = html.match(/^([\s\S]*?\(\d{4}[^)]*\)\.)\s*([\s\S]*?\.)\s*([\s\S]*)$/) || html.match(/^([\s\S]*?),\s*(“[\s\S]*?”)\s*([\s\S]*)$/);
+      if (m) [authors, title, venue] = m.slice(1);
     }
-    if (ti) {
-      ti = ti.trim().replace(/[\s.,:]+$/, "").replace(/(<\/a>)[.,:]+$/, "$1").replace(/,”/g, "”");
+    if (title) title = title.trim().replace(/[\s.,:]+$/, "").replace(/(<\/a>)[.,:]+$/, "$1").replace(/,”/g, "”");
+    if (authors) authors = authors.replace(/\s+-\s*$/, "").replace(/\s*\(\d{4}[^)]*\)\.?\s*$/, "");
+    if (venue) {
+      venue = venue.replace(/<em>((?:Preparing|Under Review|Resubmit|Available at)[^<]*)<\/em>/g, "$1");
+      if (/^\s*\(\d{4}\)\.?\s*$/.test(venue)) venue = null;
     }
-    if (au) au = au.replace(/\s+-\s*$/, "").replace(/\s*\(\d{4}[^)]*\)\.?\s*$/, "");
-    if (ve) {
-      ve = ve.replace(/<em>((?:Preparing|Under Review|Resubmit|Available at)[^<]*)<\/em>/g, "$1");
-      if (/^\s*\(\d{4}\)\.?\s*$/.test(ve)) ve = null;
-    }
-    if (ti === null && (mm = inner.match(/^(Vlees Magazine) \([\s\S]*?\)\.\s*([\s\S]*?)\s*<a [^>]*>/))) {
-      var link = inner.match(/<a [^>]*>[\s\S]*?<\/a>/)[0];
-      au = mm[1]; ti = mm[2] + " " + link;
-    }
-    var content;
-    if (ti === null) {
-      content = "<p>" + inner + "</p>";
-    } else {
-      content = "<p>" + [["au", au], ["ti", ti], ["ve", ve]].filter(function (p) { return p[1] && p[1].trim(); })
-        .map(function (p) { return '<span class="' + p[0] + '">' + p[1].trim() + "</span>"; }).join("") + "</p>";
-    }
-    if (ti !== null) {
-      var bib = bibtex(au, ti, ve, y ? y[0] : "", inner);
-      content = content.replace("</p>", ' <a class="bib" href="#" data-bib>BibTeX</a></p><pre hidden>' + bib.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</pre>");
-    }
-    return '<div class="cite"><span class="yr">' + (y ? y[0] : "") + "</span>" + content + "</div>";
+    const vlees = title === null && html.match(/^(Vlees Magazine) \([\s\S]*?\)\.\s*([\s\S]*?)\s*<a [^>]*>/);
+    if (vlees) [authors, title] = [vlees[1], `${vlees[2]} ${html.match(/<a [^>]*>[\s\S]*?<\/a>/)[0]}`];
+    return { authors, title, venue };
   }
 
-  function strip(h) { var d = document.createElement("div"); d.innerHTML = h || ""; return d.textContent.trim(); }
+  /* Curated records from citations.js; a row without one simply has no BibTeX link. */
+  function citationRecord(...candidates) {
+    const records = window.WALL_CITATIONS || {};
+    const key = (html) => plainText(html).toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 48);
+    return candidates.map((html) => records[key(html)]).find(Boolean);
+  }
 
-  function bibtex(au, ti, ve, year, inner) {  // an approximate entry: enough to cite, easy to correct
-    var authors = strip(au).replace(/,+$/, "").replace(/,?\s*(?:&|and)\s+/g, " and ").replace(/(\w\.),\s+(?=[A-Z][a-z])/g, "$1 and ");
-    var title = strip(ti).replace(/^[“”"]|[“”"]$/g, "");
-    var journal = strip((ve || "").match(/<em>[\s\S]*?<\/em>/g) ? (ve.match(/<em>([\s\S]*?)<\/em>/g) || []).map(function (e) { return e.replace(/<\/?em>/g, ""); }).join(" ") : "");
-    var url = inner.match(/href="([^"]+)"/);
-    var firstAuthor = authors ? authors.split(" and ")[0] : "Kaminski";
-    var surname = (firstAuthor.indexOf(",") >= 0 ? firstAuthor.split(",")[0] : firstAuthor.split(/\s+/).pop()).toLowerCase().replace(/[^a-z]/g, "") || "kaminski";
-    var key = surname + (year || "nd") + (title ? title.split(/\s+/)[0].toLowerCase().replace(/[^a-z]/g, "") : "");
-    var fields = [["author", authors], ["title", title], ["journal", journal], ["year", year], ["url", url ? url[1] : ""], ["note", journal ? "" : strip(ve).replace(/\.$/, "")]];
-    return "@" + (journal ? "article" : "misc") + "{" + key + ",\n" + fields.filter(function (f) { return f[1]; }).map(function (f) { return "  " + f[0] + " = {" + f[1] + "}"; }).join(",\n") + "\n}";
+  function citeRow(reference) {
+    const trimmed = reference.trim().replace(/;$/, "").trim();
+    const found = trimmed.replace(/<[^>]+>/g, " ").match(/\b(?:19|20)\d{2}\b/);
+    const year = found ? found[0] : "";
+    const html = trimmed.replace(/<em>(<a [\s\S]*?<\/a>)([\s\S]*?)<\/em>/, "$1$2");
+    const parts = citationParts(html);
+    const record = citationRecord(parts.title, html);
+    const toggle = record ? ' <button class="bib" type="button" aria-expanded="false" data-bib>BibTeX</button>' : "";
+    const entry = record ? `<pre hidden>${record.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</pre>` : "";
+    const spans = [["au", parts.authors], ["ti", parts.title], ["ve", parts.venue]]
+      .filter(([, text]) => text && text.trim())
+      .map(([cls, text]) => tag("span", cls, text.trim()))
+      .join("");
+    const content = `<p>${parts.title === null ? html : spans}${toggle}</p>${entry}`;
+    return tag("div", "cite", tag("span", "yr", year) + content);
   }
 
   function citations(chunk) {
-    return chunk.replace(/<p>([\s\S]*?)<\/p>/g, function (_, inner) {
-      if (inner.indexOf("Moviegalaxies (Selection):") === 0) {
-        var items = inner.split(":").slice(1).join(":").split(/;\s*|(?<=<\/a>\.)\s+(?=<a )/);
-        return "<h3>Moviegalaxies (Selection)</h3>" + items.filter(function (i) { return i.trim(); }).map(citeRow).join("");
-      }
-      return citeRow(inner);
+    return chunk.replace(/<p>([\s\S]*?)<\/p>/g, (_, inner) => {
+      if (!inner.startsWith("Moviegalaxies (Selection):")) return citeRow(inner);
+      const items = inner.split(":").slice(1).join(":").split(/;\s*|(?<=<\/a>\.)\s+(?=<a )/);
+      return `<h3>Moviegalaxies (Selection)</h3>${items.filter((item) => item.trim()).map(citeRow).join("")}`;
     });
   }
 
+  /* Own grants first, then those as collaborator or project partner. */
   function grants(chunk) {
-    return chunk.replace(/<li>(\d{4})\s+([\s\S]*?)<\/li>/g, function (_, year, rest) {
-      var amount = rest.match(/\s*\(([\d,]+ [A-Z]{3})\)/);
-      var what = amount ? rest.replace(amount[0], "") : rest;
-      return '<li class="grant"><span class="yr">' + year + "</span><span>" + what.trim() + '</span><span class="amt">' + (amount ? amount[1] : "") + "</span></li>";
-    });
+    let own = "", shared = "";
+    for (const [, year, rest] of chunk.matchAll(/<li>(\d{4})\s+([\s\S]*?)<\/li>/g)) {
+      const amount = rest.match(/\s*\(([\d,]+ [A-Z]{3})\)/);
+      let what = amount ? rest.replace(amount[0], "") : rest;
+      const role = what.match(/^\s*<em>((?:Collaborator|Project-Partner)[^<]*)<\/em>[:.]?\s*/);
+      if (role) what = what.slice(role[0].length) + tag("span", "role", role[1].replace("Project-Partner", "Project partner").replace("/Co-Supervisor", " and co-supervisor"));
+      const row = tag("li", "grant", tag("span", "yr", year) + `<span>${what.trim()}</span>` + tag("span", "amt", amount ? amount[1] : ""));
+      if (role) shared += row; else own += row;
+    }
+    if (!own && !shared) return chunk;
+    return `<ul>${own}</ul>${shared ? `<h3>As collaborator or project partner</h3><ul>${shared}</ul>` : ""}`;
   }
 
   function awards(chunk) {
-    var mm = chunk.match(/<p>([\s\S]*?)<\/p>/);
-    if (!mm) return chunk;
-    var text = mm[1].replace(/[. ]+$/, "").replace("London, UK Young", "London, UK; Young");
-    return "<ul>" + text.split(/(?<!&amp);/).map(function (a) { return "<li>" + a.trim() + "</li>"; }).join("") + "</ul>";
+    const paragraph = chunk.match(/<p>([\s\S]*?)<\/p>/);
+    if (!paragraph) return chunk;
+    const text = paragraph[1].replace(/[. ]+$/, "").replace("London, UK Young", "London, UK; Young");
+    return `<ul>${text.split(/(?<!&amp);/).map((award) => `<li>${award.trim()}</li>`).join("")}</ul>`;
   }
 
   function courses(chunk) {
-    return chunk.replace(/<li>([\s\S]*?)<\/li>/g, function (_, inner) {
-      var rate = inner.match(/\s*\(\s*([\d.]+)\s*\/\s*([\d.]+)\s*\)\s*$/);
-      if (!rate) return '<li class="course"><span>' + inner + "</span></li>";
-      return '<li class="course"><span>' + inner.slice(0, rate.index) + '</span><span class="rate">' + rate[1] + "<small> / " + rate[2] + "</small></span></li>";
+    return chunk.replace(/<li>([\s\S]*?)<\/li>/g, (_, item) => {
+      const inner = item.replace(/<\/?span[^>]*>/g, "").trim();  // the editor leaves styled spans around some ratings
+      const rating = inner.match(/\s*\(\s*([\d.]+)\s*\/\s*([\d.]+)\s*\)\s*$/);
+      if (!rating) return tag("li", "course", `<span>${inner}</span>`);
+      return tag("li", "course", `<span>${inner.slice(0, rating.index)}</span>` + tag("span", "rate", `${rating[1]}<small> / ${rating[2]}</small>`));
     });
   }
 
@@ -144,78 +149,106 @@
     return chunk.replace(/<blockquote><p>([\s\S]*?)\s*[–—]\s*([^–—]*?)<\/p><\/blockquote>/g, "<blockquote><p>$1</p><footer>$2</footer></blockquote>");
   }
 
-  function profileSentence(chunk) {  // the profile links as one sentence in the lead type, the links inside the prose
-    var by = {};
-    chunk.replace(/<a [^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, function (_, u, n) { by[n.replace(/<[^>]+>/g, "").trim()] = u; });
-    var g = by["Google Scholar"], m = by["Semantic Scholar"], sg = by["Sage Policy Impact"], r = by["Rankless"];
-    var a = function (u, t) { return '<a href="' + u + '">' + t + "</a>"; };
-    if (g && m && sg && r) return '<p class="prof-lead">My papers are indexed on ' + a(g, "Google Scholar") + " and " + a(m, "Semantic Scholar") + ", and their use in policy is tracked by " + a(sg, "Sage") + " and " + a(r, "Rankless") + ".</p>";
-    var all = Object.keys(by).map(function (k) { return a(by[k], k); });
-    return all.length ? '<p class="prof-lead">Find my work on ' + all.join(", ") + ".</p>" : "";
+  /* The profile links of Publications, as one sentence under the page title. */
+  function profileSentence(chunk) {
+    const urls = {};
+    for (const [, url, name] of chunk.matchAll(/<a [^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g)) urls[stripTags(name).trim()] = url;
+    const link = (url, text) => `<a href="${url}">${text}</a>`;
+    const lead = (text) => `<p class="head-lead">${text}.</p>`;
+    const { "Google Scholar": google, "Semantic Scholar": semantic, "Sage Policy Impact": sage, Rankless: rankless } = urls;
+    if (google && semantic && sage && rankless) return lead(`My papers are indexed on ${link(google, "Google Scholar")} and ${link(semantic, "Semantic Scholar")}, and their use in policy is tracked by ${link(sage, "Sage")} and ${link(rankless, "Rankless")}`);
+    const all = Object.entries(urls).map(([name, url]) => link(url, name));
+    return all.length ? lead(`Find my work on ${all.join(", ")}`) : "";
   }
 
-  var SHAPE = { "Grants and Collaborations": grants, "Awards and Honors (Selection)": awards, "Courses": courses, "Teaching Statement": quotes };
+  const SHAPES = { "Grants and Collaborations": grants, "Awards and Honors (Selection)": awards, "Courses": courses, "Teaching Statement": quotes };
 
+  /* Each heading and what follows it becomes a section. */
   function shapeBodies() {
-    document.querySelectorAll(".raw").forEach(function (raw) {
-      var h = tidy(raw.innerHTML);
-      var cite = raw.hasAttribute("data-cite");
-      var bits = h.split(/<h[2-4]>([\s\S]*?)<\/h[2-4]>/);
-      var out = [];
-      var lead = bits[0].trim();
-      var profiles = "";
-      if (lead) out.push('<section class="part lead"><div></div><div class="body">' + lead + "</div></section>");
-      for (var i = 1; i < bits.length; i += 2) {
-        var title = bits[i].replace(/<[^>]+>/g, "").trim();
-        var chunk = bits[i + 1] || "";
-        if (cite && title === "Links") { profiles = profileSentence(chunk); continue; }  // goes under the page title
-        chunk = cite ? citations(chunk) : (SHAPE[title] ? SHAPE[title](chunk) : chunk);
-        out.push('<section class="part"><h2>' + title + '</h2><div class="body">' + chunk.trim() + "</div></section>");
+    document.querySelectorAll(".raw").forEach((raw) => {
+      const isCitationPage = raw.hasAttribute("data-cite");
+      const [before, ...rest] = tidy(raw.innerHTML).split(/<h[2-4]>([\s\S]*?)<\/h[2-4]>/);
+      const sections = before.trim() ? [`<section class="part lead"><div></div><div class="body">${before.trim()}</div></section>`] : [];
+      let profiles = "";
+      for (let i = 0; i < rest.length; i += 2) {
+        const title = stripTags(rest[i]).trim();
+        const chunk = rest[i + 1] || "";
+        if (isCitationPage && title === "Links") { profiles = profileSentence(chunk); continue; }
+        const shape = isCitationPage ? citations : SHAPES[title];
+        sections.push(`<section class="part"><h2>${title}</h2><div class="body">${(shape ? shape(chunk) : chunk).trim()}</div></section>`);
       }
-      var wrap = document.createElement("div");
-      wrap.className = "parts";
-      wrap.innerHTML = out.join("");
-      raw.replaceWith(wrap);
-      if (profiles) {
-        var head = document.querySelector(".head");
-        if (head) head.insertAdjacentHTML("beforeend", profiles);
-      }
+      const parts = document.createElement("div");
+      parts.className = "parts";
+      parts.innerHTML = sections.join("");
+      raw.replaceWith(parts);
+      if (profiles) document.querySelector(".head").insertAdjacentHTML("beforeend", profiles);
     });
   }
 
-  function bibToggle() {  // one listener, so it also serves the citations built above
-    document.addEventListener("click", function (e) {
-      var a = e.target.closest && e.target.closest("a[data-bib]");
-      if (!a) return;
-      e.preventDefault();
-      var p = a.closest(".cite").querySelector("pre");
-      p.hidden = !p.hidden;
-      a.textContent = p.hidden ? "BibTeX" : "Hide";
+  /* One listener, so it also serves the citations built above. */
+  function bibToggle() {
+    document.addEventListener("click", (e) => {
+      const button = e.target.closest("button[data-bib]");
+      if (!button) return;
+      const entry = button.closest(".cite").querySelector("pre");
+      entry.hidden = !entry.hidden;
+      button.setAttribute("aria-expanded", String(!entry.hidden));
+      button.textContent = entry.hidden ? "BibTeX" : "Hide";
     });
   }
 
-  /* 6 */
-  function curly(text) {
-    text = text.replace(/(?<=\w)'/g, "’").replace(/(^|[\s(\[])'/g, "$1‘").replace(/'/g, "’");
-    text = text.replace(/(^|[\s(\[])"/g, "$1“");
-    return text.replace(/"/g, "”");
-  }
-
-  function curlAll(root) {
-    if (!root) return;
-    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    var n;
-    while ((n = walker.nextNode())) {
-      if (n.parentNode.closest("script,style,code,pre")) continue;
-      if (/['"]/.test(n.nodeValue)) n.nodeValue = curly(n.nodeValue);
+  function curlQuotes(root) {
+    const curl = (text) => text
+      .replace(/(?<=\w)'/g, "’").replace(/(^|[\s(\[])'/g, "$1‘").replace(/'/g, "’")
+      .replace(/(^|[\s(\[])"/g, "$1“").replace(/"/g, "”");
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (/['"]/.test(node.nodeValue) && !node.parentNode.closest("script,style,code,pre")) node.nodeValue = curl(node.nodeValue);
     }
   }
 
+  /* The share button under articles: the phone's own sheet on touch devices, a short menu elsewhere. */
+  function shareButton() {
+    const box = document.querySelector(".share");
+    if (!box) return;
+    const canonical = document.querySelector('link[rel="canonical"]');
+    const url = canonical ? canonical.href : location.href.split("#")[0];
+    const title = document.querySelector("h1").textContent.trim();
+    const e = encodeURIComponent;
+    const targets = {
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${e(url)}`,
+      bluesky: `https://bsky.app/intent/compose?text=${e(`${title} ${url}`)}`,
+      mail: `mailto:?subject=${e(title)}&body=${e(url)}`
+    };
+    box.querySelectorAll("a[data-share]").forEach((a) => { a.href = targets[a.dataset.share]; });
+    box.hidden = false;
+    box.querySelector("summary").addEventListener("click", (ev) => {
+      if (!navigator.share || !matchMedia("(pointer:coarse)").matches) return;
+      ev.preventDefault();
+      navigator.share({ title, url }).catch(() => {});
+    });
+    const copy = box.querySelector("[data-share=copy]");
+    if (navigator.clipboard) {
+      copy.addEventListener("click", () => {
+        navigator.clipboard.writeText(url).then(() => {
+          copy.textContent = "Copied";
+          setTimeout(() => { copy.textContent = "Copy link"; box.open = false; }, 1200);
+        });
+      });
+    } else {
+      copy.remove();
+    }
+    document.addEventListener("click", (ev) => { if (!box.contains(ev.target)) box.open = false; });
+    document.addEventListener("keydown", (ev) => { if (ev.key === "Escape") box.open = false; });
+  }
+
   mailLinks();
-  phoneMenu();
+  menuSheet();
   updatedDate();
   runningHead();
   shapeBodies();
   bibToggle();
-  curlAll(document.getElementById("main"));
+  curlQuotes(document.getElementById("main"));
+  shareButton();
 })();
