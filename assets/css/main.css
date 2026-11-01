@@ -153,11 +153,12 @@ h1 em{font-style:italic;color:var(--accent)}
 .head h1{font-size:clamp(44px,4.6vw,66px);line-height:.98;letter-spacing:-.02em}
 .band{margin:0;overflow:hidden}
 .band .note{position:relative;z-index:1;margin:0;padding-top:6px;background:var(--page)}
-.band img{display:block;width:100%;height:clamp(220px,24vw,345px);object-fit:cover}
+.band img{display:block;width:100%;height:clamp(264px,29vw,414px);object-fit:cover}
 .band.post img{height:clamp(240px,46vw,620px)}
 .band:has(img[src*="MITSailing"]) img{object-position:50% 85%}
 .band:has(img[src*="Will20"]) img{object-position:50% 28%}
-.band:has(img[src*="Jermain-Kaminski-1-md"]) img{object-position:58% 28%}
+.band:has(img[src*="Jermain-Kaminski-speaking"]) img{object-position:67% 13%}
+.part+.band{margin-bottom:40px}
 .page{padding-block:clamp(48px,6vw,88px) 96px}
 .page.sub{padding-top:40px}
 .part{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:16px 64px;padding-block:40px;border-top:1px solid var(--rule)}
