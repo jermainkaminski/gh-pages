@@ -247,9 +247,9 @@ h1 em{font-style:italic;color:var(--accent)}
 .yt-click a:hover .yt-click__play{transform:scale(1.08)}
 .article .yt-click__title{font:400 clamp(16px,1.5vw,19px)/1.3 var(--sans);color:#fff}
 .yt-click__note{font-size:13px;line-height:1.4;color:rgba(255,255,255,.62)}
-.article figure{margin:2em 0}
+.article figure{margin:2em 0;overflow:hidden}
 .article img{display:block;width:100%;height:auto}
-.article figcaption{font-size:16px;color:var(--ink-3);margin-top:8px}
+.article figcaption{position:relative;z-index:1;background:var(--page);font-size:16px;color:var(--ink-3);padding-top:8px}
 .article ul{margin:0 0 1em;padding-left:1.2em;list-style:disc}
 .article li{border-top:0;padding:4px 0}
 /* a pair of calls to action: the first filled, the second outlined; .btn is what Publii calls them */
@@ -304,7 +304,8 @@ nav.pn a:hover .t{color:var(--accent-text)}
 .au-g .r{display:block;margin-top:2px;font-size:14px;color:var(--ink-3)}
 .au-g .r a,.au-g .r a:hover{color:var(--accent-text);text-decoration:none}
 .au-a{display:grid;grid-template-columns:128px minmax(0,1fr);gap:16px 32px;align-items:start;padding:56px 0 16px}
-.au-a img{align-self:stretch;width:128px;height:auto;min-height:0;object-position:68% 20%}
+.au-a .ph{position:relative;display:block;align-self:stretch;overflow:hidden}
+.au-a img{position:absolute;inset:0;width:100%;height:100%;object-position:68% 20%}
 .au-a .n{display:block;margin-top:-3px;font:var(--display-weight) 28px/1.1 var(--serif);letter-spacing:-.015em}
 .au-a .r{display:block;margin-top:6px;font-size:14px;line-height:1.4;color:var(--ink-3)}
 .au-a p{margin:10px 0 0;max-width:52ch;font-size:var(--small);line-height:1.55;color:var(--ink-2);text-wrap:pretty}
@@ -497,7 +498,7 @@ nav.pn a:hover .t{color:var(--accent-text)}
   .sched.news .o::after{content:none}
   .sched.news a>span:last-child{grid-column:2;grid-row:2}
   .au-a{grid-template-columns:80px minmax(0,1fr);gap:16px 20px;padding-top:40px}
-  .au-a img{align-self:start;width:80px;height:100px}
+  .au-a .ph{align-self:start;height:100px}
   .au-a .n{font-size:24px}
   .body li.grant{grid-template-columns:48px minmax(0,1fr);gap:8px}
   .amt{grid-column:2}
@@ -524,7 +525,7 @@ nav.pn a:hover .t{color:var(--accent-text)}
   ::view-transition-old(root),::view-transition-new(root){animation-duration:160ms}
   .badge{view-transition-name:badge}
   /* a picture zooms slightly when the pointer is anywhere on its card, row or frame, not only on the picture */
-  .card .pic img,.mag .pic img,.band img,.portrait>img,.standing img{transition:transform 600ms cubic-bezier(.2,.7,.2,1)}
+  .card .pic img,.mag .pic img,.band img,.portrait>img,.standing img,.article figure img,.au-a img{transition:transform 600ms cubic-bezier(.2,.7,.2,1)}
   .card:focus-visible .pic img,.mag:focus-visible .pic img{transform:scale(1.04)}
   /* the compass turns a little when the pointer is on the logo or the name, and swings back */
   nav.top .logo{transition:transform 520ms cubic-bezier(.34,1.56,.64,1)}
@@ -539,7 +540,7 @@ nav.pn a:hover .t{color:var(--accent-text)}
 }
 
 @media (prefers-reduced-motion:no-preference) and (hover:hover){
-  .card:hover .pic img,.mag:hover .pic img,.band:hover img,.portrait:hover>img,.standing figure:hover img{transform:scale(1.04)}
+  .card:hover .pic img,.mag:hover .pic img,.band:hover img,.portrait:hover>img,.standing figure:hover img,.article figure:hover img,.au-a .ph:hover img{transform:scale(1.04)}
   nav.top .who:hover .logo{transform:rotate(30deg)}
   .more:hover::after{transform:translate(2px,-2px)}
 }
