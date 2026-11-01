@@ -156,7 +156,7 @@
     const link = (url, text) => `<a href="${url}">${text}</a>`;
     const lead = (text) => `<p class="head-lead">${text}.</p>`;
     const { "Google Scholar": google, "Semantic Scholar": semantic, "Sage Policy Impact": sage, Rankless: rankless } = urls;
-    if (google && semantic && sage && rankless) return lead(`My papers are indexed on ${link(google, "Google Scholar")} and ${link(semantic, "Semantic Scholar")}, and their use in policy is tracked by ${link(sage, "Sage")} and ${link(rankless, "Rankless")}`);
+    if (google && semantic && sage && rankless) return lead(`My papers are indexed on ${link(google, "Google Scholar")} and ${link(semantic, "Semantic Scholar")}, and their use in policy is tracked by ${link(sage, "Sage Policy Impact")} and ${link(rankless, "Rankless")}`);
     const all = Object.entries(urls).map(([name, url]) => link(url, name));
     return all.length ? lead(`Find my work on ${all.join(", ")}`) : "";
   }

@@ -223,7 +223,8 @@ h1 em{font-style:italic;color:var(--accent)}
 /* posts and essays */
 .post-head{padding-block:clamp(48px,7vw,96px) clamp(32px,4vw,56px)}
 .post-head .d{margin-bottom:22px}
-.post-head h1{font-size:clamp(40px,5.6vw,80px);line-height:1.04}
+.post-head>*{max-width:720px;margin-inline:auto}
+.post-head h1{font-size:clamp(40px,4.4vw,64px);line-height:1.06}
 .article{max-width:720px;margin-inline:auto;overflow-wrap:anywhere}
 .article h2{font:var(--display-weight) clamp(28px,3vw,40px)/1.15 var(--serif);letter-spacing:-.015em;margin:1.6em 0 .5em}
 .article h3{font:400 20px/1.3 var(--sans);margin:1.6em 0 .4em;color:var(--ink)}
@@ -271,6 +272,12 @@ h1 em{font-style:italic;color:var(--accent)}
 }
 /* previous and next, then the author: in a sentence under articles, as a byline card on the Writing page */
 /* previous and next at the foot of an article; its type settings are what the small labels and titles inherit */
+nav.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:40px 0 0}
+nav.pn a{min-width:0;color:inherit;text-decoration:none}
+nav.pn .next{grid-column:2;text-align:right}
+nav.pn .lbl{display:block;margin-bottom:8px;font:400 11.5px/1.3 var(--sans);letter-spacing:.09em;color:#929292}
+nav.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 var(--serif);letter-spacing:-.01em}
+nav.pn a:hover .t{color:var(--accent-text)}
 .post-end{display:flex;justify-content:space-between;align-items:baseline;gap:12px 32px;margin:56px 0 0;padding-top:20px;border-top:1px solid var(--rule);font-size:15.5px;line-height:1.4}
 .post-end .kw{display:flex;flex:1 1 0;flex-wrap:wrap;gap:4px 20px;margin:0;padding:0;list-style:none}
 .post-end .kw li{margin:0;padding:0;list-style:none}
@@ -284,28 +291,19 @@ h1 em{font-style:italic;color:var(--accent)}
 .share-m{position:absolute;right:0;bottom:calc(100% + 10px);z-index:5;min-width:160px;padding:6px 0;background:var(--page);border:1px solid var(--rule)}
 .share-m a,.share-m button{display:block;width:100%;padding:7px 14px;background:none;border:0;font:inherit;text-align:left;color:var(--ink);text-decoration:none;cursor:pointer}
 .share-m a:hover,.share-m button:hover{color:var(--accent-text)}
-.more-w{padding-top:24px}
-.others{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 48px}
-.other{display:grid;grid-template-columns:168px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:20px;color:inherit;text-decoration:none}
-.other .pic{grid-row:1/3;aspect-ratio:3/2;overflow:hidden}
-.other .pic img{display:block;width:100%;height:100%;object-fit:cover}
-.other .t{font:var(--display-weight) clamp(22px,1.9vw,28px)/1.15 var(--serif);letter-spacing:-.012em}
-.other .d{margin-top:8px;font-size:14px;color:#858585}
-.other:hover .t{color:var(--accent-text)}
 /* the footer's own rule sits above both cards, so they draw none */
 .au-g img,.au-a img{display:block;object-fit:cover;object-position:50% 18%}
-.au-g{display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;align-items:start;padding:44px 0 8px}
-.au-g img{width:72px;height:72px;margin-top:6px}
-.au-g .say{margin:0 0 14px;font:var(--display-weight) clamp(22px,2.2vw,30px)/1.3 var(--serif);letter-spacing:-.01em;color:var(--ink);max-width:40ch;text-wrap:pretty}
+.au-g{display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;align-items:center;padding:44px 0 8px}
+.au-g img{width:72px;height:72px}
 .au-g .n{display:block;font-size:15px;font-weight:500}
 .au-g .r{display:block;margin-top:2px;font-size:14px;color:var(--ink-3)}
 .au-g .r a,.au-g .r a:hover{color:var(--accent-text);text-decoration:none}
-.au-a{display:grid;grid-template-columns:112px minmax(0,1fr);gap:16px 32px;align-items:start;padding:56px 0 16px}
-.au-a img{width:112px;height:140px;object-position:68% 20%}
+.au-a{display:grid;grid-template-columns:128px minmax(0,1fr);gap:16px 32px;align-items:start;padding:56px 0 16px}
+.au-a img{align-self:stretch;width:128px;height:auto;min-height:0;object-position:68% 20%}
 .au-a .n{display:block;margin-top:-3px;font:var(--display-weight) 28px/1.1 var(--serif);letter-spacing:-.015em}
 .au-a .r{display:block;margin-top:6px;font-size:14px;line-height:1.4;color:var(--ink-3)}
-.au-a p{margin:16px 0 0;max-width:52ch;font-size:var(--small);line-height:1.55;color:var(--ink-2);text-wrap:pretty}
-.au-a .more{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:15px;color:var(--ink);text-decoration:none}
+.au-a p{margin:10px 0 0;max-width:52ch;font-size:var(--small);line-height:1.55;color:var(--ink-2);text-wrap:pretty}
+.au-a .more{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:15px;line-height:1.2;vertical-align:top;color:var(--ink);text-decoration:none}
 .au-a .more+.more{margin-left:24px}
 .au-a .more svg{color:var(--accent);transition:transform 160ms cubic-bezier(.2,.7,.2,1)}
 .au-a .more:hover svg{transform:translate(1px,-1px)}
@@ -377,9 +375,12 @@ h1 em{font-style:italic;color:var(--accent)}
   .pillars{grid-template-rows:repeat(4,auto)}
   .body li.pillar,.body li.pillar:first-child,.pillar{display:grid;grid-row:span 4;grid-template-rows:subgrid}
   .teach img{margin-left:-48px;width:calc(100% + 48px)}
-  .article{margin-inline:calc((100% - 64px)*4/12 + 64px) 0}
-  .body p.pull{float:left;width:calc(100% * 4/8 - 24px);margin:6px 0 20px calc(-100% * 4/8 - 64px);border:0;padding:0}
   .close h2{font-size:min(12.3vw,177px);white-space:nowrap}
+}
+
+/* responsive: 1400px and up, where pull quotes have room in the margin beside the centered column */
+@media (min-width:1400px){
+  .body p.pull{float:left;width:240px;margin:6px 0 20px -288px;border:0;padding:0}
 }
 
 /* responsive: 1181px and up */
@@ -398,6 +399,7 @@ h1 em{font-style:italic;color:var(--accent)}
 /* responsive: 1000px and below: one column, and the menu becomes a full-screen sheet */
 @media (max-width:1000px){
   h1{font-size:clamp(38px,6vw,56px)}
+  .role-l{margin-bottom:-14px}
   nav.top{flex-wrap:nowrap;justify-content:space-between;padding-block:6px}
   nav.top .who{position:relative;z-index:2;gap:5px;font-size:16px}
   nav.top .logo{width:26px;height:26px}
@@ -475,6 +477,8 @@ h1 em{font-style:italic;color:var(--accent)}
 
 /* responsive: 640px */
 @media (max-width:640px){
+  nav.pn{grid-template-columns:minmax(0,1fr)}
+  nav.pn .next{grid-column:1;text-align:left}
   h1{font-size:34px;line-height:1.08}
   .portrait>img{aspect-ratio:1;object-position:94% 50%}
   .badge-m{top:14px;right:14px;width:77px}
@@ -487,7 +491,7 @@ h1 em{font-style:italic;color:var(--accent)}
   .sched.news .o::after{content:none}
   .sched.news a>span:last-child{grid-column:2;grid-row:2}
   .au-a{grid-template-columns:80px minmax(0,1fr);gap:16px 20px;padding-top:40px}
-  .au-a img{width:80px;height:100px}
+  .au-a img{align-self:start;width:80px;height:100px}
   .au-a .n{font-size:24px}
   .body li.grant{grid-template-columns:48px minmax(0,1fr);gap:8px}
   .amt{grid-column:2}
@@ -496,8 +500,6 @@ h1 em{font-style:italic;color:var(--accent)}
   .mag:first-child{grid-column:auto}
   .mag:first-child .pic{aspect-ratio:3/2}
   .mag .pic{margin-inline:-24px}
-  .others{grid-template-columns:minmax(0,1fr);gap:20px}
-  .other{grid-template-columns:104px minmax(0,1fr);column-gap:16px}
   .close h2{font-size:clamp(36px,10.5vw,56px)}
   .colophon .upd{text-align:left}
 }
@@ -516,7 +518,7 @@ h1 em{font-style:italic;color:var(--accent)}
   ::view-transition-old(root),::view-transition-new(root){animation-duration:160ms}
   .badge{view-transition-name:badge}
   /* a picture zooms slightly when the pointer is anywhere on its card, row or frame, not only on the picture */
-  .card .pic img,.mag .pic img,.other .pic img,.band img,.portrait>img,.standing img{transition:transform 600ms cubic-bezier(.2,.7,.2,1)}
+  .card .pic img,.mag .pic img,.band img,.portrait>img,.standing img{transition:transform 600ms cubic-bezier(.2,.7,.2,1)}
   .card:focus-visible .pic img,.mag:focus-visible .pic img{transform:scale(1.04)}
   /* the compass turns a little when the pointer is on the logo or the name, and swings back */
   nav.top .logo{transition:transform 520ms cubic-bezier(.34,1.56,.64,1)}
@@ -531,7 +533,7 @@ h1 em{font-style:italic;color:var(--accent)}
 }
 
 @media (prefers-reduced-motion:no-preference) and (hover:hover){
-  .card:hover .pic img,.mag:hover .pic img,.other:hover .pic img,.band:hover img,.portrait:hover>img,.standing figure:hover img{transform:scale(1.04)}
+  .card:hover .pic img,.mag:hover .pic img,.band:hover img,.portrait:hover>img,.standing figure:hover img{transform:scale(1.04)}
   nav.top .who:hover .logo{transform:rotate(30deg)}
   .more:hover::after{transform:translate(2px,-2px)}
 }
