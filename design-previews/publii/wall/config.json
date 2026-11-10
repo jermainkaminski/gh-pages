@@ -92,7 +92,7 @@
             "value": "Causal inference and <span class='brk'></span>machine learning for <span class='brk'></span><em>the decisions <span class='brk'></span>entrepreneurs make.</em>",
             "type": "textarea",
             "group": "Home",
-            "note": "The orange italic part goes inside <em>\u2026</em>."
+            "note": "The orange part goes inside <em>\u2026</em>."
         },
         {
             "name": "heroImage",
@@ -157,13 +157,6 @@
             "label": "Author line on the Writing page",
             "value": "I work on causal inference and machine learning for the decisions entrepreneurs make, and on the economic complexity of software.",
             "type": "textarea",
-            "group": "Home"
-        },
-        {
-            "name": "authorSentence",
-            "label": "Sentence under articles",
-            "value": "I work on causal inference and machine learning for the decisions entrepreneurs make.",
-            "type": "text",
             "group": "Home"
         },
         {
@@ -302,7 +295,7 @@
                         "group": "post,card,lead,half"
                     },
                     "xxl": {
-                        "width": 2400,
+                        "width": 2800,
                         "height": "auto",
                         "group": "post"
                     }

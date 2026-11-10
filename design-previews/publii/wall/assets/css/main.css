@@ -32,7 +32,6 @@ h2,h3,.t{text-wrap:balance}
 .s,.body p{text-wrap:pretty}
 /* every block sits in .pad: 24px gutters on phones, 48px from 900px, centred and capped at 1440px */
 .pad{max-width:1440px;margin-inline:auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
-.facts dt{font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
 .d{display:block;font-size:var(--small);line-height:1.3;color:var(--ink-3);font-variant-numeric:lining-nums}
 .more{display:inline-block;margin-top:24px;font-size:var(--text);color:var(--accent-text);text-decoration:none}
 .more::after{content:"";display:inline-block;width:.68em;height:.68em;margin-left:.36em;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
@@ -44,7 +43,9 @@ a:hover>.t{color:var(--accent-text)}
 .pic img{display:block;width:100%;height:100%;object-fit:cover}
 /* the short note under a photograph */
 .note,figcaption.note{display:block;margin:6px 0 0;font:300 11px/1.35 var(--sans);color:#aeaeae;letter-spacing:.01em}
-.note b{display:inline-block;margin-right:8px;font-size:9.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#909090}
+/* every small label: captions, hero facts, post categories, previous and next */
+.note b,.facts dt,.kick,nav.pn .lbl{font-size:9.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#909090}
+.note b{display:inline-block;margin-right:8px}
 .skip{position:absolute;left:12px;top:-60px;z-index:20;background:var(--ink);color:#fff;padding:10px 14px;text-decoration:none}
 .skip:focus{top:12px;color:#fff}
 
@@ -76,9 +77,9 @@ nav.top ul a:hover,nav.top li.active>a{color:var(--accent-text)}
 .role-l{margin:0 0 18px;font-size:15px;line-height:1.4;color:var(--ink-3);text-wrap:balance}
 .brk{display:block}
 h1{margin:0;font:var(--display-weight) clamp(38px,4vw,64px)/1.05 var(--serif);letter-spacing:-.015em;text-wrap:pretty}
-h1 em{font-style:italic;color:var(--accent)}
+h1 em{font-style:normal;color:var(--accent)}
 .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 28px;margin:40px 0 0}
-.facts dt{margin-bottom:6px;font-size:11.5px;font-weight:400;letter-spacing:.09em;color:#929292}
+.facts dt{margin-bottom:6px}
 .facts dd{margin:0;font-size:17px;line-height:1.35}
 .facts a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--rule)}
 .facts a:hover{color:inherit;text-decoration-color:currentColor}
@@ -152,11 +153,12 @@ h1 em{font-style:italic;color:var(--accent)}
 .head h1{font-size:clamp(44px,4.6vw,66px);line-height:.98;letter-spacing:-.02em}
 .band{margin:0;overflow:hidden}
 .band .note{position:relative;z-index:1;margin:0;padding-top:6px;background:var(--page)}
-.band img{display:block;width:100%;height:clamp(220px,24vw,345px);object-fit:cover}
+.band img{display:block;width:100%;height:clamp(264px,29vw,414px);object-fit:cover}
 .band.post img{height:clamp(240px,46vw,620px)}
 .band:has(img[src*="MITSailing"]) img{object-position:50% 85%}
 .band:has(img[src*="Will20"]) img{object-position:50% 28%}
-.band:has(img[src*="Jermain-Kaminski-1-md"]) img{object-position:58% 28%}
+.band:has(img[src*="Jermain-Kaminski-speaking"]) img{object-position:67% 13%}
+.part+.band{margin-bottom:40px}
 .page{padding-block:clamp(48px,6vw,88px) 96px}
 .page.sub{padding-top:40px}
 .part{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:16px 64px;padding-block:40px;border-top:1px solid var(--rule)}
@@ -185,7 +187,7 @@ h1 em{font-style:italic;color:var(--accent)}
 /* About: the full-length photograph beside the text */
 .standing{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(28px,3.5vw,52px);align-items:start;padding-top:0}
 .standing figure{margin:0;position:sticky;top:24px;overflow:hidden}
-.standing img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+.standing img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:64% 50%}
 .standing .body{max-width:64ch}
 .standing .body>p:first-child{font:var(--display-weight) clamp(22px,2vw,28px)/1.35 var(--serif);letter-spacing:-.01em;color:var(--ink);margin-bottom:1em}
 
@@ -223,6 +225,9 @@ h1 em{font-style:italic;color:var(--accent)}
 /* posts and essays */
 .post-head{padding-block:clamp(48px,7vw,96px) clamp(32px,4vw,56px)}
 .post-head .d{margin-bottom:22px}
+.back{font-size:15px;color:var(--ink-3);text-decoration:none}
+.back:hover{color:var(--accent-text)}
+.post-head .up{margin-bottom:18px}
 .post-head>*{max-width:720px;margin-inline:auto}
 .post-head h1{font-size:clamp(40px,4.4vw,64px);line-height:1.06}
 .article{max-width:720px;margin-inline:auto;overflow-wrap:anywhere}
@@ -242,9 +247,9 @@ h1 em{font-style:italic;color:var(--accent)}
 .yt-click a:hover .yt-click__play{transform:scale(1.08)}
 .article .yt-click__title{font:400 clamp(16px,1.5vw,19px)/1.3 var(--sans);color:#fff}
 .yt-click__note{font-size:13px;line-height:1.4;color:rgba(255,255,255,.62)}
-.article figure{margin:2em 0}
+.article figure{margin:2em 0;overflow:hidden}
 .article img{display:block;width:100%;height:auto}
-.article figcaption{font-size:16px;color:var(--ink-3);margin-top:8px}
+.article figcaption{position:relative;z-index:1;background:var(--page);font-size:16px;color:var(--ink-3);padding-top:8px}
 .article ul{margin:0 0 1em;padding-left:1.2em;list-style:disc}
 .article li{border-top:0;padding:4px 0}
 /* a pair of calls to action: the first filled, the second outlined; .btn is what Publii calls them */
@@ -261,8 +266,8 @@ h1 em{font-style:italic;color:var(--accent)}
 .body p.pull{margin:0 0 1.4em;padding:12px 0;border-top:1px solid var(--accent);border-bottom:1px solid var(--accent);font:var(--display-weight) clamp(22px,2.1vw,28px)/1.3 var(--serif);letter-spacing:-.01em;color:var(--accent);text-wrap:pretty;max-width:none}
 /* a running head appears once the title has scrolled away; its rule fills with reading progress */
 .runhead{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:24px;height:44px;padding-inline:max(24px,env(safe-area-inset-left,0px));background:var(--page);font-size:13px;transform:translateY(-100%);transition:transform 220ms cubic-bezier(.2,.7,.2,1)}
-.runhead .who{color:var(--ink);text-decoration:none;flex:none}
-.runhead .t{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.runhead .back{flex:none}
+.runhead .t{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font:var(--display-weight) 18px/1.3 var(--serif);letter-spacing:-.01em;color:var(--ink)}
 .runhead::before{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--rule)}
 .runhead::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--accent);transform:scaleX(var(--read,0));transform-origin:left}
 .past .runhead{transform:none}
@@ -275,7 +280,7 @@ h1 em{font-style:italic;color:var(--accent)}
 nav.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:40px 0 0}
 nav.pn a{min-width:0;color:inherit;text-decoration:none}
 nav.pn .next{grid-column:2;text-align:right}
-nav.pn .lbl{display:block;margin-bottom:8px;font:400 11.5px/1.3 var(--sans);letter-spacing:.09em;color:#929292}
+nav.pn .lbl{display:block;margin-bottom:8px;font-family:var(--sans);line-height:1.3}
 nav.pn .t{display:block;font:var(--display-weight) clamp(20px,1.8vw,26px)/1.2 var(--serif);letter-spacing:-.01em}
 nav.pn a:hover .t{color:var(--accent-text)}
 .post-end{display:flex;justify-content:space-between;align-items:baseline;gap:12px 32px;margin:56px 0 0;padding-top:20px;border-top:1px solid var(--rule);font-size:15.5px;line-height:1.4}
@@ -293,14 +298,14 @@ nav.pn a:hover .t{color:var(--accent-text)}
 .share-m a:hover,.share-m button:hover{color:var(--accent-text)}
 /* the footer's own rule sits above both cards, so they draw none */
 .au-g img,.au-a img{display:block;object-fit:cover;object-position:50% 18%}
-.au-g{display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;align-items:start;padding:44px 0 8px}
-.au-g img{width:72px;height:72px;margin-top:6px}
-.au-g .say{margin:0 0 14px;font:var(--display-weight) clamp(22px,2.2vw,30px)/1.3 var(--serif);letter-spacing:-.01em;color:var(--ink);max-width:40ch;text-wrap:pretty}
+.au-g{display:grid;grid-template-columns:72px minmax(0,1fr);gap:24px;align-items:center;padding:44px 0 8px}
+.au-g img{width:72px;height:72px}
 .au-g .n{display:block;font-size:15px;font-weight:500}
 .au-g .r{display:block;margin-top:2px;font-size:14px;color:var(--ink-3)}
 .au-g .r a,.au-g .r a:hover{color:var(--accent-text);text-decoration:none}
 .au-a{display:grid;grid-template-columns:128px minmax(0,1fr);gap:16px 32px;align-items:start;padding:56px 0 16px}
-.au-a img{align-self:stretch;width:128px;height:auto;min-height:0;object-position:68% 20%}
+.au-a .ph{position:relative;display:block;align-self:stretch;overflow:hidden}
+.au-a img{position:absolute;inset:0;width:100%;height:100%;object-position:68% 20%}
 .au-a .n{display:block;margin-top:-3px;font:var(--display-weight) 28px/1.1 var(--serif);letter-spacing:-.015em}
 .au-a .r{display:block;margin-top:6px;font-size:14px;line-height:1.4;color:var(--ink-3)}
 .au-a p{margin:10px 0 0;max-width:52ch;font-size:var(--small);line-height:1.55;color:var(--ink-2);text-wrap:pretty}
@@ -313,8 +318,9 @@ nav.pn a:hover .t{color:var(--accent-text)}
 .mag{display:block;text-decoration:none;color:inherit}
 .mag:first-child{grid-column:span 2;grid-row:span 2}
 .mag .pic{aspect-ratio:3/2;overflow:hidden;margin-bottom:18px}
-.mag:first-child .pic{aspect-ratio:4/3}
-.kick{display:block;font:500 12.5px/1.3 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--accent-text);margin-bottom:10px}
+/* the lead image stops short so its title shows on the first screen */
+.mag:first-child .pic{width:100%;aspect-ratio:2/1;max-height:max(280px,calc(100svh - 520px))}
+.kick{display:block;font-family:var(--sans);line-height:1.3;color:var(--accent-text);margin-bottom:10px}
 .mag .t{display:block;font:var(--display-weight) clamp(26px,2.4vw,34px)/1.1 var(--serif);letter-spacing:-.018em}
 .mag:first-child .t{font-size:clamp(34px,4vw,56px);letter-spacing:-.025em;max-width:20ch}
 .mag .s{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin-top:10px;font-size:var(--small);line-height:1.5;color:var(--ink-2);max-width:52ch}
@@ -363,7 +369,7 @@ nav.pn a:hover .t{color:var(--accent-text)}
 /* responsive: 900px */
 @media (min-width:900px){
   .pad{padding-left:max(48px,env(safe-area-inset-left,0px));padding-right:max(48px,env(safe-area-inset-right,0px))}
-  .runhead{padding-inline:48px}
+  .runhead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,720px) minmax(0,1fr);padding-inline:48px}
 }
 
 /* responsive: 1001px and up, the desktop layouts */
@@ -440,6 +446,7 @@ nav.pn a:hover .t{color:var(--accent-text)}
   .portrait>img{aspect-ratio:4/3;object-fit:cover;object-position:90% 50%}
   .standing{grid-template-columns:minmax(0,1fr)}
   .standing figure{position:static}
+  .standing img{aspect-ratio:auto}
   .sec{padding-block:64px}
   .blog{padding-bottom:0}
   .pillars{grid-template-columns:minmax(0,1fr);row-gap:28px}
@@ -450,7 +457,7 @@ nav.pn a:hover .t{color:var(--accent-text)}
   .part h2{position:static}
   .maggrid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mag:first-child{grid-column:1/-1;grid-row:auto}
-  .mag:first-child .pic{aspect-ratio:2/1}
+  .mag:first-child .pic{aspect-ratio:2/1;max-height:none}
 }
 
 /* responsive: 701px to 1000px, each pillar across the page: numeral and title left, text right */
@@ -467,8 +474,7 @@ nav.pn a:hover .t{color:var(--accent-text)}
   .note,figcaption.note{margin:6px 24px 0}
   .band .note{margin:0;padding-inline:24px}
   .portrait,.band,.standing figure,.teach figure,.card .pic,.article figure{margin-inline:-24px}
-  /* About on a phone: a square cut-out around the face */
-  .standing figure img{aspect-ratio:1;object-position:50% 8%;scale:1.35;transform-origin:45% 40%}
+  .standing img{aspect-ratio:1;object-position:70% 50%}
 }
 /* the sheet fades in; written flat, because Publii's CSS compression cannot read nested at-rules */
 @media (max-width:1000px) and (prefers-reduced-motion:no-preference){
@@ -492,14 +498,14 @@ nav.pn a:hover .t{color:var(--accent-text)}
   .sched.news .o::after{content:none}
   .sched.news a>span:last-child{grid-column:2;grid-row:2}
   .au-a{grid-template-columns:80px minmax(0,1fr);gap:16px 20px;padding-top:40px}
-  .au-a img{align-self:start;width:80px;height:100px}
+  .au-a .ph{align-self:start;height:100px}
   .au-a .n{font-size:24px}
   .body li.grant{grid-template-columns:48px minmax(0,1fr);gap:8px}
   .amt{grid-column:2}
   .cards,.maggrid{grid-template-columns:minmax(0,1fr)}
   .cards .card:first-child .pic{aspect-ratio:3/2}
   .mag:first-child{grid-column:auto}
-  .mag:first-child .pic{aspect-ratio:3/2}
+  .mag:first-child .pic{width:auto;aspect-ratio:3/2}
   .mag .pic{margin-inline:-24px}
   .close h2{font-size:clamp(36px,10.5vw,56px)}
   .colophon .upd{text-align:left}
@@ -519,7 +525,7 @@ nav.pn a:hover .t{color:var(--accent-text)}
   ::view-transition-old(root),::view-transition-new(root){animation-duration:160ms}
   .badge{view-transition-name:badge}
   /* a picture zooms slightly when the pointer is anywhere on its card, row or frame, not only on the picture */
-  .card .pic img,.mag .pic img,.band img,.portrait>img,.standing img{transition:transform 600ms cubic-bezier(.2,.7,.2,1)}
+  .card .pic img,.mag .pic img,.band img,.portrait>img,.standing img,.article figure img,.au-a img{transition:transform 600ms cubic-bezier(.2,.7,.2,1)}
   .card:focus-visible .pic img,.mag:focus-visible .pic img{transform:scale(1.04)}
   /* the compass turns a little when the pointer is on the logo or the name, and swings back */
   nav.top .logo{transition:transform 520ms cubic-bezier(.34,1.56,.64,1)}
@@ -534,7 +540,7 @@ nav.pn a:hover .t{color:var(--accent-text)}
 }
 
 @media (prefers-reduced-motion:no-preference) and (hover:hover){
-  .card:hover .pic img,.mag:hover .pic img,.band:hover img,.portrait:hover>img,.standing figure:hover img{transform:scale(1.04)}
+  .card:hover .pic img,.mag:hover .pic img,.band:hover img,.portrait:hover>img,.standing figure:hover img,.article figure:hover img,.au-a .ph:hover img{transform:scale(1.04)}
   nav.top .who:hover .logo{transform:rotate(30deg)}
   .more:hover::after{transform:translate(2px,-2px)}
 }

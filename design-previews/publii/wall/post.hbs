@@ -1,8 +1,8 @@
 {{> head}}
 {{#post}}
 <main id="main">
-<div class="runhead" aria-hidden="true"><a class="who" href="{{@website.url}}">{{@website.name}}</a><span class="t">{{title}}</span></div>
-<div class="pad head post-head"><span class="d">{{date createdAt "D MMMM YYYY"}}</span><h1>{{title}}</h1></div>
+<div class="runhead" aria-hidden="true">{{#getPage 24}}<a class="back" href="{{url}}" tabindex="-1">← Writing</a>{{/getPage}}<span class="t">{{title}}</span></div>
+<div class="pad head post-head">{{#getPage 24}}<div class="up"><a class="back" href="{{url}}">← Writing</a></div>{{/getPage}}<span class="d">{{date createdAt "D MMMM YYYY"}}</span><h1>{{title}}</h1></div>
 {{#featuredImage}}{{#if url}}
 <div class="pad"><figure class="band post"><img src="{{url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' srcset.post sizes.post}}{{/if}} width="{{width}}" height="{{height}}" alt="{{alt}}" style="view-transition-name:post-{{../id}}">{{#if caption}}<figcaption class="note">{{{caption}}}</figcaption>{{/if}}</figure></div>
 {{/if}}{{/featuredImage}}
