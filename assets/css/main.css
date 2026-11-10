@@ -77,7 +77,7 @@ nav.top ul a:hover,nav.top li.active>a{color:var(--accent-text)}
 .role-l{margin:0 0 18px;font-size:15px;line-height:1.4;color:var(--ink-3);text-wrap:balance}
 .brk{display:block}
 h1{margin:0;font:var(--display-weight) clamp(38px,4vw,64px)/1.05 var(--serif);letter-spacing:-.015em;text-wrap:pretty}
-h1 em{font-style:italic;color:var(--accent)}
+h1 em{font-style:normal;color:var(--accent)}
 .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 28px;margin:40px 0 0}
 .facts dt{margin-bottom:6px}
 .facts dd{margin:0;font-size:17px;line-height:1.35}
